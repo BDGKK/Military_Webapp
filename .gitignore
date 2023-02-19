@@ -1,0 +1,5 @@
+# Avoid committing too many modules
+node_modules/
+
+# Avoid committing confidential information (API keys)
+.env
