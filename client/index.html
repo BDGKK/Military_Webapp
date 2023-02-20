@@ -60,6 +60,9 @@
             color: white;
             font-size: 1em;
         }
+        .user-input button:active {
+            opacity: 60%;
+        }
     </style>
 </head>
 <body class="flex-container">
@@ -73,16 +76,17 @@
         const body = document.getElementById('messaging-body');
         const textInput = document.getElementById('user-input');
         const messages = [];
+        const domain = 'http://localhost:3000';
 
         const getMessage = async() => {
             // Change this URL depending on the domain (if localhost is no longer used)
-            const message = await fetch('http://localhost:3000/messages');
+            const message = await fetch(`${domain}/messages`);
             return message.json();
         }
 
         const sendMessage = async(humanMessage) => {
             // Change this URL depending on the domain (if localhost is no longer used)
-            const res = await fetch('http://localhost:3000/userinput', {
+            const res = await fetch(`${domain}/userinput`, {
                 method: 'POST',
                 headers: {
                 'Accept': 'application/json',
