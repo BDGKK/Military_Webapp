@@ -5,7 +5,7 @@ require('dotenv').config();
 // Initialize the Router and display the frontend at the root URL (localhost:<port>/)
 const router = express.Router();
 router.use(express.static('./client'));
-
+/*
 // Initialize the openai instance
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
@@ -46,5 +46,6 @@ router.post('/userinput', async(req, res) => {
         message: "Posted successfully"
     });
 });
+*/
 
 module.exports = router;
