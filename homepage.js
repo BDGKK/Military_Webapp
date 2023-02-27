@@ -5,14 +5,7 @@ require('dotenv').config();
 
 // Initialize the Router and display the frontend at the root URL (localhost:<port>/)
 const router = express.Router();
-
-// Not sure why this didn't work without WiFi
-// It worked on localhost:<port> on home WiFi
-//router.use(express.static('./client'));
-
-router.get('/', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, '/client/home_page.html'));
-});
+router.use('/', express.static('./home-page'));
 
 // Initialize the openai instance
 const configuration = new Configuration({
@@ -24,12 +17,12 @@ let humanMessage = {};
 let aiMessage = {};
 
 // Message to send to the frontend
-router.get('/messages', (req, res) => {
+router.get('/homepage/messages', (req, res) => {
     res.status(200).send(aiMessage);
 });
 
 // Message to get from the frontend
-router.post('/userinput', async(req, res) => {
+router.post('/homepage/userinput', async(req, res) => {
     humanMessage = req.body.humanMessage;
 
     if (!humanMessage) {

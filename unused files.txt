@@ -1,3 +1,5 @@
+// Use these codes in the case of unclear CORS errors or Content Security
+
 const {expressCspHeader, INLINE, NONE, SELF} = require('express-csp-header');
 
 app.use(expressCspHeader({
@@ -5,9 +7,8 @@ app.use(expressCspHeader({
         'img-src': [NONE]
     }
 }));
-*/
-// Avoid CORS errors
 
+// Avoid CORS errors
 app.use(expressCspHeader({
     directives: {
         'default-src': [SELF],

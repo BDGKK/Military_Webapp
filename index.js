@@ -1,20 +1,23 @@
+const { DOMAIN_NAME, PORT } = require('./domain_name');
 const express = require('express');
 const cors = require('cors');
-const router = require('./router');
+
+// Import directories of the webpages
+const homepage = require('./homepage');
 
 const app = express();
-require('dotenv').config();
 
+// Enable CORS only for GET and POST methods
 app.use('*', cors());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    res.header('Access-Control-Allow-Methods', 'GET, POST');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     return next();
 });
-
 app.use(express.json());
-app.use(router);
 
-const port = process.env.PORT;
-app.listen(port, () => console.log(`http://localhost:${port}`));
+// Connect the routers of the webpage to the main app
+app.use(homepage);
+
+app.listen(PORT, () => console.log(`${DOMAIN_NAME}`));

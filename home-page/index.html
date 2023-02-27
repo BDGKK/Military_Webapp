@@ -28,6 +28,7 @@
           background-color: red;
           border: none;
           border-radius: 1em;
+          z-index: 100;
         }
         .chatbot-icon:active {
           opacity: 50%;
@@ -36,9 +37,9 @@
           display: flex;
           position: fixed;
           background-color: white;
-          height: 60%;
-          width: 50%;
-          bottom: 4.5em;
+          height: 40em;
+          width: 40em;
+          bottom: 5em;
           right: 1.7em;
           border-radius: 1em;
           border: 0.3em solid blue;
@@ -52,7 +53,7 @@
             top: 0;
             left: 0;
             right: 0;
-            bottom: 3.6em;
+            height: 36.1em;
             padding: 1em 2em;
             border: 0.1em solid gray;
             overflow: auto;
@@ -90,6 +91,7 @@
     </style>
 </head>
 <body>
+    <!--Add a comment above each section to identify what they are (eg: header, feedback section, chatbot section, about section)-->
     <nav class="navbar navbar-inverse p-1 bg-dark">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -117,6 +119,7 @@
             </div>
     </nav>
 
+    <!-- Please add a nice icon and css for the chatbot elements -->
     <div id="chatbot-window" class="chatbot-window">
       <div id="messaging-body" class="text-body"></div>
       <div class="user-input">
@@ -125,7 +128,7 @@
       </div>
     </div>
 
-    <button onclick="openChat()" class="chatbot-icon"></button>
+    <button onclick="openChatbotWindow()" class="chatbot-icon"></button>
 
     <div class="pic p-1 mt-2">
     <img src="filip-andrejevic-1LTunOck3es-unsplash.jpg" class="mx-auto d-block" style="width: 99%;">
@@ -241,52 +244,6 @@
         </div> 
       </div>
 
-      <script>
-        const chatbotWindow = document.getElementById("chatbot-window");
-        const body = document.getElementById('messaging-body');
-        const textInput = document.getElementById('user-input');
-        const messages = [];
-        const domain = 'http://localhost:3000';
-
-        const openChat = () => {
-          const windowVisibility = chatbotWindow.style.visibility;
-          chatbotWindow.style.visibility = windowVisibility === 'visible' ? 'hidden' : 'visible';
-        }
-
-        const getMessage = async() => {
-            const message = await fetch(`${domain}/messages`);
-            return message.json();
-        }
-
-        const sendMessage = async(humanMessage) => {
-            const res = await fetch(`${domain}/userinput`, {
-                method: 'POST',
-                headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({humanMessage})
-            });
-        }
-
-        const generateMessage = async() => {
-            const input = textInput.value;
-
-            if (input === "") {
-                alert('Please enter an input');
-                return;
-            }
-            
-            await sendMessage(input);
-            let AIMessage = await getMessage();
-            messages.push({human: input, ai: AIMessage.message});
-
-            body.innerHTML = messages.map((message) => {
-                return `<p>Human: ${message.human}</p><p style="color: greenyellow;">AI: ${message.ai}</p>`;
-            }).join('');
-
-            textInput.value = "";
-        }
-      </script>
+      <script src="script.js"></script>
 </body>
 </html>
