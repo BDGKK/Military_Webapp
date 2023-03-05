@@ -1,24 +1,16 @@
-const { Configuration, OpenAIApi } = require("openai");
-const path = require('path');
 const express = require('express');
+const chatbot = require("./chatbot");
 require('dotenv').config();
 
 // Initialize the Router and display the frontend at the root URL (localhost:<port>/)
 const router = express.Router();
 router.use('/', express.static('./home-page'));
 
-// Initialize the openai instance
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
-
-let humanMessage = {};
-let aiMessage = {};
+let chatbotResponse = {};
 
 // Message to send to the frontend
 router.get('/homepage/messages', (req, res) => {
-    res.status(200).send(aiMessage);
+    res.status(200).send(chatbotResponse);
 });
 
 // Message to get from the frontend
@@ -31,17 +23,7 @@ router.post('/homepage/userinput', async(req, res) => {
         });
     }
 
-    // Input the user's message to the AI and get the AI's response
-    const prompt = "The following is a conversation with an AI assistant. " +
-        `The assistant gives basic responses to basic input.\n\nHuman: ${humanMessage}\nAI:`;
-    const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt,
-        max_tokens: 450,
-        temperature: 0.5
-    });
-    
-    aiMessage = {message: response.data.choices[0].text};
+    chatbotResponse = {message: chatbot(humanMessage)};
 
     res.status(200).send({
         message: "Posted successfully"

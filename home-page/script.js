@@ -34,7 +34,10 @@ const generateMessage = async() => {
     }
     
     await sendMessage(input);
+
     let AIMessage = await getMessage();
+    console.log(AIMessage);
+    
     messages.push({human: input, ai: AIMessage.message});
 
     body.innerHTML = messages.map((message) => {
