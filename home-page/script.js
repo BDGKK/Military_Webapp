@@ -9,6 +9,10 @@ const openChatbotWindow = () => {
     chatbotWindow.style.visibility = windowVisibility === 'visible' ? 'hidden' : 'visible';
 }
 
+textInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') generateMessage();
+});
+
 const getMessage = async() => {
     const message = await fetch(`${domain}/homepage/messages`);
     return message.json();
@@ -33,16 +37,19 @@ const generateMessage = async() => {
         return;
     }
     
-    await sendMessage(input);
-
-    let AIMessage = await getMessage();
-    console.log(AIMessage);
-    
-    messages.push({human: input, ai: AIMessage.message});
-
-    body.innerHTML = messages.map((message) => {
-        return `<p>Human: ${message.human}</p><p style="color: green;">AI: ${message.ai}</p>`;
+    // Use this index number method to put gaps between messages
+    messages.push({human: input});
+    body.innerHTML = messages.map((message, index) => {
+        return `<div style="top: ${(index+1)*1.5}em;" class="human-text">${message.human}</div>`;
     }).join('');
+    //await sendMessage(input);
+
+    //let AIMessage = await getMessage();
+    //messages.push({human: input, ai: AIMessage.message});
+
+    //body.innerHTML = messages.map((message) => {
+    //    return `<p>Human: ${message.human}</p><p style="color: green;">AI: ${message.ai}</p>`;
+    //}).join('');
 
     textInput.value = "";
 }

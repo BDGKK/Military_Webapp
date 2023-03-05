@@ -2,6 +2,8 @@ const express = require('express');
 const chatbot = require("./chatbot");
 require('dotenv').config();
 
+// Note: Make chatbot into a websocket connection - less latency and more efficiency
+
 // Initialize the Router and display the frontend at the root URL (localhost:<port>/)
 const router = express.Router();
 router.use('/', express.static('./home-page'));
