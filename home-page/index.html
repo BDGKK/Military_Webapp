@@ -9,14 +9,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         .left .btn{
-            border-radius: 35ex;
+          border-radius: 35ex;
         }
         .dropdown .btn{
-            border-radius: 35ex;
+          border-radius: 35ex;
         }
         .v1{
-            border-left: 6px black;
-            height: 500px;
+          border-left: 6px black;
+          height: 500px;
         }
 
         .chatbot-icon {
@@ -40,66 +40,71 @@
           display: flex;
           position: fixed;
           background-color: white;
-          height: 40em;
-          width: 40em;
+          height: 35em;
+          width: 30em;
           bottom: 5em;
           right: 1.7em;
           border-radius: 1em;
           border: 0.3em solid rgb(9, 0, 130);
           overflow: hidden;
-          visibility: visible;
+          visibility: hidden;
           z-index: 100;
         }
         .text-body {
-            display: flex;
-            position: absolute;
-            flex-direction: column;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 36.1em;
-            padding: 1em 2em;
-            border: 0.1em solid gray;
-            overflow: auto;
-        }
-        .text-body p {
-            margin: 0.5em 0;
+          display: flex;
+          flex-direction: column;
+          height: 31.1em;
+          width: 100%;
+          padding: 1em 2em;
+          overflow: auto;
         }
         .user-input {
-            display: flex;
-            flex-direction: row;
-            position: absolute;
-            border: 0.1em solid rgb(9, 0, 130);
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3.5em;
+          display: flex;
+          flex-direction: row;
+          position: absolute;
+          border: 0.1em solid rgb(9, 0, 130);
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 3.5em;
         }
         .user-input input {
-            width: 100%;
-            padding: 0 1em;
-            font-size: 1em;
-            border: none;
-            outline: none;
+          width: 100%;
+          padding: 0 1em;
+          font-size: 1em;
+          border: none;
+          outline: none;
         }
         .user-input button {
-            width: 6em;
-            background-color: rgb(9, 0, 130);
-            border: none;
-            color: white;
-            font-size: 1em;
+          width: 6em;
+          background-color: rgb(9, 0, 130);
+          border: none;
+          color: white;
+          font-size: 1em;
         }
         .user-input button:active {
-            opacity: 60%;
+          opacity: 60%;
+        }
+        .message {
+          display: flex;
+          padding: 0.5em 1em;
+          margin-bottom: 0.5em;
+          max-width: 70%;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
+        .message p {
+          margin: auto;
         }
         .human-text {
-          display: flex;
-          position: absolute;
-          background-color: rgb(196, 196, 196);
-          right: 1em;
-          padding: 0.4em 1em;
-          border-radius: 0.3em;
-          margin-bottom: 1em;
+          align-self: flex-end;
+          background-color: rgb(211, 211, 211);
+          border-radius: 0.5em 0 0.5em 0.5em;
+        }
+        .ai-text {
+          align-self: flex-start;
+          background-color: rgb(176, 224, 230);
+          border-radius: 0 0.5em 0.5em 0.5em;
         }
     </style>
 </head>
