@@ -3,7 +3,8 @@ const chatbotDataset = {
     "greeting": "Hello! How can I assist you today?",
     "farewell": "Goodbye! Have a great day!",
     "help": "Of course! What can I help you with?",
-    "creators": "(link to about section page)",
+    "creators": "The creators of this application can be found on the homepage in the About section<br>\
+        <a href='#about-section'>Click here to view</a>",
     "no help": "I'm sorry, I am not able to help you with that"
 }
 
