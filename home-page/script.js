@@ -2,7 +2,7 @@ const chatbotWindow = document.getElementById("chatbot-window");
 const body = document.getElementById('messaging-body');
 const textInput = document.getElementById('user-input');
 let messages = [];
-const domain = 'http://localhost:3000';
+const domain = window.location.href;
 
 const openChatbotWindow = () => {
     const windowVisibility = chatbotWindow.style.visibility;
@@ -14,12 +14,12 @@ textInput.addEventListener('keypress', (event) => {
 });
 
 const getMessage = async() => {
-    const message = await fetch(`${domain}/homepage/messages`);
+    const message = await fetch(`${domain}homepage/messages`);
     return message.json();
 }
 
 const sendMessage = async(humanMessage) => {
-    const res = await fetch(`${domain}/homepage/userinput`, {
+    const res = await fetch(`${domain}homepage/userinput`, {
         method: 'POST',
         headers: {
         'Accept': 'application/json',
