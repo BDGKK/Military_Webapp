@@ -1,4 +1,4 @@
-const config = require('./config');
+const { DOMAIN_NAME, PORT } = require('./config');
 const express = require('express');
 const cors = require('cors');
 
@@ -20,4 +20,4 @@ app.use(express.json());
 // Connect the routers of the webpage to the main app
 app.use(homepage);
 
-app.listen(config.PORT, () => console.log(`${config.DOMAIN_NAME}`));
+app.listen(PORT, () => console.log(`${DOMAIN_NAME}`));

@@ -1,6 +1,7 @@
 const chatbotWindow = document.getElementById("chatbot-window");
 const body = document.getElementById('messaging-body');
 const textInput = document.getElementById('user-input');
+
 let messages = [];
 const domain = window.location.href;
 

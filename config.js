@@ -1,8 +1,7 @@
 require('dotenv').config();
 
 const PORT = process.env.PORT;
-const config = {
+module.exports = {
     DOMAIN_NAME: `http://localhost:${PORT}`,
-    PORT
+    PORT,
 };
-module.exports = config;
