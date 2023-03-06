@@ -23,7 +23,7 @@ const chatbotDataset = {
 
 const greetingRegex = /(hello|hi|hey|morning|afternoon|evening)\b/i;
 const farewellRegex = /(bye|see you later|farewell|adios|night)\b/i;
-const helpRegex = /(help|assist|aid|support|assistance)\b/i;
+const helpRegex = /(help|assist|aid|assistance)\b/i;
 const creatorsRegex = /(made|created|designed|developed|built)\b(website|page|site|web)?\b/i;
 const pensionRegex = /(pension|pensions)\b/i;
 const loansRegex = /(loan|loans)\b/i;

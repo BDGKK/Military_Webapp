@@ -3,7 +3,8 @@ const body = document.getElementById('messaging-body');
 const textInput = document.getElementById('user-input');
 
 let messages = [];
-const domain = window.location.href;
+let domain = window.location.href;
+domain = domain.slice(0, domain.indexOf('#')); // Remove hashtags from domain url
 
 const openChatbotWindow = () => {
     const windowVisibility = chatbotWindow.style.visibility;
@@ -37,13 +38,13 @@ const generateMessage = async() => {
         alert('Please enter an input');
         return;
     }
-    
+
     await sendMessage(input);
 
     let AIMessage = await getMessage();
     messages.push({human: input, ai: AIMessage.message});
 
-    body.innerHTML = messages.map((message, index) => {
+    body.innerHTML = messages.map((message) => {
         return `
             <div class="message human-text">
                 <p>${message.human}</p>
