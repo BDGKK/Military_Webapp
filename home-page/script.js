@@ -4,7 +4,10 @@ const textInput = document.getElementById('user-input');
 
 let messages = [];
 let domain = window.location.href;
-domain = domain.slice(0, domain.indexOf('#')); // Remove hashtags from domain url
+
+// Remove hashtags from domain url
+const urlHashTagIndex = domain.indexOf('#');
+if (urlHashTagIndex !== -1) domain = domain.slice(0, urlHashTagIndex);
 
 const openChatbotWindow = () => {
     const windowVisibility = chatbotWindow.style.visibility;
