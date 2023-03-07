@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 
 // Import directories of the webpages
-const homepage = require('./homepage');
+const homepage = require('./chatbot');
 
 const app = express();
 

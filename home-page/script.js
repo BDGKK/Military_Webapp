@@ -59,4 +59,5 @@ const generateMessage = async() => {
     
 
     textInput.value = "";
+    body.scrollTop = body.scrollHeight;
 }
