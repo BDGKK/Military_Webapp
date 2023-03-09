@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Military Leavers Form</title>
+  	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div class="form-body">
+		<h1>Military Leavers Form</h1>
+		<div class="input-sections">
+			<p>Full Name</p>
+			<div class="inline-boxes">
+				<input id="first-name-input" type="text" placeholder="First Name">
+				<input id="last-name-input" type="text" placeholder="Last Name">
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Gender</p>
+			<div class="inline-radio-buttons">
+				<label><input type="radio" name="user-gender" id="radio-male" value="male"> Male</label>
+				<label><input type="radio" name="user-gender" id="radio-female" value="female"> Female</label>
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Permanent Address</p>
+			<div class="input-box-body">
+				<input id="permanent-street-addr" type="text" placeholder="Street Address">
+				<div class="inline-boxes">
+					<select id="permanent-city-addr" name="city">
+						<option value="" selected>City</option>
+					</select>
+					<select id="permanent-province-addr" name="province">
+						<option value="" selected>Province</option>
+					</select>
+				</div>
+				<div class="inline-boxes">
+					<input id="permanent-post-code" type="text" placeholder="Postal/Zip Code">
+					<select id="permanent-country" name="country">
+						<option value="" selected>Country</option>
+						<option value="Sl">SL</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Temporary Address</p>
+			<div class="input-box-body">
+				<input id="temp-street-addr" type="text" placeholder="Street Address">
+				<div class="inline-boxes">
+					<select id="temp-city-addr" name="city">
+						<option value="" selected>City</option>
+					</select>
+					<select id="temp-province-addr" name="province">
+						<option value="" selected>Province</option>
+					</select>
+				</div>
+				<div class="inline-boxes">
+					<input id="temp-post-code" type="text" placeholder="Postal/Zip Code">
+					<select id="temp-country" name="country">
+						<option value="" selected>Country</option>
+						<option value="Sl">SL</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Date of Birth</p>
+			<div class="inline-boxes">
+				<input id="dob" type="date">
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Mobile Number</p>
+			<div class="inline-boxes">
+				<input id="mobile-number" type="tel">
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Land Number</p>
+			<div class="inline-boxes">
+				<input id="land-number" type="text">
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>NIC</p>
+			<div class="inline-boxes">
+				<input id="NIC" type="text">
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Email</p>
+			<div class="inline-boxes">
+				<input id="email-address" type="email" placeholder="ex: someone@example.com">
+			</div>
+		</div>
+		<div class="inline-boxes">
+			<div class="input-sections">
+				<p>Password</p>
+				<div class="password-box">
+					<input id="password" type="password">
+				</div>
+			</div>
+			<div class="input-sections">
+				<p>Confirm Password</p>
+				<div class="password-box">
+					<input id="confirmed-password" type="password">
+				</div>
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Force</p>
+			<div class="inline-radio-buttons">
+				<label><input type="radio" name="military-force" id="army-radio" value="army"> Army</label>
+				<label><input type="radio" name="military-force" id="navy-radio" value="navy"> Navy</label>
+				<label><input type="radio" name="military-force" id="air-force-radio" value="air-force"> Air Force</label>
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Regiment</p>
+			<div class="input-box-body">
+				<select id="regiment" name="regiment">
+					<option value="" selected>Regiment</option>
+				</select>
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Rank</p>
+			<div class="input-box-body">
+				<select id="rank" name="rank">
+					<option value="" selected>Rank</option>
+				</select>
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Soldier Number</p>
+			<div class="input-box-body">
+				<input id="soldier-number" type="text">
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Salary (in Rupees)</p>
+			<div class="input-box-body">
+				<input id="salary" type="number">
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Recruited Date</p>
+			<div class="inline-boxes">
+				<input id="recruited-date" type="date">
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Years of Service</p>
+			<div class="input-box-body">
+				<input id="years-of-service" type="number">
+			</div>
+		</div>
+		<div class="input-sections">
+			<p>Retired Date</p>
+			<div class="inline-boxes">
+				<input id="retired-date" type="date">
+			</div>
+		</div>
+		<input onclick="submit()" type="submit" style="width: 100%; height: 2em;">
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
