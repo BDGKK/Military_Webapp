@@ -15,12 +15,12 @@ textInput.addEventListener('keypress', (event) => {
 });
 
 const getMessage = async() => {
-    const message = await fetch(`${domain}/homepage/messages`);
+    const message = await fetch(`${domain}/chatbot/messages`);
     return message.json();
 }
 
 const sendMessage = async(humanMessage) => {
-    const res = await fetch(`${domain}/homepage/userinput`, {
+    const res = await fetch(`${domain}/chatbot/userinput`, {
         method: 'POST',
         headers: {
         'Accept': 'application/json',

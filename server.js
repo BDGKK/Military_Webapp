@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 
 // Import directories of the webpages
-const homepage = require('./server-side/chatbot');
+const homepage = require('./server-side/chatbot/chatbot');
 const registrationpage = require('./server-side/registration');
 
 const app = express();
