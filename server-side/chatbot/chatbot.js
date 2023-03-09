@@ -1,22 +1,19 @@
 const express = require('express');
 const chatbotModel = require("./chatbotModel");
-require('dotenv').config();
-
-// Note: Make chatbot into a websocket connection - less latency and more efficiency
 
 // Initialize the Router and display the frontend at the root URL (localhost:<port>/)
 const router = express.Router();
-router.use('/', express.static('./home-page'));
+router.use('/', express.static('./client-side/home-page'));
 
 let chatbotResponse = {};
 
 // Message to send to the frontend
-router.get('/homepage/messages', (req, res) => {
+router.get('/chatbot/messages', (req, res) => {
     res.status(200).send(chatbotResponse);
 });
 
 // Message to get from the frontend
-router.post('/homepage/userinput', async(req, res) => {
+router.post('/chatbot/userinput', async(req, res) => {
     humanMessage = req.body.humanMessage;
 
     if (!humanMessage) {
