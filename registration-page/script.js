@@ -27,13 +27,11 @@ const permanentStreetInput 		= document.getElementById("permanent-street-addr");
 const permanentCityInput 		= document.getElementById("permanent-city-addr");
 const permanentProvinceInput 	= document.getElementById("permanent-province-addr");
 const permanentPostCodeInput 	= document.getElementById("permanent-post-code");
-const permanentCountryInput 	= document.getElementById("permanent-country");
 
 const tempStreetInput 		= document.getElementById("temp-street-addr");
 const tempCityInput 		= document.getElementById("temp-city-addr");
 const tempProvinceInput 	= document.getElementById("temp-province-addr");
 const tempPostCodeInput 	= document.getElementById("temp-post-code");
-const tempCountryInput 		= document.getElementById("temp-country");
 
 const lettersOnlyRegex = /^[a-z]+$/i;
 const numbersOnlyRegex = /^[0-9]+$/i;
@@ -129,13 +127,11 @@ const validateData = () => {
 
 	const isPermanentAddressFilled = 
 		permanentStreetInput.value !== "" && permanentCityInput.value !== "" &&
-		permanentProvinceInput.value !== "" && permanentPostCodeInput.value !== "" &&
-		permanentCountryInput.value !== "";
+		permanentProvinceInput.value !== "" && permanentPostCodeInput.value !== "";
 	
 	const isTempAddressFilled =
 		tempStreetInput.value !== "" && tempCityInput.value !== "" &&
-		tempProvinceInput.value !== "" && tempPostCodeInput.value !== "" &&
-		tempCountryInput.value !== "";
+		tempProvinceInput.value !== "" && tempPostCodeInput.value !== "";
 	
 	if (!isPermanentAddressFilled) {
 		alert("Please fill in your permanent address");
@@ -241,24 +237,20 @@ const submit = () => {
 			streetAddress: permanentStreetInput.value,
 			city: permanentCityInput.value,
 			province: permanentProvinceInput.value,
-			postCode: permanentPostCodeInput.value,
-			country: permanentCountryInput.value
+			postCode: permanentPostCodeInput.value
 		},
 		temporaryAddress: {
 			streetAddress: tempStreetInput.value,
 			city: tempCityInput.value,
 			province: tempProvinceInput.value,
-			postCode: tempPostCodeInput.value,
-			country: tempCountryInput.value
+			postCode: tempPostCodeInput.value
 		},
 		dateOfBirth: dobInput.value,
 		mobileNumber: mobileNumberInput.value,
 		landNumber: landNumberInput.value,
 		NIC: NICInput.value,
 		emailAddr: emailAddrInput.value,
-		passwords: {
-			password: passwordInput.value
-		},
+		password: passwordInput.value,
 		force: getForce(),
 		regiment: regimentInput.value,
 		rank: rankInput.value,
