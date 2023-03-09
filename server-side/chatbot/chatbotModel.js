@@ -19,7 +19,7 @@ const chatbotDataset = {
         "repaid with interest. Click the link below to move to the loans page<br>(link to loans page)",
     
     "register": "To register, please click the link below to move the registration page. Please fill in "+
-        "your details and submit the form to register<br>(link to registration page)",
+        `your details and submit the form to register<br><a href='${DOMAIN_NAME}/registration'>Click here</a>`,
     
     "feedback": "To submit feedback or contact customer support, please click on the link below to move "+
         "to the feedback form. Please fill in the boxes and submit the form to send your request.<br>"+

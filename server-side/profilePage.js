@@ -1,6 +1,6 @@
 const express = require('express');
 
 const router = express.Router();
-router.use('/registration', express.static('./client-side/registration-page'));
+router.use('/profile', express.static('./client-side/profile-page'));
 
 module.exports = router;

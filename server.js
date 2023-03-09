@@ -5,6 +5,7 @@ const cors = require('cors');
 // Import directories of the webpages
 const homepage = require('./server-side/chatbot/chatbot');
 const registrationpage = require('./server-side/registration');
+const profilepage = require('./server-side/profilePage');
 
 const app = express();
 
@@ -21,5 +22,6 @@ app.use(express.json());
 // Connect the routers of the webpage to the main app
 app.use(homepage);
 app.use(registrationpage);
+app.use(profilepage);
 
 app.listen(PORT, () => console.log(`${DOMAIN_NAME}`));
