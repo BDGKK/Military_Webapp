@@ -1,0 +1,40 @@
+* {
+	font-family: 'Arial';
+}
+body {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	margin: 0;
+	padding-bottom: 2em;
+}
+h1 {
+	font-size: 2em;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.profile-body {
+	display: flex;
+	flex-direction: column;
+	width: 33em;
+}
+.container {
+	display: flex;
+	flex-direction: column;
+}
+.row {
+	display: flex;
+	flex-direction: row;
+	border: 0.1em solid black;
+	margin-bottom: 0.5em;
+}
+.column {
+	width: 100%;
+	padding: 0.5em;
+	margin: 0.2em 0;
+}
+.key-column {
+	font-weight: bold;
+	border-right: 0.1em solid black;
+}
