@@ -51,18 +51,18 @@ const chatbotDataset = {
     "no help": "I'm sorry, I'm unable to respond to that."
 }
 
-const greetingRegex = /(hello|hi|hey|morning|afternoon|evening|yo)\b/i;
+const greetingRegex = /(hello|hi|hey|morning|afternoon|evening|yo|greetings|greeting|what's up)\b/i;
 const farewellRegex = /(bye|see you later|farewell|adios|night)\b/i;
 const helpRegex = /(help|assist|aid)\b/i;
 const creatorsRegex = /(made|created|creator|creators|designed|developed|built)\b(website|page|site|web)?\b/i;
 const pensionRegex = /(pension|pensions)\b/i;
 const loansRegex = /(loan|loans)\b/i;
 const registerRegex = /(sign up|register|registration|registry|enroll)\b/i;
-const feedbackRegex = /(feedback|admin|administrator|customer support)\b/i;
+const feedbackRegex = /(feedback|admin|administrator|customer (support|service))\b/i;
 const getStartedRegex = /(get started|begin|tutorial|start)\b(started|app|site|platform|software)?/i;
-const chatbotTasksRegex = /(capabilities|task|commands|chatbot|what (can|do) you do)(talk|answer)?/i;
+const chatbotTasksRegex = /((who are|what are)|capabilities|task|commands|chatbot|what (can|do) you do)(you|talk|answer)?/i;
 const accountTransferRegex = /(transfer|move|account)/i;
-const descriptionRegex = /(purpose|explain|website|service|function|tell|feature|goal)\b(do|about|web|app|software|site|page)?\b/i;
+const descriptionRegex = /((what is|what's|what does)|purpose|explain|website|service|function|tell|describe|description|goal)\b(do|about|web|app|software|site|page)?\b/i;
 const thanksRegex = /(thank|appreciate|grateful)/i;
 
 const getResponse = (message) => {
