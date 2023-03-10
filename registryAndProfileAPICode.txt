@@ -1,0 +1,68 @@
+// Registration client side
+<form id="registry-form">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name"><br><br>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <button type="submit">Register</button>
+</form>
+
+<script>
+  const form = document.getElementById('registry-form');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // prevent default form submission
+
+    // get form data
+    const name = form.elements.name.value;
+    const email = form.elements.email.value;
+
+    // send POST request to server
+    const response = await fetch('/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, email })
+    });
+
+    if (response.ok) {
+      // redirect to profile page with user ID
+      const user = await response.json();
+      window.location.href = `/profile/${user.id}`;
+    } else {
+      // handle error
+      console.error('Error:', response.statusText);
+    }
+  });
+</script>
+
+// Profile page client-side
+<h1>User Profile</h1>
+<div id="user-details"></div>
+
+<script>
+  const userId = window.location.pathname.split('/').pop(); // get user ID from URL
+
+  // send GET request to server
+  fetch(`/users/${userId}`)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Error:', response.statusText);
+      }
+    })
+    .then(user => {
+      // display user details
+      const userDetails = document.getElementById('user-details');
+      userDetails.innerHTML = `
+        <p>Name: ${user.name}</p>
+        <p>Email: ${user.email}</p>
+      `;
+    })
+    .catch(error => {
+      // handle error
+      console.error(error);
+    });
+</script>

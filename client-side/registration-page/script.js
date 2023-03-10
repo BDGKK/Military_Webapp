@@ -103,6 +103,8 @@ rankInput.innerHTML += ranks.map((item) => {
 	return `<option value="${item}">${item}</option>`;
 });
 
+const url = window.location.href;
+
 const validateSalary = () => {
 	return numbersOnlyRegex.test(salaryInput.value);
 }
@@ -111,18 +113,18 @@ const validateYearsOfService = () => {
 	return numbersOnlyRegex.test(yearsOfServiceInput.value);
 }
 
-const validateData = () => {
+const isDataValid = () => {
 	if (firstNameInput.value === "" || lastNameInput.value === "") {
 		alert("Please fill in your full name");
-		return;
+		return false;
 	} else if (!validateFullName()) {
 		alert("Please enter letters only in your full name");
-		return;
+		return false;
 	}
 
 	if (getGender() === 'invalid') {
 		alert("Please select your gender");
-		return;
+		return false;
 	}
 
 	const isPermanentAddressFilled = 
@@ -135,101 +137,100 @@ const validateData = () => {
 	
 	if (!isPermanentAddressFilled) {
 		alert("Please fill in your permanent address");
-		return;
+		return false;
 	}
 	if (!isTempAddressFilled) {
 		alert("Please fill in your temporary address");
-		return;
+		return false;
 	}
 	if (!validatePostalCode()) {
 		alert("Please enter numbers only for your postal code");
-		return;
+		return false;
 	}
 
 	if (dobInput.value === "") {
 		alert("Please select your date of birth");
-		return;
+		return false;
 	}
 	
 	if (mobileNumberInput.value === "" || landNumberInput.value === "") {
 		alert("Please fill in your mobile and land numbers");
-		return;
+		return false;
 	} else if (!validatePhoneNumbers()) {
 		alert("Please enter only a 10-digit number for your mobile and land number");
-		return;
+		return false;
 	}
 
 	if (NICInput.value === "") {
 		alert("Please fill in your NIC number");
-		return;
+		return false;
 	}
 
 	if (emailAddrInput.value === "") {
 		alert("Please fill in your email address");
-		return;
+		return false;
 	} else if (!validateEmail()) {
 		alert("Please enter email address in 'someone@example.com' format");
-		return;
+		return false;
 	}
 
 	if (passwordInput.value === "" || confirmedPasswordInput.value === "") {
 		alert("Please enter your desired password and confirm it");
-		return;
+		return false;
 	} else if (passwordInput.value.length < 4) {
 		alert("Password must have more than 4 characters");
-		return;
+		return false;
 	} else if (passwordInput.value !== confirmedPasswordInput.value) {
 		alert("Please ensure you entered the correct password in both fields");
-		return;
+		return false;
 	}
 
 	if (getForce() === 'invalid') {
 		alert("Please select your force");
-		return;
+		return false;
 	}
 
 	if (regimentInput.value === "") {
 		alert("Please select your regiment");
-		return;
+		return false;
 	}
 	if (rankInput.value === "") {
 		alert("Please select your rank");
-		return;
+		return false;
 	}
 	if (soldierNoInput.value === "") {
 		alert("Please enter your solider number");
-		return;
+		return false;
 	}
 
 	if (salaryInput.value === "") {
 		alert("Please enter your salary");
-		return;
+		return false;
 	} else if (!validateSalary()) {
 		alert("Please enter numbers only for your salary");
-		return;
+		return false;
 	}
 
 	if (recruitedDateInput.value === "") {
 		alert("Please select your recruited date");
-		return;
+		return false;
 	}
 	if (yearsOfServiceInput.value === "") {
 		alert("Please enter your years of military service");
-		return;
+		return false;
 	} else if (!validateYearsOfService()) {
 		alert("Please enter numbers only for your years of military service");
-		return;
+		return false;
 	}
 	if (retiredDateInput.value === "") {
 		alert("Please select your retired date");
-		return;
+		return false;
 	}
+	return true;
 }
 
-const submit = () => {
-	validateData();
-	
-	const registryData = {
+const getRegistryData = () => {
+	return {
 		firstName: firstNameInput.value,
 		lastName: lastNameInput.value,
 		gender: getGender(),
@@ -260,6 +261,17 @@ const submit = () => {
 		yearsOfService: parseInt(yearsOfServiceInput.value),
 		retiredDate: retiredDateInput.value
 	};
-	
-	console.log(registryData);
+}
+const submit = async() => {
+	//if (!isDataValid()) return;
+	const registryData = getRegistryData();
+	console.log({registryData});
+	await fetch(`${url}registryData`, {
+		method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({registryData})
+	});
 }

@@ -13,8 +13,8 @@ router.get('/chatbot/messages', (req, res) => {
 });
 
 // Message to get from the frontend
-router.post('/chatbot/userinput', async(req, res) => {
-    humanMessage = req.body.humanMessage;
+router.post('/chatbot/userinput', (req, res) => {
+    const humanMessage = req.body.humanMessage;
 
     if (!humanMessage) {
         res.status(404).send({
