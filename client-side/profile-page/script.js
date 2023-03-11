@@ -28,26 +28,30 @@ const getUserDetails = async() => {
   return await rawData.json();
 }
 
+const getFormattedAddress = (addressString) => {
+  return addressString.replaceAll(',', '<br>');
+}
+const getFormattedDate = (dateString) => {
+  return dateString.slice(0, 10);
+}
+
 const renderPage = async() => {
   const rawData = await getUserDetails();
-  const registryData = rawData.registryData;
+  const registryData = rawData;
 
+  // Use object destructuring to simplify code
   userIDEl.innerHTML    = registryData.userId;
   fullNameEl.innerHTML  = `${registryData.firstName} ${registryData.lastName}`;
   genderEl.innerHTML    = registryData.gender;
 
   permanentAddrEl.innerHTML = `
-    ${registryData.permanentAddress.streetAddress}<br>
-    ${registryData.permanentAddress.city}<br>
-    ${registryData.permanentAddress.province}<br>
-    ${registryData.permanentAddress.postCode}`;
+    ${getFormattedAddress(registryData.permanentAddress)}<br>
+    ${registryData.permanentPostCode}`;
   tempAddrEl.innerHTML = `
-    ${registryData.temporaryAddress.streetAddress}<br>
-    ${registryData.temporaryAddress.city}<br>
-    ${registryData.temporaryAddress.province}<br>
-    ${registryData.temporaryAddress.postCode}`;
+    ${getFormattedAddress(registryData.temporaryAddress)}<br>
+    ${registryData.temporaryPostCode}`;
 
-  dobEl.innerHTML             = registryData.dateOfBirth;
+  dobEl.innerHTML             = getFormattedDate(registryData.dateOfBirth);
   mobileTelEl.innerHTML       = registryData.mobileNumber;
   landTelEl.innerHTML         = registryData.landNumber;
   nicEl.innerHTML             = registryData.NIC;
@@ -58,9 +62,9 @@ const renderPage = async() => {
   rankEl.innerHTML            = registryData.rank;
   solidierNumEl.innerHTML     = registryData.soldierNumber;
   salaryEl.innerHTML          = registryData.salary;
-  recruitedDateEl.innerHTML   = registryData.recruitedDate;
+  recruitedDateEl.innerHTML   = getFormattedDate(registryData.recruitedDate);
   yearsOfServiceEl.innerHTML  = registryData.yearsOfService;
-  retiredDateEl.innerHTML     = registryData.retiredDate;
+  retiredDateEl.innerHTML     = getFormattedDate(registryData.retiredDate);
 
   // Increased line height for address values
   permanentAddrEl.style.lineHeight = '1.4em';
