@@ -9,6 +9,7 @@ router.post('/registration/registryData', (req, res) => {
 
     if (registryData) {
         res.status(200).send({userId});
+        // Write data to database later
     } else {
         res.status(400).send("Failed");
     }
