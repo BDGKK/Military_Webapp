@@ -1,7 +1,11 @@
 # Notes/Issues/Warnings/etc. 
 - Add the image for the homepage into the home-page folder
 - Make sure the HTML files within those folders are named index.html (else server code doesn't work)
-- Create some of the tables as well if they don't exist - do it if there is time
+- Create a function to insert data into the forces and ranks table if they were just created
+    - Insert the data and make sure to use PK as well
+    - Use try-catch - use the error to indicate that data already exists in the table
+    - If data exists, don't insert - else insert
+- Put the rank and forces id accordingly in the registration page for getting values
 
 # Add Description of the Project here
 A Web Application that helps military retirees and leaver transition smoothly into civilian life.

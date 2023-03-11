@@ -5,23 +5,22 @@ const router = express.Router();
 router.use('/registration', express.static('./client-side/registration-page'));
 
 router.post('/registration/registryData', (req, res) => {
-    // Get user data from api
-    // Get max_id from user table - increment by 1 to get new id no.
-    // Use new_id and insert data into database
-    // send new_id to registration page
     const registryData = req.body.registryData;
 
     if (registryData) {
-        connection.query('SELECT COUNT(user_ID) as max_id FROM user_table', (err, result) => {
+        connection.query('SELECT MAX(user_ID) as max_id FROM user_table', (err, result) => {
+            // Increment highest userid for new user
             if (err) throw err;
             let userId = result[0].max_id;
             userId = userId === null ? 1 : userId+1;
 
+            // Write data into table
             const permanent_address = registryData.permanentAddress.streetAddress + ','
                 + registryData.permanentAddress.city + ',' + registryData.permanentAddress.province;
             const temporary_address = registryData.temporaryAddress.streetAddress + ','
                 + registryData.temporaryAddress.city + ',' + registryData.temporaryAddress.province;
             
+            // Edit Query when changes are made
             const registryDataInsertQuery = 
                 'INSERT INTO user_table(user_ID, first_Name, last_name, permanent_address,'+
                     'postal_code_permanent, temporary_address, postal_code_temporary, DOB,'+
@@ -36,12 +35,12 @@ router.post('/registration/registryData', (req, res) => {
                     '${registryData.recruitedDate}',
                     '${registryData.yearsOfService}', '${registryData.retiredDate}',
                     ${12}, ${10}
-                );`
-            ;
+                );`;
             
             connection.query(registryDataInsertQuery, (err) => {
                 if (err) throw err;
-                console.log("Data written");
+                console.log(`Added User ${userId}`);
+                res.status(200).send({userId});
             });
         });
         
