@@ -79,31 +79,31 @@ const feedbackTableQuery = `
 const dbTables = [userRankTableQuery, forcesTableQuery, userTableQuery, regimentTableQuery,
     pensionTableQuery, adminTableQuery, feedbackTableQuery];
 
-const connectionWithoutDB = mysql.createConnection({
+const connection = mysql.createConnection({
     host: DB_HOST,
     user: DB_USER,
     password: DB_PASSWORD,
     port: DB_PORT
 });
 
-connectionWithoutDB.connect((err) => {
+connection.connect((err) => {
     if (err) throw err;
     console.log("MySQL connected...");
 
-    connectionWithoutDB.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`, (err) => {
+    connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`, (err) => {
         if (err) throw err;
     });
     
-    connectionWithoutDB.changeUser({database: DB_NAME}, (err) => {
+    connection.changeUser({database: DB_NAME}, (err) => {
         if (err) throw err;
     }); // Select database name for connection
     
     // Create All Database tables
     dbTables.map((table) => {
-        connectionWithoutDB.query(table, (err) => {
+        connection.query(table, (err) => {
             if (err) throw err;
         });
     });
 });
 
-//module.exports = connectionWithoutDB;
+module.exports = connection;

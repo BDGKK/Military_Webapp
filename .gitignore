@@ -3,3 +3,4 @@ node_modules/
 
 # Avoid committing confidential information (API keys)
 .env
+queryTest.js
