@@ -27,7 +27,7 @@ const userTableQuery = `
         mobile_phone CHAR(10),
         phone_land CHAR(10),
         NIC CHAR(15),
-        email CHAR(15),
+        email CHAR(30),
         solider_number INT,
         pword CHAR(12),
         salary FLOAT,
@@ -36,10 +36,10 @@ const userTableQuery = `
         retirment_date DATE,
         rank_id INT,
         force_id INT,
-        CONSTRAINT pk_USER PRIMARY KEY(user_ID),
+        CONSTRAINT pk_USER PRIMARY KEY(user_ID))`;/*,
         CONSTRAINT fk_UserRank FOREIGN KEY(rank_id) REFERENCES user_rank(rank_id),
         CONSTRAINT fk_UserForce FOREIGN KEY(force_id) REFERENCES FORCES(force_id));
-`;
+`;*/
 const regimentTableQuery = `
     ${createTableIfNotExistQuery} REGIMENT (
         regiment_ID INT,
