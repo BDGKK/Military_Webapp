@@ -20,10 +20,11 @@ const retiredDateEl     = document.getElementById("retired-date");
 
 const getUserDetails = async() => {
   const domain = window.location.origin;
-  const url = new URLSearchParams(window.location.search);
-  const uid = url.get('userid');
+  const uri = new URLSearchParams(window.location.search);
+  const userid = uri.get('userid');
 
-  const rawData = await fetch(`${domain}/profile/${uid}`);
+  const rawData = await fetch(`${domain}/profile/${userid}`);
+   // Add code here to alert user if userid does not exist
   return await rawData.json();
 }
 

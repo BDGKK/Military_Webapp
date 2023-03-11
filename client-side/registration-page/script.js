@@ -262,21 +262,10 @@ const getRegistryData = () => {
 		retiredDate: retiredDateInput.value
 	};
 }
+
 const submit = async() => {
-	//if (!isDataValid()) return;
-	//const registryData = getRegistryData();
-	const registryData = {
-		NIC: "asdf",
-		dateOfBirth: "2023-03-02",
-		emailAddr: "someone@gamil.com",
-		firstName: "asdf",
-		force: "army",
-		gender: "male",
-		landNumber: "1234567890",
-		lastName: "asf",
-		mobileNumber: "1234567890",
-		password: "1234",
-	}
+	if (!isDataValid()) return;
+	const registryData = getRegistryData();
 
 	const response = await fetch(`${domain}/registration/registryData`, {
 		method: 'POST',
@@ -289,7 +278,7 @@ const submit = async() => {
 
 	if (response.ok) {
 		const userId = await response.json();
-		window.location.href = `${domain}/profile/${userId.userId}`;
+		window.location.href = `${domain}/profile?userid=${userId.userId}`;
 	} else {
 		alert("Submission Failed");
 	}
