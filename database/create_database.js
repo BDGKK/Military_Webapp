@@ -92,15 +92,7 @@ connectionWithoutDB.connect((err) => {
     });
 
     connectionWithoutDB.database = DB_NAME; // Add database names to connection
-    /*
-    // Use this code if the above one doesn't work
-    connectionWithoutDB = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'kenichi12345',
-        database: dbName
-    });
-    */
+    
     /*
     connectionWithoutDB.query(createTableQuery, (err) => {
         if (err) throw err;
