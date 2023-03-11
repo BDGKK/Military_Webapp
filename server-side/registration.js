@@ -4,9 +4,14 @@ const router = express.Router();
 router.use('/registration', express.static('./client-side/registration-page'));
 
 router.post('/registration/registryData', (req, res) => {
-    //registryData = req.body.registryData;
-    //res.send("registryData");
-    //registryData ? res.status(200).send(registryData) : res.status(400).send("Posted Failed");
+    const registryData = req.body.registryData;
+    const userId = 0;
+
+    if (registryData) {
+        res.status(200).send({userId});
+    } else {
+        res.status(400).send("Failed");
+    }
 });
 
 module.exports = router;

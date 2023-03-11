@@ -103,7 +103,7 @@ rankInput.innerHTML += ranks.map((item) => {
 	return `<option value="${item}">${item}</option>`;
 });
 
-const url = window.location.href;
+const domain = window.location.origin;
 
 const validateSalary = () => {
 	return numbersOnlyRegex.test(salaryInput.value);
@@ -264,9 +264,21 @@ const getRegistryData = () => {
 }
 const submit = async() => {
 	//if (!isDataValid()) return;
-	const registryData = getRegistryData();
-	console.log({registryData});
-	await fetch(`${url}registryData`, {
+	//const registryData = getRegistryData();
+	const registryData = {
+		NIC: "asdf",
+		dateOfBirth: "2023-03-02",
+		emailAddr: "someone@gamil.com",
+		firstName: "asdf",
+		force: "army",
+		gender: "male",
+		landNumber: "1234567890",
+		lastName: "asf",
+		mobileNumber: "1234567890",
+		password: "1234",
+	}
+
+	const response = await fetch(`${domain}/registration/registryData`, {
 		method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -274,4 +286,11 @@ const submit = async() => {
         },
         body: JSON.stringify({registryData})
 	});
+
+	if (response.ok) {
+		const userId = await response.json();
+		window.location.href = `${domain}/profile/${userId.userId}`;
+	} else {
+		alert("Submission Failed");
+	}
 }
