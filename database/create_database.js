@@ -2,6 +2,18 @@ const { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_NAME } = require('../config')
 const mysql = require('mysql');
 
 const createTableIfNotExistQuery = 'CREATE TABLE IF NOT EXISTS';
+const userRankTableQuery = `
+    ${createTableIfNotExistQuery} USER_RANK(
+        rank_ID INT,
+        rank_Name CHAR(20),
+        CONSTRAINT pk_RANK PRIMARY KEY(rank_ID));
+`;
+const forcesTableQuery = `
+    ${createTableIfNotExistQuery} FORCES(
+        force_ID INT,
+        force_Name CHAR(20),
+        CONSTRAINT pk_FORCES PRIMARY KEY(force_ID));
+`;
 const userTableQuery = `
     ${createTableIfNotExistQuery} USER_TABLE(
         user_ID INT,
@@ -36,18 +48,6 @@ const regimentTableQuery = `
         CONSTRAINT pk_REGIMENT PRIMARY KEY(regiment_ID),
         CONSTRAINT fk_FORCE FOREIGN KEY(force_ID) REFERENCES FORCES(force_ID));
 `;
-const forcesTableQuery = `
-    ${createTableIfNotExistQuery} FORCES(
-        force_ID INT,
-        force_Name CHAR(20),
-        CONSTRAINT pk_FORCES PRIMARY KEY(force_ID));
-`;
-const userRankTableQuery = `
-    ${createTableIfNotExistQuery} USER_RANK(
-        rank_ID INT,
-        rank_Name CHAR(20),
-        CONSTRAINT pk_RANK PRIMARY KEY(rank_ID));
-`;
 const pensionTableQuery = `
     ${createTableIfNotExistQuery} PENSION(
         pension_ID INT,
@@ -56,6 +56,12 @@ const pensionTableQuery = `
         user_ID INT,
         CONSTRAINT pk_PENSION PRIMARY KEY(pension_ID),
         CONSTRAINT fk_USER FOREIGN KEY(user_ID) REFERENCES USER_TABLE(user_ID));
+`;
+const adminTableQuery = `
+    ${createTableIfNotExistQuery} ADMIN(
+        email CHAR(30),
+        password CHAR(20),
+        CONSTRAINT pk_ADMIN PRIMARY KEY(email));
 `;
 const feedbackTableQuery = `
     ${createTableIfNotExistQuery} FEEDBACK(
@@ -69,12 +75,9 @@ const feedbackTableQuery = `
         CONSTRAINT fk_U FOREIGN KEY(user_id) REFERENCES USER_TABLE(user_id),
         CONSTRAINT fk_ADMIN FOREIGN KEY(adminEmail) REFERENCES ADMIN(email));
 `;
-const adminTableQuery = `
-    ${createTableIfNotExistQuery} ADMIN(
-        email CHAR(30),
-        password CHAR(20),
-        CONSTRAINT pk_ADMIN PRIMARY KEY(email));
-`;
+
+const dbTables = [userRankTableQuery, forcesTableQuery, userTableQuery, regimentTableQuery,
+    pensionTableQuery, adminTableQuery, feedbackTableQuery];
 
 const connectionWithoutDB = mysql.createConnection({
     host: DB_HOST,
@@ -90,13 +93,17 @@ connectionWithoutDB.connect((err) => {
     connectionWithoutDB.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`, (err) => {
         if (err) throw err;
     });
-
-    connectionWithoutDB.database = DB_NAME; // Add database names to connection
     
-    /*
-    connectionWithoutDB.query(createTableQuery, (err) => {
+    connectionWithoutDB.changeUser({database: DB_NAME}, (err) => {
         if (err) throw err;
-    });*/
+    }); // Select database name for connection
+    
+    // Create All Database tables
+    dbTables.map((table) => {
+        connectionWithoutDB.query(table, (err) => {
+            if (err) throw err;
+        });
+    });
 });
 
 //module.exports = connectionWithoutDB;
