@@ -1,7 +1,7 @@
 const { DOMAIN_NAME, PORT } = require('./config');
 const express = require('express');
 const cors = require('cors');
-require('./database/connection'); // Create database at initial server setup
+require('./database/create_db'); // Create database at initial server setup
 
 // Import directories of the webpages
 const homepage = require('./server-side/chatbot/chatbot');
