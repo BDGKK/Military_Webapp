@@ -6,8 +6,8 @@
     - Use try-catch - use the error to indicate that data already exists in the table
     - If data exists, don't insert - else insert
 - Put the rank and forces id accordingly in the registration page for getting values
-- Edit registration.js and profile.js API code to use correct database columns
-- Edit database table column names to avoid changing server code constantly
+- Refactor registration page script to send rank and regiment ids
+    - Edit regiment regiment box to change force according to regiment - disable radio btns
 
 # Add Description of the Project here
 A Web Application that helps military retirees and leaver transition smoothly into civilian life.

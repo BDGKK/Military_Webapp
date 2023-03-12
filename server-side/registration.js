@@ -14,26 +14,31 @@ router.post('/registration/registryData', (req, res) => {
             let userId = result[0].max_id;
             userId = userId === null ? 1 : userId+1;
 
+            const { firstName, lastName, permanentAddress, temporaryAddress, dateOfBirth,
+                mobileNumber, landNumber, NIC, emailAddr, soldierNumber, password, salary,
+                recruitedDate, yearsOfService, retiredDate, rank, regiment} = registryData;
+
             // Putting addresses as a single string
-            const permanent_address = registryData.permanentAddress.streetAddress + ','
-                + registryData.permanentAddress.city + ',' + registryData.permanentAddress.province;
-            const temporary_address = registryData.temporaryAddress.streetAddress + ','
-                + registryData.temporaryAddress.city + ',' + registryData.temporaryAddress.province;
+            const permanent_address = permanentAddress.streetAddress + ','
+                + permanentAddress.city + ',' + permanentAddress.province;
+            const temporary_address = temporaryAddress.streetAddress + ','
+                + temporaryAddress.city + ',' + temporaryAddress.province;
             
-            // Edit Query when changes are made
+            // Edit Query when to store the rank, force and regiment IDs
             const registryDataInsertQuery = 
-                'INSERT INTO user_table(user_ID, first_Name, last_name, permanent_address,'+
-                    'postal_code_permanent, temporary_address, postal_code_temporary, DOB,'+
-                    'mobile_phone, phone_land, NIC, email, solider_number, pword, salary,'+
-                    'recruited_date, years_of_service, retirment_date, rank_id, force_id)'+
-                `VALUES (${userId}, '${registryData.firstName}', '${registryData.lastName}',
-                    '${permanent_address}', ${registryData.permanentAddress.postCode},
-                    '${temporary_address}', ${registryData.temporaryAddress.postCode},
-                    '${registryData.dateOfBirth}', '${registryData.mobileNumber}',
-                    '${registryData.landNumber}', '${registryData.NIC}', '${registryData.emailAddr}',
-                    ${registryData.soldierNumber}, '${registryData.password}', ${registryData.salary},
-                    '${registryData.recruitedDate}',
-                    '${registryData.yearsOfService}', '${registryData.retiredDate}',
+                `INSERT INTO user_table (
+                    userID, firstName, lastName, gender, permanentAddress, permanentPostCode,
+                    temporaryAddress, temporaryPostCode, dateOfBirth, mobileNumber, landNumber,
+                    NIC, emailAddr, solidierNumber, salary, recruitedDate, yearsOfService,
+                    retirement_date, rankID, regimentID
+                ) VALUES (${userId}, '${firstName}', '${lastName}',
+                    '${permanent_address}', ${permanentAddress.postCode},
+                    '${temporary_address}', ${temporaryAddress.postCode},
+                    '${dateOfBirth}', '${mobileNumber}',
+                    '${landNumber}', '${NIC}', '${emailAddr}',
+                    ${soldierNumber}, '${password}', ${salary},
+                    '${recruitedDate}',
+                    '${yearsOfService}', '${retiredDate}',
                     ${12}, ${10}
                 );`;
             
