@@ -1,4 +1,3 @@
-// Use template literals and pass username to this file
 const { DOMAIN_NAME } = require("../../config");
 
 const chatbotDataset = {

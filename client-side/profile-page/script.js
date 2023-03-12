@@ -37,41 +37,43 @@ const getFormattedDate = (dateString) => {
 const renderPage = async() => {
   const rawData = await getUserDetails();
 
-  // Alert user and send them back to their previous page is user not found
+  // Alert user and send them back to their previous page if user not found
   if ('error' in rawData && rawData.error === 'User not found') {
     alert("User not Found");
     history.go(-1);
     return;
   }
   
-  const registryData = rawData;
-
-  // Use object destructuring to simplify code
-  userIDEl.innerHTML    = registryData.userId;
-  fullNameEl.innerHTML  = `${registryData.firstName} ${registryData.lastName}`;
-  genderEl.innerHTML    = registryData.gender;
+  const { userId, firstName, lastName, gender, permanentAddress, permanentPostCode,
+    temporaryAddress, temporaryPostCode, dateOfBirth, mobileNumber, landNumber,
+    NIC, emailAddr, password, force, regiment, rank, soldierNumber, salary,
+    recruitedDate, yearsOfService, retiredDate} = rawData;
+  
+  userIDEl.innerHTML    = userId;
+  fullNameEl.innerHTML  = `${firstName} ${lastName}`;
+  genderEl.innerHTML    = gender;
 
   permanentAddrEl.innerHTML = `
-    ${getFormattedAddress(registryData.permanentAddress)}<br>
-    ${registryData.permanentPostCode}`;
+    ${getFormattedAddress(permanentAddress)}<br>
+    ${permanentPostCode}`;
   tempAddrEl.innerHTML = `
-    ${getFormattedAddress(registryData.temporaryAddress)}<br>
-    ${registryData.temporaryPostCode}`;
+    ${getFormattedAddress(temporaryAddress)}<br>
+    ${temporaryPostCode}`;
 
-  dobEl.innerHTML             = getFormattedDate(registryData.dateOfBirth);
-  mobileTelEl.innerHTML       = registryData.mobileNumber;
-  landTelEl.innerHTML         = registryData.landNumber;
-  nicEl.innerHTML             = registryData.NIC;
-  emailAddrEl.innerHTML       = registryData.emailAddr;
-  passwordEl.innerHTML        = registryData.password;
-  forceEl.innerHTML           = registryData.force;
-  regimentEl.innerHTML        = registryData.regiment;
-  rankEl.innerHTML            = registryData.rank;
-  solidierNumEl.innerHTML     = registryData.soldierNumber;
-  salaryEl.innerHTML          = registryData.salary;
-  recruitedDateEl.innerHTML   = getFormattedDate(registryData.recruitedDate);
-  yearsOfServiceEl.innerHTML  = registryData.yearsOfService;
-  retiredDateEl.innerHTML     = getFormattedDate(registryData.retiredDate);
+  dobEl.innerHTML             = getFormattedDate(dateOfBirth);
+  mobileTelEl.innerHTML       = mobileNumber;
+  landTelEl.innerHTML         = landNumber;
+  nicEl.innerHTML             = NIC;
+  emailAddrEl.innerHTML       = emailAddr;
+  passwordEl.innerHTML        = password;
+  forceEl.innerHTML           = force;
+  regimentEl.innerHTML        = regiment;
+  rankEl.innerHTML            = rank;
+  solidierNumEl.innerHTML     = soldierNumber;
+  salaryEl.innerHTML          = salary;
+  recruitedDateEl.innerHTML   = getFormattedDate(recruitedDate);
+  yearsOfServiceEl.innerHTML  = yearsOfService;
+  retiredDateEl.innerHTML     = getFormattedDate(retiredDate);
 
   // Increased line height for address values
   permanentAddrEl.style.lineHeight = '1.4em';

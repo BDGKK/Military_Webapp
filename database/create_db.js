@@ -87,7 +87,16 @@ const connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-    if (err) throw err;
+    if (err) {
+        const mysqlNotConnectedRegexp = /(connect)*(econnrefused)\b/i;
+
+        if (mysqlNotConnectedRegexp.test(err.message)) {
+            console.log("MySQL not Connected!");
+            return;
+        } else {
+            throw err;
+        }
+    };
     console.log("MySQL connected...");
 
     connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`, (err) => {

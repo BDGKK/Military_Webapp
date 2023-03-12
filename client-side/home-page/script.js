@@ -20,7 +20,7 @@ const getMessage = async() => {
 }
 
 const sendMessage = async(humanMessage) => {
-    const res = await fetch(`${domain}/chatbot/userinput`, {
+    await fetch(`${domain}/chatbot/userinput`, {
         method: 'POST',
         headers: {
         'Accept': 'application/json',
