@@ -4,80 +4,92 @@ const mysql = require('mysql');
 const createTableIfNotExistQuery = 'CREATE TABLE IF NOT EXISTS';
 const userRankTableQuery = `
     ${createTableIfNotExistQuery} USER_RANK(
-        rank_ID INT,
-        rank_Name CHAR(20),
-        CONSTRAINT pk_RANK PRIMARY KEY(rank_ID));
+        rankID INT,
+        rankName VARCHAR(20),
+        CONSTRAINT pk_RANK PRIMARY KEY(rankID));
 `;
 const forcesTableQuery = `
     ${createTableIfNotExistQuery} FORCES(
-        force_ID INT,
-        force_Name CHAR(20),
-        CONSTRAINT pk_FORCES PRIMARY KEY(force_ID));
-`;
-const userTableQuery = `
-    ${createTableIfNotExistQuery} USER_TABLE(
-        user_ID INT,
-        first_Name CHAR(20),
-        last_name CHAR(30),
-        permanent_address CHAR(50),
-        postal_code_permanent INT,
-        temporary_address CHAR(50),
-        postal_code_temporary INT,
-        DOB DATE,
-        mobile_phone CHAR(10),
-        phone_land CHAR(10),
-        NIC CHAR(15),
-        email CHAR(30),
-        solider_number INT,
-        pword CHAR(12),
-        salary FLOAT,
-        recruited_date DATE,
-        years_of_service CHAR(15),
-        retirment_date DATE,
-        rank_id INT,
-        force_id INT,
-        CONSTRAINT pk_USER PRIMARY KEY(user_ID))`;/*,
-        CONSTRAINT fk_UserRank FOREIGN KEY(rank_id) REFERENCES user_rank(rank_id),
-        CONSTRAINT fk_UserForce FOREIGN KEY(force_id) REFERENCES FORCES(force_id));
-`;*/
-const regimentTableQuery = `
-    ${createTableIfNotExistQuery} REGIMENT (
-        regiment_ID INT,
-        regiment_Name CHAR(20),
-        force_ID INT,
-        CONSTRAINT pk_REGIMENT PRIMARY KEY(regiment_ID),
-        CONSTRAINT fk_FORCE FOREIGN KEY(force_ID) REFERENCES FORCES(force_ID));
-`;
-const pensionTableQuery = `
-    ${createTableIfNotExistQuery} PENSION(
-        pension_ID INT,
-        total_amount FLOAT,
-        renewDate DATE,
-        user_ID INT,
-        CONSTRAINT pk_PENSION PRIMARY KEY(pension_ID),
-        CONSTRAINT fk_USER FOREIGN KEY(user_ID) REFERENCES USER_TABLE(user_ID));
+        forceID INT,
+        forceName VARCHAR(20),
+        CONSTRAINT pk_FORCES PRIMARY KEY(forceID));
 `;
 const adminTableQuery = `
     ${createTableIfNotExistQuery} ADMIN(
-        email CHAR(30),
-        password CHAR(20),
+        email VARCHAR(30),
+        password VARCHAR(20),
         CONSTRAINT pk_ADMIN PRIMARY KEY(email));
+`;
+const regimentTableQuery = `
+    ${createTableIfNotExistQuery} REGIMENT (
+        regimentID INT,
+        regimentName VARCHAR(20),
+        forceID INT,
+        CONSTRAINT pk_REGIMENT PRIMARY KEY(regimentID),
+        CONSTRAINT fk_FORCE FOREIGN KEY(forceID) REFERENCES FORCES(forceID));
+`;
+const userTableQuery = `
+    ${createTableIfNotExistQuery} USER_TABLE(
+        userID INT,
+        firstName VARCHAR(20),
+        lastName VARCHAR(30),
+        gender VARCHAR(10),
+        permanentAddress VARCHAR(50),
+        permanentPostCode INT,
+        temporaryAddress VARCHAR(50),
+        temporaryPostCode INT,
+        dateOfBirth DATE,
+        mobileNumber VARCHAR(10),
+        landNumber VARCHAR(10),
+        NIC VARCHAR(15),
+        emailAddr VARCHAR(30),
+        soldierNumber VARCHAR(20),
+        salary FLOAT,
+        recruitedDate DATE,
+        yearsOfService INT,
+        retirement_date DATE,
+        rankID INT,
+        regimentID INT,
+        CONSTRAINT pk_USER PRIMARY KEY(userID),
+        CONSTRAINT fk_UserRank FOREIGN KEY(rankID) REFERENCES user_rank(rankID),
+        CONSTRAINT fk_Reg FOREIGN KEY(regimentID ) REFERENCES REGIMENT(regimentID))
+`;
+const pensionTableQuery = `
+    ${createTableIfNotExistQuery} PENSION(
+        pensionID INT,
+        totalAmount FLOAT,
+        renewDate DATE,
+        userID INT,
+        CONSTRAINT pk_PENSION PRIMARY KEY(pensionID),
+        CONSTRAINT fk_USER FOREIGN KEY(userID) REFERENCES USER_TABLE(userID));
 `;
 const feedbackTableQuery = `
     ${createTableIfNotExistQuery} FEEDBACK(
-        feedback_id INT, 
-        name CHAR(20),
-        email CHAR(30),
-        subject CHAR(50),
-        user_id INT,
-        adminEmail CHAR(30),
-        CONSTRAINT pk_FEEDBACK PRIMARY KEY(feedback_id),
-        CONSTRAINT fk_U FOREIGN KEY(user_id) REFERENCES USER_TABLE(user_id),
+        feedbackID INT,
+        name VARCHAR(20),
+        email VARCHAR(30),
+        subject VARCHAR(50),
+        userID INT,
+        adminEmail VARCHAR(30),
+        CONSTRAINT pk_FEEDBACK PRIMARY KEY(feedbackID),
+        CONSTRAINT fk_U FOREIGN KEY(userID) REFERENCES USER_TABLE(userID),
         CONSTRAINT fk_ADMIN FOREIGN KEY(adminEmail) REFERENCES ADMIN(email));
 `;
+const loanTableQuery = `
+        ${createTableIfNotExistQuery} LOAN(
+        loanID INT,
+        amount FLOAT,
+        interestRate FLOAT,
+        timePeriod INT, 
+        partonName VARCHAR(20),
+        userID INT, 
+        CONSTRAINT pk_LOAN PRIMARY KEY(loanID),
+        CONSTRAINT fk_UT FOREIGN KEY(userID) REFERENCES USER_TABLE(userID));
+`;
 
-const dbTables = [userRankTableQuery, forcesTableQuery, userTableQuery, regimentTableQuery,
-    pensionTableQuery, adminTableQuery, feedbackTableQuery];
+const dbTables = [userRankTableQuery, forcesTableQuery,
+    adminTableQuery, regimentTableQuery, userTableQuery,
+    pensionTableQuery, feedbackTableQuery, loanTableQuery];
 
 const connection = mysql.createConnection({
     host: DB_HOST,
