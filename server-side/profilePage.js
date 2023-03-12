@@ -9,7 +9,12 @@ router.get('/profile/:id', (req, res) => {
     
     // Edit Select query to get force, rank and regiment names - use their ids for now
     connection.query(`SELECT * FROM user_table WHERE user_ID=${id}`, (err, result) => {
-      if (err) throw err;
+      if (err) {
+        return res.status(500).send(err);
+      }
+      if (result.length < 1) {
+        return res.status(404).send({error: 'User not found'});
+      }
       let userData = result[0];
 
       // Edit JSON Object when database changes
@@ -38,7 +43,7 @@ router.get('/profile/:id', (req, res) => {
         retiredDate: userData.retirment_date
       };
 
-      res.send(userData);
+      res.status(200).send(userData);
     });
 });
 

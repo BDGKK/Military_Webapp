@@ -24,7 +24,6 @@ const getUserDetails = async() => {
   const userid = uri.get('userid');
 
   const rawData = await fetch(`${domain}/profile/${userid}`);
-   // Add code here to alert user if userid does not exist
   return await rawData.json();
 }
 
@@ -37,6 +36,14 @@ const getFormattedDate = (dateString) => {
 
 const renderPage = async() => {
   const rawData = await getUserDetails();
+
+  // Alert user and send them back to their previous page is user not found
+  if ('error' in rawData && rawData.error === 'User not found') {
+    alert("User not Found");
+    history.go(-1);
+    return;
+  }
+  
   const registryData = rawData;
 
   // Use object destructuring to simplify code
