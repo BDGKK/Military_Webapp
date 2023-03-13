@@ -37,6 +37,8 @@ const lettersOnlyRegex = /^[a-z]+$/i;
 const numbersOnlyRegex = /^[0-9]+$/i;
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
+const domain = window.location.origin;
+
 // Use google maps api on personal server to get SL cities & provinces
 // Use server-side caching to reduce number of api requests
 // Remove when using Maps API
@@ -102,8 +104,6 @@ regimentInput.innerHTML += regiments.map((item) => {
 rankInput.innerHTML += ranks.map((item) => {
 	return `<option value="${item}">${item}</option>`;
 });
-
-const domain = window.location.origin;
 
 const validateSalary = () => {
 	return numbersOnlyRegex.test(salaryInput.value);
