@@ -1,4 +1,5 @@
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_NAME } = require('../config');
+const columnData = require('../columnData');
 const mysql = require('mysql');
 
 const createTableIfNotExistQuery = 'CREATE TABLE IF NOT EXISTS';
@@ -130,97 +131,25 @@ connection.connect((err) => {
     // Create a separate js file containing the data as a JSON object with array of the ranks,
     //  regiments and forces
     const duplicatePrimaryKeyErrorRegex = /(ER_DUP_ENTRY)/;
-    const regimentsData = [
-        {
-            name: 'sri lanka light infantry',
-            forceID: 1
-        },
-        {
-            name: 'sri lanka sinha regiment',
-            forceID: 1
-        },
-        {
-            name: 'gemunu watch',
-            forceID: 1
-        },
-        {
-            name: 'gajaba regiment',
-            forceID: 1
-        },
-        {
-            name: 'vijayabahy infantry regiment',
-            forceID: 1
-        },
-        {
-            name: 'mechanized infantry regiment',
-            forceID: 1
-        },
-        {
-            name: 'executive',
-            forceID: 2
-        },
-        {
-            name: 'supply',
-            forceID: 2
-        },
-        {
-            name: 'provost',
-            forceID: 2
-        },
-        {
-            name: 'engineering',
-            forceID: 2
-        },
-        {
-            name: 'electrical',
-            forceID: 2
-        },
-        {
-            name: 'legal',
-            forceID: 2
-        },
-        {
-            name: 'marine',
-            forceID: 2
-        },
-        {
-            name: 'infantry',
-            forceID: 2
-        },
-        {
-            name: 'slaf regiment special force',
-            forceID: 3
-        },
-        {
-            name: 'slaf special air borne force',
-            forceID: 3
-        }
-    ];
-    const forcesInsertionQuery = 'INSERT INTO FORCES (forceID, forceName) VALUES\
-        (1, "army"), (2, "navy"), (3, "airforce");';
+
+    let forcesInsertionQuery = 'INSERT INTO FORCES (forceID, forceName) VALUES ';
+    forcesInsertionQuery += columnData.forces.map((force) =>
+        `(${force.index}, '${force.name}')`).join(',') + ";";
     
     let regimentsInsertionQuery = 'INSERT INTO REGIMENT (regimentID, regimentName, forceID) VALUES ';
-    regimentsInsertionQuery += regimentsData.map((regiment, index) =>
-        `(${index+1}, '${regiment.name}', ${regiment.forceID})`).join(',') + ";";
-    
-    connection.query(forcesInsertionQuery, (err) => {
-        if (err) {
-            if (duplicatePrimaryKeyErrorRegex.test(err.message)) {
-                return;
-            } else {
-                throw err;
-            }
-        };
-    });
+    regimentsInsertionQuery += columnData.regiments.map((regiment) =>
+        `(${regiment.index}, '${regiment.name}', ${regiment.forceID})`).join(',') + ";";
 
-    connection.query(regimentsInsertionQuery, (err) => {
-        if (err) {
-            if (duplicatePrimaryKeyErrorRegex.test(err.message)) {
-                return;
-            } else {
-                throw err;
+    [forcesInsertionQuery, regimentsInsertionQuery].map((insertionQuery) => {
+        connection.query(insertionQuery, (err) => {
+            if (err) {
+                if (duplicatePrimaryKeyErrorRegex.test(err.message)) {
+                    return;
+                } else {
+                    throw err;
+                }
             }
-        };
+        });
     });
 
     // Space for user_rank table insertion queries
