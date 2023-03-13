@@ -3,19 +3,19 @@ const columnData = require('../columnData');
 const mysql = require('mysql');
 
 const createTableIfNotExistQuery = 'CREATE TABLE IF NOT EXISTS';
-const userRankTableQuery = `
-    ${createTableIfNotExistQuery} USER_RANK(
-        rankID VARCHAR(10),
-        rankName VARCHAR(20),
-        forceID VARCHAR(10),
-        CONSTRAINT pk_RANK PRIMARY KEY(rankID),
-        CONSTRAINT fk_FR FOREIGN KEY(forceID) REFERENCES FORCES(forceID));
-`;
 const forcesTableQuery = `
     ${createTableIfNotExistQuery} FORCES(
         forceID VARCHAR(10),
         forceName VARCHAR(20),
         CONSTRAINT pk_FORCES PRIMARY KEY(forceID));
+`;
+const userRankTableQuery = `
+    ${createTableIfNotExistQuery} USER_RANK(
+        rankID VARCHAR(10),
+        rankName VARCHAR(30),
+        forceID VARCHAR(10),
+        CONSTRAINT pk_RANK PRIMARY KEY(rankID),
+        CONSTRAINT fk_FR FOREIGN KEY(forceID) REFERENCES FORCES(forceID));
 `;
 const adminTableQuery = `
     ${createTableIfNotExistQuery} ADMIN(
@@ -26,7 +26,7 @@ const adminTableQuery = `
 const regimentTableQuery = `
     ${createTableIfNotExistQuery} REGIMENT (
         regimentID VARCHAR(10),
-        regimentName VARCHAR(30),
+        regimentName VARCHAR(50),
         forceID VARCHAR(10),
         CONSTRAINT pk_REGIMENT PRIMARY KEY(regimentID),
         CONSTRAINT fk_FORCE FOREIGN KEY(forceID) REFERENCES FORCES(forceID));
@@ -90,7 +90,7 @@ const loanTableQuery = `
         CONSTRAINT fk_UT FOREIGN KEY(userID) REFERENCES USER_TABLE(userID));
 `;
 
-const dbTables = [userRankTableQuery, forcesTableQuery,
+const dbTables = [forcesTableQuery, userRankTableQuery,
     adminTableQuery, regimentTableQuery, userTableQuery,
     pensionTableQuery, feedbackTableQuery, loanTableQuery];
 
@@ -116,6 +116,7 @@ connection.connect((err) => {
 
     connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`, (err) => {
         if (err) throw err;
+        console.log("Database Created");
     });
     
     connection.changeUser({database: DB_NAME}, (err) => {
@@ -130,19 +131,21 @@ connection.connect((err) => {
     });
 
     // Insert the initial data into ranks, regiment and forces tables
-    // Create a separate js file containing the data as a JSON object with array of the ranks,
-    //  regiments and forces
     const duplicatePrimaryKeyErrorRegex = /(ER_DUP_ENTRY)/;
 
     let forcesInsertionQuery = 'INSERT INTO FORCES (forceID, forceName) VALUES ';
     forcesInsertionQuery += columnData.forces.map((force) =>
-        `(${force.index}, '${force.name}')`).join(',') + ";";
+        `('${force.id}', '${force.name}')`).join(',') + ";";
     
     let regimentsInsertionQuery = 'INSERT INTO REGIMENT (regimentID, regimentName, forceID) VALUES ';
     regimentsInsertionQuery += columnData.regiments.map((regiment) =>
-        `(${regiment.index}, '${regiment.name}', ${regiment.forceID})`).join(',') + ";";
+        `('${regiment.id}', '${regiment.name}', '${regiment.forceID}')`).join(',') + ";";
 
-    [forcesInsertionQuery, regimentsInsertionQuery].map((insertionQuery) => {
+    let ranksInsertionQuery = 'INSERT INTO USER_RANK (rankID, rankName, forceID) VALUES ';
+    ranksInsertionQuery += columnData.ranks.map((rank) =>
+        `('${rank.id}', '${rank.name}', '${rank.forceID}')`).join(',') + ";";
+
+    [forcesInsertionQuery, regimentsInsertionQuery, ranksInsertionQuery].map((insertionQuery) => {
         connection.query(insertionQuery, (err) => {
             if (err) {
                 if (duplicatePrimaryKeyErrorRegex.test(err.message)) {
@@ -153,8 +156,6 @@ connection.connect((err) => {
             }
         });
     });
-
-    // Space for user_rank table insertion queries
 });
 
 module.exports = connection;
