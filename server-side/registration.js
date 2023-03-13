@@ -1,4 +1,5 @@
 const connection = require('../database/connection');
+const columnData = require('../columnData');
 const express = require('express');
 
 const router = express.Router();
@@ -52,6 +53,10 @@ router.post('/registration/registryData', (req, res) => {
     } else {
         res.status(400).send("Failed");
     }
+});
+
+router.get('/registration/columnData', (req, res) => {
+    res.send(columnData);
 });
 
 module.exports = router;
