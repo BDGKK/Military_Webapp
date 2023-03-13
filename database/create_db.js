@@ -1,5 +1,6 @@
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_NAME } = require('../config');
 const mysql = require('mysql');
+const e = require('cors');
 
 const createTableIfNotExistQuery = 'CREATE TABLE IF NOT EXISTS';
 const userRankTableQuery = `
@@ -124,6 +125,20 @@ connection.connect((err) => {
         connection.query(table, (err) => {
             if (err) throw err;
         });
+    });
+
+    // Insert the initial data into ranks, regiment and forces tables
+    const duplicatePrimaryKeyErrorRegex = /(ER_DUP_ENTRY)/;
+    const forcesInsertionQuery = 'INSERT INTO FORCES (forceID, forceName) VALUES\
+        (1, "army"), (2, "navy"), (3, "airforce");';
+    connection.query(forcesInsertionQuery, (err) => {
+        if (err) {
+            if (duplicatePrimaryKeyErrorRegex.test(err.message)) {
+                return;
+            } else {
+                throw err;
+            }
+        };
     });
 });
 

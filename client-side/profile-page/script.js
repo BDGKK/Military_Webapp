@@ -18,6 +18,10 @@ const recruitedDateEl   = document.getElementById("recruited-date");
 const yearsOfServiceEl  = document.getElementById("years-of-service");
 const retiredDateEl     = document.getElementById("retired-date");
 
+const returnToHomePage = () => {
+  window.location.href = `${window.location.origin}/`;
+}
+
 const getUserDetails = async() => {
   const domain = window.location.origin;
   const uri = new URLSearchParams(window.location.search);
