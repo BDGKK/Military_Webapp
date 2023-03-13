@@ -98,11 +98,15 @@ const getForce = () => {
 	return isArmy ? "army" : isNavy ? "navy" : isAirForce ? "air force" : "invalid";
 }
 
-regimentInput.innerHTML += regiments.map((item) => {
-	return `<option value="${item}">${item}</option>`;
-});
-rankInput.innerHTML += ranks.map((item) => {
-	return `<option value="${item}">${item}</option>`;
+fetch(`${domain}/registration/columnData`)
+.then(res => res.json())
+.then(data => {
+	regimentInput.innerHTML += data.regiments.map((item) => {
+		return `<option value=${item.id}>${item.name}</option>`;
+	});
+	rankInput.innerHTML += data.ranks.map((item) => {
+		return `<option value="${item.id}">${item.name}</option>`;
+	});
 });
 
 const validateSalary = () => {
@@ -266,7 +270,7 @@ const getRegistryData = () => {
 const submit = async() => {
 	if (!isDataValid()) return;
 	const registryData = getRegistryData();
-
+	
 	const response = await fetch(`${domain}/registration/registryData`, {
 		method: 'POST',
         headers: {

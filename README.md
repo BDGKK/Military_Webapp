@@ -1,12 +1,4 @@
-# Notes/Issues/Warnings/etc. 
-- Create a server script file to insert data into the forces, regiments ranks table
-    - Insert the data into each file in order to avoid foreign key errors
-    - Use error handling to identify if data already exists in the table - using PK constraint
-    - If data exists, don't insert - else insert
-
-- Put regiments, ranks and forces in one file, create a GET method API for registration page to use it
-- Use the regiments, ranks and forces from registration page to choose the correct rank and regiment in db user_table
-
+# Notes/Issues/Warnings/etc.
 - Add the image for the homepage into the home-page folder
 - Put all web pages in their own directory with suitable names in the client-side folder
 - Host the web pages - create their own files in server-side folder and create a router for each page
