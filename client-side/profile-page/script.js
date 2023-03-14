@@ -8,7 +8,6 @@ const mobileTelEl       = document.getElementById("mobile-tel");
 const landTelEl         = document.getElementById("land-tel");
 const nicEl             = document.getElementById("nic");
 const emailAddrEl       = document.getElementById("email-addr");
-const passwordEl        = document.getElementById("password");
 const forceEl           = document.getElementById("force");
 const regimentEl        = document.getElementById("regiment");
 const rankEl            = document.getElementById("rank");
@@ -50,7 +49,7 @@ const renderPage = async() => {
   
   const { userId, firstName, lastName, gender, permanentAddress, permanentPostCode,
     temporaryAddress, temporaryPostCode, dateOfBirth, mobileNumber, landNumber,
-    NIC, emailAddr, password, force, regiment, rank, soldierNumber, salary,
+    NIC, emailAddr, force, regiment, rank, soldierNumber, salary,
     recruitedDate, yearsOfService, retiredDate} = rawData;
   
   userIDEl.innerHTML    = userId;
@@ -69,7 +68,6 @@ const renderPage = async() => {
   landTelEl.innerHTML         = landNumber;
   nicEl.innerHTML             = NIC;
   emailAddrEl.innerHTML       = emailAddr;
-  passwordEl.innerHTML        = password;
   forceEl.innerHTML           = force;
   regimentEl.innerHTML        = regiment;
   rankEl.innerHTML            = rank;
