@@ -47,10 +47,15 @@ const renderPage = async() => {
     return;
   }
   
-  const { userId, firstName, lastName, gender, permanentAddress, permanentPostCode,
-    temporaryAddress, temporaryPostCode, dateOfBirth, mobileNumber, landNumber,
-    NIC, emailAddr, force, regiment, rank, soldierNumber, salary,
-    recruitedDate, yearsOfService, retiredDate} = rawData;
+  const {
+    userId, firstName, lastName, gender,
+    permanentAddress, permanentPostCode,
+    temporaryAddress, temporaryPostCode,
+    dateOfBirth, mobileNumber, landNumber,
+    NIC, emailAddr, force, regiment, rank,
+    soldierNumber, salary, recruitedDate,
+    yearsOfService, retirement_date
+  } = rawData;
   
   userIDEl.innerHTML    = userId;
   fullNameEl.innerHTML  = `${firstName} ${lastName}`;
@@ -75,7 +80,7 @@ const renderPage = async() => {
   salaryEl.innerHTML          = salary;
   recruitedDateEl.innerHTML   = getFormattedDate(recruitedDate);
   yearsOfServiceEl.innerHTML  = yearsOfService;
-  retiredDateEl.innerHTML     = getFormattedDate(retiredDate);
+  retiredDateEl.innerHTML     = getFormattedDate(retirement_date);
 
   // Increased line height for address values
   permanentAddrEl.style.lineHeight = '1.4em';
