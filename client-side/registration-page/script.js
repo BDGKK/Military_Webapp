@@ -235,11 +235,11 @@ const isDataValid = () => {
 		return false;
 	}
 
-	if (regimentInput.value === "") {
+	if (regimentInput.value === "" || regimentInput.value === undefined) {
 		alert("Please select your regiment");
 		return false;
 	}
-	if (rankInput.value === "") {
+	if (rankInput.value === ""|| rankInput.value === undefined) {
 		alert("Please select your rank");
 		return false;
 	}
@@ -296,15 +296,14 @@ const getRegistryData = () => {
 		landNumber: landNumberInput.value,
 		NIC: NICInput.value,
 		emailAddr: emailAddrInput.value,
-		password: passwordInput.value,
-		force: getForce(),
-		regiment: regimentInput.value,
-		rank: rankInput.value,
+		password: passwordInput.value, // Decision to encrypt this later
 		soldierNumber: soldierNoInput.value,
 		salary: parseFloat(salaryInput.value),
 		recruitedDate: recruitedDateInput.value,
 		yearsOfService: parseInt(yearsOfServiceInput.value),
-		retiredDate: retiredDateInput.value
+		retiredDate: retiredDateInput.value,
+		rankID: rankInput.value,
+		regimentID: regimentInput.value
 	};
 }
 

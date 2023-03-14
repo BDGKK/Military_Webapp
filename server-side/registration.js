@@ -15,9 +15,9 @@ router.post('/registration/registryData', (req, res) => {
             let userId = result[0].max_id;
             userId = userId === null ? 1 : userId+1;
 
-            const { firstName, lastName, permanentAddress, temporaryAddress, dateOfBirth,
+            const { firstName, lastName, gender, permanentAddress, temporaryAddress, dateOfBirth,
                 mobileNumber, landNumber, NIC, emailAddr, soldierNumber, password, salary,
-                recruitedDate, yearsOfService, retiredDate, rank, regiment} = registryData;
+                recruitedDate, yearsOfService, retiredDate, rankID, regimentID } = registryData;
 
             // Putting addresses as a single string
             const permanent_address = permanentAddress.streetAddress + ','
