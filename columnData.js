@@ -271,6 +271,19 @@ const data = {
             name: 'Piolt Officer',
             forceID: 'F003' 
         }
+    ],
+    SLCities: [
+        "Colombo", "Gampaha", "Kandy", "Jaffna",
+        "Negombo", "Anuradhapura", "Trincomalee",
+        "Batticaloa", "Matara", "Galle", "Ratnapura",
+        "Kurunegala", "Badulla", "Hambantota", "Matale",
+        "Kalutara", "Puttalam", "Ampara", "Chilaw", "Kegalle"
+    ],
+    SLProvinces: [
+        "Central Province", "Eastern Province", "Northern Province",
+        "North Central Province", "North Western Province",
+        "Sabaragamuwa Province", "Southern Province", "Uva Province",
+        "Western Province"
     ]
 }
 

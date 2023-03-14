@@ -39,18 +39,6 @@ const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\")
 
 const domain = window.location.origin;
 
-// Use google maps api on personal server to get SL cities & provinces
-// Use server-side caching to reduce number of api requests
-// Remove when using Maps API
-const cities = ['AA', 'BB', 'CC'];
-const provinces = ['North', 'West', 'South', 'East'];
-const citiesHTML = cities.map((item) => `<option value="${item}">${item}</option>`);
-const provincesHTML = provinces.map((item) => `<option value="${item}">${item}</option>`);
-
-// Add regiments and ranks in this array
-const regiments = ['Reg1', 'Reg2', 'Reg3'];
-const ranks = ['Rank1', 'Rank2', 'Rank3'];
-
 const validateFullName = () => {
 	return lettersOnlyRegex.test(firstNameInput.value) && lettersOnlyRegex.test(lastNameInput.value);
 }
@@ -58,11 +46,6 @@ const validateFullName = () => {
 const getGender = () => {
 	return genderMale.checked ? 'male' : genderFemale.checked ? 'female' : 'invalid';
 }
-
-permanentCityInput.innerHTML += citiesHTML;
-tempCityInput.innerHTML += citiesHTML;
-permanentProvinceInput.innerHTML += provincesHTML;
-tempProvinceInput.innerHTML += provincesHTML;
 
 const validatePostalCode = () => {
 	return numbersOnlyRegex.test(permanentPostCodeInput.value) && numbersOnlyRegex.test(tempPostCodeInput.value);
@@ -107,6 +90,13 @@ fetch(`${domain}/registration/columnData`)
 	rankInput.innerHTML += data.ranks.map((item) => {
 		return `<option value="${item.id}">${item.name}</option>`;
 	});
+
+	const citiesHTML = data.SLCities.map((item) => `<option value="${item}">${item}</option>`);
+	const provincesHTML = data.SLProvinces.map((item) => `<option value="${item}">${item}</option>`);
+	permanentCityInput.innerHTML += citiesHTML;
+	tempCityInput.innerHTML += citiesHTML;
+	permanentProvinceInput.innerHTML += provincesHTML;
+	tempProvinceInput.innerHTML += provincesHTML;
 });
 
 const validateSalary = () => {

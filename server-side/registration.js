@@ -56,7 +56,8 @@ router.post('/registration/registryData', (req, res) => {
 });
 
 router.get('/registration/columnData', (req, res) => {
-    res.send(columnData);
+    const { ranks, regiments, SLCities, SLProvinces } = columnData;
+    res.send({ranks, regiments, SLCities, SLProvinces});
 });
 
 module.exports = router;
