@@ -116,7 +116,6 @@ connection.connect((err) => {
 
     connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`, (err) => {
         if (err) throw err;
-        console.log("Database Created");
     });
     
     connection.changeUser({database: DB_NAME}, (err) => {

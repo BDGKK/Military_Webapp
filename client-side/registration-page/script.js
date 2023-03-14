@@ -78,21 +78,72 @@ const getForce = () => {
 		!navyRadio.checked &&
 		airForceRadio.checked;
 	
-	return isArmy ? "army" : isNavy ? "navy" : isAirForce ? "air force" : "invalid";
+	return isArmy ? "F001" : isNavy ? "F002" : isAirForce ? "F003" : "invalid";
 }
+
+armyRadio.addEventListener('click', () => {
+	const usersForce = getForce();
+
+	fetch(`${domain}/registration/columnData`)
+	.then(res => res.json())
+	.then(data => {
+		regimentInput.innerHTML = data.regiments.map((item) => {
+			if (item.forceID === usersForce) {
+				return `<option value=${item.id}>${item.name}</option>`;
+			}
+		});
+		rankInput.innerHTML = data.ranks.map((item) => {
+			if (item.forceID === usersForce) {
+				return `<option value="${item.id}">${item.name}</option>`;
+			}
+		});
+	});
+});
+
+navyRadio.addEventListener('click', () => {
+	const usersForce = getForce();
+
+	fetch(`${domain}/registration/columnData`)
+	.then(res => res.json())
+	.then(data => {
+		regimentInput.innerHTML = data.regiments.map((item) => {
+			if (item.forceID === usersForce) {
+				return `<option value=${item.id}>${item.name}</option>`;
+			}
+		});
+		rankInput.innerHTML = data.ranks.map((item) => {
+			if (item.forceID === usersForce) {
+				return `<option value="${item.id}">${item.name}</option>`;
+			}
+		});
+	});
+});
+
+airForceRadio.addEventListener('click', () => {
+	const usersForce = getForce();
+
+	fetch(`${domain}/registration/columnData`)
+	.then(res => res.json())
+	.then(data => {
+		regimentInput.innerHTML = data.regiments.map((item) => {
+			if (item.forceID === usersForce) {
+				return `<option value=${item.id}>${item.name}</option>`;
+			}
+		});
+		rankInput.innerHTML = data.ranks.map((item) => {
+			if (item.forceID === usersForce) {
+				return `<option value="${item.id}">${item.name}</option>`;
+			}
+		});
+	});
+});
 
 fetch(`${domain}/registration/columnData`)
 .then(res => res.json())
 .then(data => {
-	regimentInput.innerHTML += data.regiments.map((item) => {
-		return `<option value=${item.id}>${item.name}</option>`;
-	});
-	rankInput.innerHTML += data.ranks.map((item) => {
-		return `<option value="${item.id}">${item.name}</option>`;
-	});
-
 	const citiesHTML = data.SLCities.map((item) => `<option value="${item}">${item}</option>`);
 	const provincesHTML = data.SLProvinces.map((item) => `<option value="${item}">${item}</option>`);
+
 	permanentCityInput.innerHTML += citiesHTML;
 	tempCityInput.innerHTML += citiesHTML;
 	permanentProvinceInput.innerHTML += provincesHTML;
