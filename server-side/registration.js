@@ -9,38 +9,41 @@ router.post('/registration/registryData', (req, res) => {
     const registryData = req.body.registryData;
 
     if (registryData) {
-        connection.query('SELECT MAX(user_ID) as max_id FROM user_table', (err, result) => {
+        connection.query('SELECT MAX(userID) as max_id FROM user_table', (err, result) => {
             // Increment highest userid for new user
             if (err) throw err;
             let userId = result[0].max_id;
-            userId = userId === null ? 1 : userId+1;
+            userId = userId === null ? 1 : parseInt(userId)+1;
 
-            const { firstName, lastName, gender, permanentAddress, temporaryAddress, dateOfBirth,
-                mobileNumber, landNumber, NIC, emailAddr, soldierNumber, password, salary,
-                recruitedDate, yearsOfService, retiredDate, rankID, regimentID } = registryData;
+            const {
+                firstName, lastName, gender, permanentAddress, temporaryAddress,
+                dateOfBirth, mobileNumber, landNumber, NIC, emailAddr, soldierNumber,
+                salary, recruitedDate, yearsOfService, retiredDate, rankID, regimentID
+            } = registryData;
 
-            // Putting addresses as a single string
-            const permanent_address = permanentAddress.streetAddress + ','
+            // Putting addresses as single strings
+            const permanentFullAddress = permanentAddress.streetAddress + ','
                 + permanentAddress.city + ',' + permanentAddress.province;
-            const temporary_address = temporaryAddress.streetAddress + ','
+            const temporaryFullAddress = temporaryAddress.streetAddress + ','
                 + temporaryAddress.city + ',' + temporaryAddress.province;
             
-            // Edit Query when to store the rank, force and regiment IDs
             const registryDataInsertQuery = 
                 `INSERT INTO user_table (
-                    userID, firstName, lastName, gender, permanentAddress, permanentPostCode,
-                    temporaryAddress, temporaryPostCode, dateOfBirth, mobileNumber, landNumber,
-                    NIC, emailAddr, solidierNumber, salary, recruitedDate, yearsOfService,
-                    retirement_date, rankID, regimentID
-                ) VALUES (${userId}, '${firstName}', '${lastName}',
-                    '${permanent_address}', ${permanentAddress.postCode},
-                    '${temporary_address}', ${temporaryAddress.postCode},
-                    '${dateOfBirth}', '${mobileNumber}',
-                    '${landNumber}', '${NIC}', '${emailAddr}',
-                    ${soldierNumber}, '${password}', ${salary},
-                    '${recruitedDate}',
-                    '${yearsOfService}', '${retiredDate}',
-                    ${12}, ${10}
+                    userID, firstName, lastName, gender,
+                    permanentAddress, permanentPostCode,
+                    temporaryAddress, temporaryPostCode,
+                    dateOfBirth, mobileNumber, landNumber,
+                    NIC, emailAddr, soldierNumber, salary,
+                    recruitedDate, yearsOfService, retirement_date,
+                    rankID, regimentID
+                ) VALUES (
+                    '${userId}', '${firstName}', '${lastName}', '${gender}',
+                    '${permanentFullAddress}', ${permanentAddress.postCode},
+                    '${temporaryFullAddress}', ${temporaryAddress.postCode},
+                    '${dateOfBirth}', '${mobileNumber}', '${landNumber}',
+                    '${NIC}', '${emailAddr}', '${soldierNumber}', ${salary},
+                    '${recruitedDate}', ${yearsOfService}, '${retiredDate}',
+                    '${rankID}', '${regimentID}'
                 );`;
             
             connection.query(registryDataInsertQuery, (err) => {
