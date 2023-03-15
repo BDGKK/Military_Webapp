@@ -3,15 +3,14 @@
 <head>
     <title>Home Page</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-inverse p-1 bg-dark">
-        <div class="container-fluid">
+    <nav class="navbar p-1 bg-dark">
             <div class="navbar-header">
             <a class="navbar-brand  text-white" href="#">MILITARY SALUTE</a>
             </div>
@@ -22,7 +21,7 @@
             <a class="text-white p-4" title="About us" href="#">About us</a>
              
             <div class="dropdown">
-                <button type="button" title="Languages Selection" class="btn btn-outline-primary dropdown-toggle mt-3 text-white" data-toggle="dropdown">Languages</button>
+                <p data-toggle="dropdown" class="text-white mt-4">Languages</p>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="#">English</a>
                   <a class="dropdown-item" href="#">Sinhala</a>
@@ -30,13 +29,20 @@
                 </div>
               </div>
             
-            <div class="left">
-            <button title="User Login" type="button" class="btn btn-outline-primary text-white mt-3">User Login</button>
-            <button title="Admin Login" type="button" class="btn btn-outline-primary text-white mt-3 ">Admin Login</button>
+            <div class="ulogin left mt-4">
+            <a href="user_login.html" title="user login" class="text-decoration-none text-white">User Login</a>
+            </div>
+            <div class="Alogin left mt-4">
+              <a href="Admin_Loging.html" title="admin Loging" class="text-decoration-none text-white">Admin Login</a>
             </div>
             </div>
     </nav>
 
+    <div class="pic p-1">
+    <img src="filip-andrejevic-1LTunOck3es-unsplash.jpg" class="mx-auto d-block" style="width: 99%;">
+    </div>    
+
+    <!-- Chatbot code here -->
     <div id="chatbot-window" class="chatbot-window">
       <div id="messaging-body" class="text-body"></div>
       <div class="user-input">
@@ -49,78 +55,71 @@
       <span class="material-symbols-outlined">live_help</span>
     </button>
 
-    <div class="pic p-1 mt-2">
-    <img src="filip-andrejevic-1LTunOck3es-unsplash.jpg" class="mx-auto d-block" style="width: 99%;">
-    </div>    
 
     <div class="container-fluid text-center">
         <h1 class="mt-5">SERVICES</h1>
         <div class="row mt-5">
-          <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-off"></span>
-            <button title="Profile" type="button" class="btn btn-outline-secondary btn-block btn-lg mt-3">Profile</button>
+        
+          <div class="border col-sm-4 mt-5 text-dark">
+            <a class="text-white" href="../profile-page/index.html"><h3 title="Profile" class="text-white">Profile</h3></a>
           </div>
-          <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-heart"></span>
-            <button title="Pension" type="button" class="btn btn-outline-secondary btn-block btn-lg mt-3">Pension</button>
+
+          <div class="border col-sm-4 mt-5">
+            <a class="text-white" href="#"><h3 title="Pension" onmouseover = "applyedpension();" class="text-white">Pension</h3></a>
           </div>
-          <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-lock"></span>
-            <button title="Registration" type="button" class="btn btn-outline-secondary btn-block btn-lg mt-3">Registration</button>
+
+          <div class="border col-sm-4 mt-5">
+            <a class="text-white" href="../registration-page/index.html"><h3 title="Registration" class="text-white">Registration</h3></a>
           </div>
-          </div>
-          <br><br>
+        </div>
+        
         <div class="row mt-5">
-          <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-leaf"></span>
-            <button title="Loan" type="button" class="btn btn-outline-secondary btn-block btn-lg mt-3">Loan</button>
-          </div>
-          <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-certificate"></span>
-            <div class="name">
-                <button type="button" title="Download Aplication" class="btn btn-outline-secondary btn-block btn-lg dropdown-toggle mt-3" data-toggle="dropdown">Download Aplication</button>
+
+          <div class="border col-sm-4 mt-5">
+            <a class="text-white" href="#"><h3 title="Loan" onmouseover = "applyedloan();" class="text-white">Loan</h3></a>
+        </div>
+
+          <div class=" border col-sm-4 mt-5">
+            <div class="doc">
+                <h3 data-toggle="dropdown" class="text-white pointer">Aplication Forms</h3>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Pension form</a>
-                  <a class="dropdown-item" href="#">Loan form</a>
+                  <a class="dropdown-item" href="pension_form.html">Pension form</a>
+                  <a class="dropdown-item" href="loan_form.html">Loan form</a>
                 </div>
-              </div>
+            </div>
           </div>
-          <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-wrench"></span>
-            <button title="Need Help ?" type="button" class="btn btn-outline-secondary btn-block btn-lg text-black mt-3">Need Help ?</button>
+
+          <div class="border col-sm-4 mt-5">
+            <a class="text-white" href="HelpDesk.html"><h3 title="Need Help?" class="text-white">Need Help?</h3></a>
           </div>
+
         </div>
       </div>
 
-      <div id="about-section" class="container-fluid text-center">
+
+      <div class="container-fluid text-center">
         <h1 class="mt-5">About Us</h1>
         <div class="row mt-5">
           <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-off"></span>
-            <h4>G</h4>
+            <h4>Kavidu</h4>
           </div>
           <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-heart"></span>
-            <h4>D</h4>
+            <h4>Dilshani</h4>
           </div>
           <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-lock"></span>
-            <h4>K</h4>
+            <h4>Kehan</h4>
           </div>
           </div>
           <br><br>
         <div class="row mt-5">
           <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-leaf"></span>
-            <h4>N</h4>
+            <h4>Nadeesha</h4>
           </div>
           <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-certificate"></span>
-            <h4>P</h4>
+            <h4>Pasan</h4>
           </div>
           <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-wrench"></span>
-            <h4>U</h4>
+            <h4>Udari</h4>
           </div>
         </div>
       </div>
@@ -128,20 +127,17 @@
       <div class="container-fluid ">
         <div class="row mt-5">
           <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-off"></span>
             <h2 class="text-center">Contact Us</h2>
+            <h5 class="mt-5">Project Manager: Kavidu Gayanth</h5>
+            <h5 class="mt-5">Business Analyst: Udari Sathsarani</h5>
           </div>
           <div class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-heart"></span>
-            <div class="v1"></div>
-          </div>
-          <div id="feedback-form" class="col-sm-4 mt-5">
-            <span class="glyphicon glyphicon-lock"></span>
             <h2 class="text-center">Feedback</h2>
+            <form method="post" action="#" onsubmit="return checkforblank()">
             <div class="container">
                   <div class="form-group">
                     <p for="name">Name:</p>
-                    <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
+                    <input type="uname" class="form-control" id="uname" placeholder="Enter name" name="uname">
                   </div>
                   <div class="form-group">
                     <p for="email">Email:</p>
@@ -149,20 +145,25 @@
                   </div>
                   <div class="form-group">
                     <p for="Subject">Subject:</p>
-                    <input type="subject" class="form-control" id="subject" placeholder="Enter subject" name="Subject">
+                    <input type="subject" class="form-control" id="subject" placeholder="Enter subject" name="subject">
                   </div>
                   <div class="form-group">
                     <p for="Comment">Comment:</p>
-                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                    <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary btn-block">Submit</button>
                   <form class="mt-5"></form>
-                </form>
             </div>
-          </div> 
+            </form>
+          </div>
+          <div class="col-sm-4 mt-5">
+            
+
+          </div>
         </div> 
       </div>
 
       <script src="script.js"></script>
+
 </body>
 </html>

@@ -1,12 +1,32 @@
 .left .btn{
     border-radius: 35ex;
 }
-.dropdown .btn{
-    border-radius: 35ex;
+.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  left: 0;
+  top: 0;
 }
-.v1{
-    border-left: 6px black;
-    height: 500px;
+.dropdown{
+  padding: 1px 20px;
+  cursor: pointer;
+}
+.doc{
+  cursor: pointer;
+}
+.ulogin{
+  padding: 1px 20px;
+}
+.Alogin{
+  padding: 1px 20px;
+}
+.pic{
+  margin-top: 6%;
+}
+.border {
+  padding: 25px;
+  background-color:darkslategrey;
 }
 
 .chatbot-icon {
