@@ -1,5 +1,14 @@
-# Notes/Issues/Warnings/etc.
-- Add the image for the homepage into the home-page folder
+# To-Do/Issues/Warnings/etc.
+- Improve validation function in registry page:
+    - When user enter invalid data in an input
+        they will get an alert once they move to another input
+- Use socket.io module (websocket) and allow user to interact with admin on chatbot
+    - If user enters unavailable questions, chatbot asks user if they want to connect with admin
+    - If yes, chatbot backend is removed from websocket connection and replaced with admin
+    - Admin gets a notification to interact with user
+    - Test this first with 2 users interacting using socket.io and implement in chatbot window later
+
+# Notes
 - Put all web pages in their own directory with suitable names in the client-side folder
 - Host the web pages - create their own files in server-side folder and create a router for each page
 
@@ -11,7 +20,9 @@ Provides support for pensions, loans and accomodations to ensure a comfortable a
 - Install and Setup Node.js on your computer (https://nodejs.org/en/download/)
 - Create a folder and enter 'node init -y' to initialize it as a Node.js App
 - Install and Setup Git on your computer (https://git-scm.com/download/)
-- Setup the git folder to use this repository
+    - Use the same account as your github repository
+- Setup the git folder to use this repository 
+- Make you are signed in to your GitHub account in your browser
 - Pull the code from this repository into the folder using 'git pull'
 - Open your IDE or Code Editor and install these modules
     - cors
