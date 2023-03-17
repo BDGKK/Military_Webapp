@@ -33,52 +33,31 @@ const tempCityInput 		= document.getElementById("temp-city-addr");
 const tempProvinceInput 	= document.getElementById("temp-province-addr");
 const tempPostCodeInput 	= document.getElementById("temp-post-code");
 
-const lettersOnlyRegex = /^[a-z]+$/i;
-const numbersOnlyRegex = /^[0-9]+$/i;
-const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
 const domain = window.location.origin;
 
-const validateFullName = () => {
-	return lettersOnlyRegex.test(firstNameInput.value) && lettersOnlyRegex.test(lastNameInput.value);
+const hasLettersOnly = (value) => {
+	return /^[a-z]+$/i.test(value);
+}
+const hasNumbersOnly = (value) => {
+	return /^[0-9]+$/i.test(value);
+}
+const hasEmailFormat = (value) => {
+	return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(value);
 }
 
 const getGender = () => {
 	return genderMale.checked ? 'male' : genderFemale.checked ? 'female' : 'invalid';
 }
-
-const validatePostalCode = () => {
-	return numbersOnlyRegex.test(permanentPostCodeInput.value) && numbersOnlyRegex.test(tempPostCodeInput.value);
-}
-
-const validatePhoneNumbers = () => {
-	const mobileNumber = mobileNumberInput.value;
-	const landNumber = landNumberInput.value;
-	if (mobileNumber.length != 10 || landNumber.length != 10) return false;
-	return numbersOnlyRegex.test(mobileNumber) && numbersOnlyRegex.test(landNumber);
-}
-
-const validateEmail = () => {
-	return emailRegex.test(emailAddrInput.value);
-}
-
 const getForce = () => {
-	const isArmy =
-		armyRadio.checked &&
-		!navyRadio.checked &&
-		!airForceRadio.checked;
-
-	const isNavy =
-		!armyRadio.checked &&
-		navyRadio.checked &&
-		!airForceRadio.checked;
-	
-	const isAirForce =
-		!armyRadio.checked &&
-		!navyRadio.checked &&
-		airForceRadio.checked;
+	const isArmy = armyRadio.checked && !navyRadio.checked && !airForceRadio.checked;
+	const isNavy = !armyRadio.checked && navyRadio.checked && !airForceRadio.checked;
+	const isAirForce = !armyRadio.checked && !navyRadio.checked && airForceRadio.checked;
 	
 	return isArmy ? "F001" : isNavy ? "F002" : isAirForce ? "F003" : "invalid";
+}
+
+const removeSpaces = (value) => {
+	return value.replaceAll(" ", "");
 }
 
 armyRadio.addEventListener('click', () => {
@@ -99,7 +78,6 @@ armyRadio.addEventListener('click', () => {
 		});
 	});
 });
-
 navyRadio.addEventListener('click', () => {
 	const usersForce = getForce();
 
@@ -118,7 +96,6 @@ navyRadio.addEventListener('click', () => {
 		});
 	});
 });
-
 airForceRadio.addEventListener('click', () => {
 	const usersForce = getForce();
 
@@ -150,165 +127,336 @@ fetch(`${domain}/registration/columnData`)
 	tempProvinceInput.innerHTML += provincesHTML;
 });
 
-const validateSalary = () => {
-	return numbersOnlyRegex.test(salaryInput.value);
-}
+const isFirstNameValid = () => {
+	const firstName = firstNameInput.value.trim()
 
-const validateYearsOfService = () => {
-	return numbersOnlyRegex.test(yearsOfServiceInput.value);
-}
-
-const isDataValid = () => {
-	if (firstNameInput.value === "" || lastNameInput.value === "") {
-		alert("Please fill in your full name");
+	if (firstName === "") {
+		alert("Please fill in your first name");
 		return false;
-	} else if (!validateFullName()) {
-		alert("Please enter letters only in your full name");
+	} else if (!hasLettersOnly(firstName)) {
+		alert("Please enter letters only in your first name");
 		return false;
 	}
 
+	return true;
+}
+const isLastNameValid = () => {
+	const lastName = lastNameInput.value.trim()
+
+	if (lastName === "") {
+		alert("Please fill in your last name");
+		return false;
+	} else if (!hasLettersOnly(lastName)) {
+		alert("Please enter letters only in your last name");
+		return false;
+	}
+
+	return true;
+}
+const isGenderValid = () => {
 	if (getGender() === 'invalid') {
 		alert("Please select your gender");
 		return false;
 	}
+	return true;
+}
+const isPermaStreetAddressValid = () => {
+	if (permanentStreetInput.value.trim() === "") {
+		alert("Please fill in your permanent street address");
+		return false;
+	}
+	return true;
+}
+const isPermaCityValid = () => {
+	if (permanentCityInput.value === "") {
+		alert("Please select in your permanent city");
+		return false;
+	}
+	return true;
+}
+const isPermaProvinceValid = () => {
+	if (permanentProvinceInput.value === "") {
+		alert("Please select in your permanent province");
+		return false;
+	}
+	return true;
+}
+const isPermaPostCodeValid = () => {
+	const permanentPostCode = removeSpaces(permanentPostCodeInput.value);
 
-	const isPermanentAddressFilled = 
-		permanentStreetInput.value !== "" && permanentCityInput.value !== "" &&
-		permanentProvinceInput.value !== "" && permanentPostCodeInput.value !== "";
-	
-	const isTempAddressFilled =
-		tempStreetInput.value !== "" && tempCityInput.value !== "" &&
-		tempProvinceInput.value !== "" && tempPostCodeInput.value !== "";
-	
-	if (!isPermanentAddressFilled) {
-		alert("Please fill in your permanent address");
+	if (permanentPostCode === "") {
+		alert("Please fill in your permanent postal code");
 		return false;
-	}
-	if (!isTempAddressFilled) {
-		alert("Please fill in your temporary address");
-		return false;
-	}
-	if (!validatePostalCode()) {
-		alert("Please enter numbers only for your postal code");
+	} else if (!hasNumbersOnly(permanentPostCode)) {
+		alert("Please enter numbers only in your permanent postal code");
 		return false;
 	}
 
-	if (dobInput.value === "") {
+	return true;
+}
+const isTempStreetAddressValid = () => {
+	if (tempStreetInput.value.trim() === "") {
+		alert("Please fill in your temporary street address");
+		return false;
+	}
+	return true;
+}
+const isTempCityValid = () => {
+	if (tempCityInput.value === "") {
+		alert("Please select in your temporary city");
+		return false;
+	}
+	return true;
+}
+const isTempProvinceValid = () => {
+	if (tempProvinceInput.value === "") {
+		alert("Please select in your temporary province");
+		return false;
+	}
+	return true;
+}
+const isTempPostCodeValid = () => {
+	const temporaryPostCode = removeSpaces(tempPostCodeInput.value);
+
+	if (temporaryPostCode === "") {
+		alert("Please fill in your temporary postal code");
+		return false;
+	} else if (!hasNumbersOnly(temporaryPostCode)) {
+		alert("Please enter numbers only in your temporary postal code");
+		return false;
+	}
+
+	return true;
+}
+const isDobValid = () => {
+	if (dobInput.value.trim() === "") {
 		alert("Please select your date of birth");
 		return false;
 	}
-	
-	if (mobileNumberInput.value === "" || landNumberInput.value === "") {
-		alert("Please fill in your mobile and land numbers");
+	return true;
+}
+const isMobileNumValid = () => {
+	const mobileNum = removeSpaces(mobileNumberInput.value);
+
+	if (mobileNum === "") {
+		alert("Please fill in your mobile number");
 		return false;
-	} else if (!validatePhoneNumbers()) {
-		alert("Please enter only a 10-digit number for your mobile and land number");
+	} else if (!hasNumbersOnly(mobileNum) || mobileNum.length !== 10) {
+		alert("Please enter only a 10-digit number for your mobile number");
 		return false;
 	}
 
-	if (NICInput.value === "") {
+	return true;
+}
+const isLandNumValid = () => {
+	const landNum = removeSpaces(landNumberInput.value);
+
+	if (landNum === "") {
+		alert("Please fill in your land number");
+		return false;
+	} else if (!hasNumbersOnly(landNum) || landNum.length !== 10) {
+		alert("Please enter only a 10-digit number for your land number");
+		return false;
+	}
+
+	return true;
+}
+const isNICValid = () => {
+	if (removeSpaces(NICInput.value) === "") {
 		alert("Please fill in your NIC number");
 		return false;
 	}
+	return true;
+}
+const isEmailValid = () => {
+	const email = removeSpaces(emailAddrInput.value);
 
-	if (emailAddrInput.value === "") {
+	if (email === "") {
 		alert("Please fill in your email address");
 		return false;
-	} else if (!validateEmail()) {
+	} else if (!hasEmailFormat(email)) {
 		alert("Please enter email address in 'someone@example.com' format");
 		return false;
 	}
 
-	if (passwordInput.value === "" || confirmedPasswordInput.value === "") {
-		alert("Please enter your desired password and confirm it");
+	return true;
+}
+const isPasswordValid = () => {
+	const password = removeSpaces(passwordInput.value);
+
+	if (password === "") {
+		alert("Please fill in your desired password");
 		return false;
-	} else if (passwordInput.value.length < 4) {
+	} else if (password.length < 4) {
 		alert("Password must have more than 4 characters");
-		return false;
-	} else if (passwordInput.value !== confirmedPasswordInput.value) {
-		alert("Please ensure you entered the correct password in both fields");
 		return false;
 	}
 
+	return true;
+}
+const isConfirmedPasswordValid = () => {
+	const password = removeSpaces(passwordInput.value);
+	const confirmedPassword = removeSpaces(confirmedPasswordInput.value);
+
+	if (confirmedPassword === "") {
+		alert("Please fill your confirming password");
+		return false;
+	} else if (password !== confirmedPassword) {
+		alert("Passwords do not match!");
+		return false;
+	}
+
+	return true;
+}
+const isForceValid = () => {
 	if (getForce() === 'invalid') {
 		alert("Please select your force");
 		return false;
 	}
-
+	return true;
+}
+const isRegimentValid = () => {
 	if (regimentInput.value === "" || regimentInput.value === undefined) {
 		alert("Please select your regiment");
 		return false;
 	}
+	return true;
+}
+const isRankValid = () => {
 	if (rankInput.value === ""|| rankInput.value === undefined) {
 		alert("Please select your rank");
 		return false;
 	}
-	if (soldierNoInput.value === "") {
+	return true;
+}
+const isSoldierNumValid = () => {
+	if (removeSpaces(soldierNoInput.value) === "") {
 		alert("Please enter your solider number");
 		return false;
 	}
+	return true;
+}
+const isSalaryValid = () => {
+	const salary = removeSpaces(salaryInput.value);
 
-	if (salaryInput.value === "") {
+	if (salary === "") {
 		alert("Please enter your salary");
 		return false;
-	} else if (!validateSalary()) {
+	} else if (!hasNumbersOnly(salary)) {
 		alert("Please enter numbers only for your salary");
 		return false;
 	}
 
-	if (recruitedDateInput.value === "") {
+	return true;
+}
+const isRecruitedDateValid = () => {
+	if (recruitedDateInput.value.trim() === "") {
 		alert("Please select your recruited date");
 		return false;
 	}
-	if (yearsOfServiceInput.value === "") {
+	return true;
+}
+const isYearsOfServiceValid = () => {
+	const yearsOfService = removeSpaces(yearsOfServiceInput.value);
+
+	if (yearsOfService === "") {
 		alert("Please enter your years of military service");
 		return false;
-	} else if (!validateYearsOfService()) {
+	} else if (!hasNumbersOnly(yearsOfService)) {
 		alert("Please enter numbers only for your years of military service");
 		return false;
 	}
-	if (retiredDateInput.value === "") {
+
+	return true;
+}
+const isRetiredDateValid = () => {
+	if (retiredDateInput.value.trim() === "") {
 		alert("Please select your retired date");
 		return false;
 	}
 	return true;
 }
 
+const validateInputs = [
+	isFirstNameValid, isLastNameValid,
+	isGenderValid, isPermaStreetAddressValid,
+	isPermaPostCodeValid, isTempStreetAddressValid,
+	isTempPostCodeValid, isDobValid,
+	isMobileNumValid, isLandNumValid,
+	isNICValid, isEmailValid,
+	isPasswordValid, isConfirmedPasswordValid,
+	isForceValid, isSoldierNumValid,
+	isSalaryValid, isRecruitedDateValid,
+	isYearsOfServiceValid, isRetiredDateValid
+];
+
+const isDataValid = (index) => {
+	// Change the index to match with the correct function in the array
+	if (index >= 3) index--;
+	if (index <= 4) {
+		isPermaCityValid();
+		isPermaProvinceValid();
+	}
+	if (index <= 6) {
+		isTempCityValid();
+		isTempProvinceValid();
+	}
+	if (index === 15) index--;
+	if (index >= 16) index -= 2;
+	if (index >= 18) {
+		isRegimentValid();
+		isRankValid();
+	}
+	if (index === 20) return true;
+
+	for (let i = 0; i < index; i++) {
+		if(!validateInputs[i]()) return false;
+	}
+	return true;
+}
+
+document.querySelectorAll('input').forEach((item, index) =>
+	item.addEventListener('focus', () => {
+		isDataValid(index);
+	})
+);
+
 const getRegistryData = () => {
 	return {
-		firstName: firstNameInput.value,
-		lastName: lastNameInput.value,
+		firstName: firstNameInput.value.trim(),
+		lastName: lastNameInput.value.trim(),
 		gender: getGender(),
 		permanentAddress: {
-			streetAddress: permanentStreetInput.value,
+			streetAddress: permanentStreetInput.value.trim(),
 			city: permanentCityInput.value,
 			province: permanentProvinceInput.value,
-			postCode: permanentPostCodeInput.value
+			postCode: removeSpaces(permanentPostCodeInput.value)
 		},
 		temporaryAddress: {
-			streetAddress: tempStreetInput.value,
+			streetAddress: tempStreetInput.value.trim(),
 			city: tempCityInput.value,
 			province: tempProvinceInput.value,
-			postCode: tempPostCodeInput.value
+			postCode: removeSpaces(tempPostCodeInput.value)
 		},
-		dateOfBirth: dobInput.value,
-		mobileNumber: mobileNumberInput.value,
-		landNumber: landNumberInput.value,
-		NIC: NICInput.value,
-		emailAddr: emailAddrInput.value,
-		password: passwordInput.value, // Decision to encrypt this later
-		soldierNumber: soldierNoInput.value,
-		salary: parseFloat(salaryInput.value),
-		recruitedDate: recruitedDateInput.value,
-		yearsOfService: parseInt(yearsOfServiceInput.value),
-		retiredDate: retiredDateInput.value,
+		dateOfBirth: dobInput.value.trim(),
+		mobileNumber: removeSpaces(mobileNumberInput.value),
+		landNumber: removeSpaces(landNumberInput.value),
+		NIC: removeSpaces(NICInput.value),
+		emailAddr: removeSpaces(emailAddrInput.value),
+		password: removeSpaces(passwordInput.value), // Decision to encrypt this later
+		soldierNumber: removeSpaces(soldierNoInput.value),
+		salary: removeSpaces(parseFloat(salaryInput.value)),
+		recruitedDate: recruitedDateInput.value.trim(),
+		yearsOfService: removeSpaces(parseInt(yearsOfServiceInput.value)),
+		retiredDate: retiredDateInput.value.trim(),
 		rankID: rankInput.value,
 		regimentID: regimentInput.value
 	};
 }
 
 const submit = async() => {
-	if (!isDataValid()) return;
+	if(!isDataValid(20)) return;
+
 	const registryData = getRegistryData();
 	
 	const response = await fetch(`${domain}/registration/registryData`, {
