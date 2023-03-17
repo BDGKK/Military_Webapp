@@ -25,4 +25,4 @@ app.use(homepage);
 app.use(registrationpage);
 app.use(profilepage);
 
-app.listen(PORT, () => console.log(`${DOMAIN_NAME}`));
+app.listen(PORT, () => console.log(`Open this link: ${DOMAIN_NAME}`));
