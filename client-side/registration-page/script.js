@@ -393,11 +393,11 @@ const validateInputs = [
 const isDataValid = (index) => {
 	// Change the index to match with the correct function in the array
 	if (index >= 3) index--;
-	if (index <= 4) {
+	if (index >= 4) {
 		isPermaCityValid();
 		isPermaProvinceValid();
 	}
-	if (index <= 6) {
+	if (index >= 6) {
 		isTempCityValid();
 		isTempProvinceValid();
 	}
@@ -445,9 +445,9 @@ const getRegistryData = () => {
 		emailAddr: removeSpaces(emailAddrInput.value),
 		password: removeSpaces(passwordInput.value), // Decision to encrypt this later
 		soldierNumber: removeSpaces(soldierNoInput.value),
-		salary: removeSpaces(parseFloat(salaryInput.value)),
+		salary: parseFloat(salaryInput.value),
 		recruitedDate: recruitedDateInput.value.trim(),
-		yearsOfService: removeSpaces(parseInt(yearsOfServiceInput.value)),
+		yearsOfService: parseInt(yearsOfServiceInput.value),
 		retiredDate: retiredDateInput.value.trim(),
 		rankID: rankInput.value,
 		regimentID: regimentInput.value
