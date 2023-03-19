@@ -1,6 +1,6 @@
 const express = require("express");
 
 const router = express.Router();
-router.use('/forget-password', express.static('./client-side/forget-password-page'));
+router.use('/user-log', express.static('./client-side/user-log-page'));
 
 module.exports = router;

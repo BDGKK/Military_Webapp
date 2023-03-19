@@ -4,7 +4,7 @@ const cors = require('cors');
 require('./database/create_db'); // Create database at initial server setup
 
 // Import directories of the webpages
-const homepage = require('./server-side/chatbot/chatbot');
+const homepage = require('./server-side/chatbot/homePage');
 const registrationPage = require('./server-side/registration');
 const profilepage = require('./server-side/profilePage');
 const forgetPasswordPage = require('./server-side/forgetPassword');
