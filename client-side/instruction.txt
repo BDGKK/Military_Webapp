@@ -1,11 +1,3 @@
-home page
-
-User Loin page
-
-* the forget_password.html page needs to be linked in here
-* also the registration page needs to be linked here. i have put comments in the User_login.html file
-
-
 HwlpDesk page
 
 *registration page

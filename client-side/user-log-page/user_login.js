@@ -1,5 +1,16 @@
 const uemail = document.getElementById('uemail')
 const upaw = document.getElementById('upaw')
+const forgetPasswordPageLink = document.getElementById("forget-password-page-link");
+const registrationPageLink = document.getElementById("registration-page-link")
+
+const domain = window.location.origin;
+
+forgetPasswordPageLink.addEventListener('click', () => {
+    forgetPasswordPageLink.href = `${domain}/forget-password`;
+});
+registrationPageLink.addEventListener('click', () => {
+    registrationPageLink.href = `${domain}/registration`;
+});
 
 function checkforblank(){
 
