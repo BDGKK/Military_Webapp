@@ -1,6 +1,39 @@
 const chatbotWindow = document.getElementById("chatbot-window");
 const body = document.getElementById('messaging-body');
 const textInput = document.getElementById('user-input');
+const uname = document.getElementById('uname')
+const email = document.getElementById('email')
+const subject = document.getElementById('subject')
+const comment = document.getElementById('comment')
+
+let section = document.querySelectorAll('section');
+let navlinks = document.querySelectorAll('header nav a');
+
+window.onscroll = () =>{
+    section.forEach(sec => {
+        let top = window.scrollY;
+        let offset = sec.offsetTop - 150;
+        let height = sec.offsetHeight;
+        let id = sec.getAttribute('id');
+
+        if(top >= offset && top < offset + height){
+            navlinks.forEach(links =>{
+                links.classList.remove('active');
+                document.querySelector('header nav a[herf*='+ id +']').classList.add('active');
+            });
+        };
+    });
+};
+
+
+
+function applyedloan() {
+    alert("You have not applyed for loans !! check Need help? for instructions");
+ }
+
+ function applyedpension(){
+    alert("You are not applyed for pension, check Need help? for instructions")
+ }
 
 let messages = [];
 let domain = window.location.origin;
@@ -56,4 +89,28 @@ const generateMessage = async() => {
 
     textInput.value = "";
     body.scrollTop = body.scrollHeight;
+}
+
+function checkforblank(){
+
+    if(uname.value == ""){
+        alert('please enter Name');
+        return false;
+    }
+
+    if(email.value == ""){
+        alert('please enter Email');
+        return false;
+    }
+
+    if(subject.value == ""){
+        alert('please enter Subject');
+        return false;
+    }
+
+    if(comment.value == ""){
+        alert('please enter Comment');
+        return false;
+    }
+
 }

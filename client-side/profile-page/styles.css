@@ -7,8 +7,11 @@ body {
 	justify-content: center;
 	margin: 0;
 	padding-bottom: 2em;
+	background-image: url("image60.jpg");
+    background-size: cover;
 }
 h1 {
+	color: white;
 	font-size: 2em;
 	text-align: center;
 	text-decoration: underline;
@@ -37,6 +40,10 @@ button:active {
 }
 
 .profile-body {
+	margin-top: 1%;
+	padding: 25px;
+	background-color:dimgray;
+	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
 	width: 33em;
@@ -46,6 +53,7 @@ button:active {
 	flex-direction: column;
 }
 .row {
+	color: white;
 	display: flex;
 	flex-direction: row;
 	border: 0.1em solid black;
