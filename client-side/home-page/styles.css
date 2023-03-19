@@ -1,5 +1,5 @@
-.left .btn{
-    border-radius: 35ex;
+*{
+    scroll-behavior: smooth;
 }
 .navbar{
   position: fixed;
@@ -18,15 +18,65 @@
 .ulogin{
   padding: 1px 20px;
 }
-.Alogin{
-  padding: 1px 20px;
-}
-.pic{
-  margin-top: 6%;
-}
 .border {
   padding: 25px;
   background-color:darkslategrey;
+}
+hr{
+    border: 1px solid black;
+}
+hr.section2{
+    margin-bottom: 3%;
+}
+section{
+    display: flex;
+}
+
+.footer {
+    padding: 20px;
+    background: #ddd;
+}
+.abt{
+    margin-bottom: 3%;
+}
+
+.slideshow {
+    overflow: hidden;
+      height: 600px;
+      width: 1500px;
+      margin-left: 10px;
+      margin-top: 7%;
+      margin-bottom: 8%;
+}
+@keyframes slide_animation{
+   0% {left:0px;}
+   10% {left:0px;}
+   20% {left:1200px;}
+   30% {left:1200px;}
+   40% {left: 2400px;}
+   50% {left: 2400px;}
+   60% {left: 1200px;}
+   70% {left: 1200px;}
+   80% {left: 0px;}
+   90% {left: 0px;}
+   100% {left:0px;}
+}
+.slide-images{
+    width: 4500px;
+      height: 800px;
+      margin: 0 0 0 -2400px;
+      position: relative;
+      animation-name: slide_animation;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate 
+}
+
+.img-container{
+  height: 500px;
+  width: 1200px;
+  position: relative;
+  float: left;
 }
 
 .chatbot-icon {
