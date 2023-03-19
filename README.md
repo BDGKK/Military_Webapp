@@ -1,5 +1,7 @@
 # To-Do/Issues/Warnings/etc.
 - Put common images into one folder and change paths accordingly in all files
+- Host all common images and make HTML file use '(domain_name)/(image)' where the image was used previously
+- Add server code to make all webpages have the favicon logo image
 
 - Use socket.io module (websocket) and allow user to interact with admin on chatbot
     - If user enters unavailable questions, chatbot asks user if they want to connect with admin

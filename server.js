@@ -5,8 +5,9 @@ require('./database/create_db'); // Create database at initial server setup
 
 // Import directories of the webpages
 const homepage = require('./server-side/chatbot/chatbot');
-const registrationpage = require('./server-side/registration');
+const registrationPage = require('./server-side/registration');
 const profilepage = require('./server-side/profilePage');
+const forgetPasswordPage = require('./server-side/forgetPassword');
 
 const app = express();
 
@@ -20,9 +21,12 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 
+app.use(express.static('./images')); // Host all public images
+
 // Connect the routers of the webpage to the main app
 app.use(homepage);
-app.use(registrationpage);
+app.use(registrationPage);
 app.use(profilepage);
+app.use(forgetPasswordPage);
 
 app.listen(PORT, () => console.log(`Open this link: ${DOMAIN_NAME}`));
