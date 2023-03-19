@@ -1,21 +1,9 @@
 home page
 
-*top right corner uer_login.html in should be connected to the login
-*in application tab the loan_form.html and the pension_form.html should be connected
-*needhelp_html should be connected to need help tab
-*download application html page should be connected to download tab
-*registration html should be connected to registration tab
-*profile html should be connected to profile tab
-
-i have put have put comments on where should the pages be connected
-
-
-
 User Loin page
 
 * the forget_password.html page needs to be linked in here
 * also the registration page needs to be linked here. i have put comments in the User_login.html file
-
 
 
 HwlpDesk page

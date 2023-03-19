@@ -6,8 +6,16 @@ const email = document.getElementById('email')
 const subject = document.getElementById('subject')
 const comment = document.getElementById('comment')
 
+const userLoginLink = document.getElementById('user-login-link');
+const profilePageLink = document.getElementById('profile-page-link');
+const registrationPageLink = document.getElementById('registration-page-link');
+const downloadAppPageLink = document.getElementById("download-app-page-link");
+const needHelpPageLink = document.getElementById("need-help-page-link");
+
 let section = document.querySelectorAll('section');
 let navlinks = document.querySelectorAll('header nav a');
+
+let domain = window.location.origin;
 
 window.onscroll = () =>{
     section.forEach(sec => {
@@ -25,6 +33,31 @@ window.onscroll = () =>{
     });
 };
 
+userLoginLink.addEventListener('click', () => {
+    userLoginLink.href = `${domain}/user-log`;
+});
+profilePageLink.addEventListener('click', () => {
+    profilePageLink.href = `${domain}/profile`; // Find a way to get the ?userid=<> here
+});
+registrationPageLink.addEventListener('click', () => {
+    registrationPageLink.href = `${domain}/registration`;
+});
+document.querySelectorAll('.pension-page-link').forEach((item) => {
+    item.addEventListener('click', () => {
+        item.href = `${domain}/pension`;
+    })
+});
+document.querySelectorAll('.loan-page-link').forEach((item) => {
+    item.addEventListener('click', () => {
+        item.href = `${domain}/loan`;
+    })
+});
+downloadAppPageLink.addEventListener('click', () => {
+    downloadAppPageLink.href = `${domain}/download-application`;
+});
+needHelpPageLink.addEventListener('click', () => {
+    needHelpPageLink.href = `${domain}/need-help`;
+});
 
 
 function applyedloan() {
@@ -36,7 +69,6 @@ function applyedloan() {
  }
 
 let messages = [];
-let domain = window.location.origin;
 
 const openChatbotWindow = () => {
     const windowVisibility = chatbotWindow.style.visibility;
