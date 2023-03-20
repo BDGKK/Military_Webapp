@@ -12,10 +12,12 @@ const chatbotDataset = {
         `<a href='${DOMAIN_NAME}/#about-section'>Click here</a>`,
     
     "pensions": "The pension is a retirement plan that gives income to military members after "+
-        "they have retired. Click the link below to move to the pensions page<br>(link to pension page)",
+        "they have retired. Click the link below to move to the pensions page<br>"+
+        `<a href='${DOMAIN_NAME}/pension'>Click here</a>`,
     
     "loans": "The loan is the amount of money that the military leaver has borrowed that must be "+
-        "repaid with interest. Click the link below to move to the loans page<br>(link to loans page)",
+        "repaid with interest. Click the link below to move to the loans page<br>"+
+        `<a href='${DOMAIN_NAME}/loan'>Click here</a>`,
     
     "register": "To register, please click the link below to move the registration page. Please fill in "+
         `your details and submit the form to register<br><a href='${DOMAIN_NAME}/registration'>Click here</a>`,
