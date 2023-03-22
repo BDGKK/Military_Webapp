@@ -13,14 +13,20 @@ body {
 h1 {
 	text-align: center;
 	text-decoration: underline;
+	color: white;
 }
 p {
 	margin-top: 0;
 	margin-bottom: 0.5em;
 	font-weight: bold;
+	color: white;
+}
+label {
+	color: white;
 }
 input:not([type="checkbox"]),
-select {
+select,
+button {
 	height: 1.8em;
 	padding: 0.3em 0.6em;
 	border: none;
@@ -32,20 +38,22 @@ select {
 	height: 2.4em;
 }
 
-input[type="submit"] {
+button {
 	margin-top: 1em;
 	align-items: center;
 	width: 100%;
 	height: 2.5em;
 	font-size: 1em;
 	font-weight: bold;
-	background-color: white;
-}
-input[type="submit"]:hover {
 	background-color: black;
-	color: white;
+	color: yellow;
+	border: 0.2em solid yellow;
 }
-input[type="submit"]:active {
+button:hover {
+	background-color: yellow;
+	color: black;
+}
+button:active {
 	opacity: 80%;
 }
 
@@ -57,7 +65,8 @@ input[type="submit"]:active {
 	flex-direction: column;
 	width: 30em;
 	padding: 1em 4em 2em 4em;
-	background-color: lightblue;
+	background-color: rgb(36, 36, 36);
+	opacity: 95%;
 	border-radius: 1em;
 }
 

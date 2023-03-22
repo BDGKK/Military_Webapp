@@ -407,8 +407,6 @@ const isDataValid = (index) => {
 		isRegimentValid();
 		isRankValid();
 	}
-	if (index === 20) return true;
-
 	for (let i = 0; i < index; i++) {
 		if(!validateInputs[i]()) return false;
 	}
@@ -417,7 +415,10 @@ const isDataValid = (index) => {
 
 document.querySelectorAll('input').forEach((item, index) =>
 	item.addEventListener('focus', () => {
-		isDataValid(index);
+		// Remove 'focus' event from the element - chrome has issue that focus is kept even after the alert
+		if (!isDataValid(index)) {
+			item.blur();
+		}
 	})
 );
 
