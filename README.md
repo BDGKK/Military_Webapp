@@ -1,8 +1,25 @@
 # To-Do/Issues/Warnings/etc.
-- Host all common images and make HTML file use '(domain_name)/(image)' where the image was used previously
-- Add express.js code to make all webpages have the favicon logo image
+- Important Ones
+1. Create a list of all interaction of the application
+2. Create the full architecture using the list
+3. Make a list of URIs of webpage connections to their APIs and send to frontend devs to implement the webpage connections, each consist of:
+    - Web page name
+    - URI name
+    - What data to send to and get from the API
+4. Create GET, POST, PUT methods for each API where needed and exchange sample data
+5. Add database queries to the APIs where needed
+6. Send user login data to backend
+    - Use Google Oauth to verify the user email (change database tables accordingly)
+7. Send user registration to backend
+    - Use bcrypt module to encrypt the password (do not encrypt NIC and other details)
+8. Deploy the node.js when the important parts of the project is done
 
-- Use socket.io module (websocket) and allow user to interact with admin on chatbot
+- Optional
+1. Host all common images and make HTML file use '(domain_name)/(image)' where the image was used previously
+2. Add express.js code to make all webpages have the favicon logo image
+3. Optimizing webpages
+4. Language Translation in web pages
+5. Use socket.io module (websocket) and allow user to interact with admin on chatbot
     - If user enters unavailable questions, chatbot asks user if they want to connect with admin
     - If yes, chatbot backend is removed from websocket connection and replaced with admin
     - Admin gets a notification to interact with user
