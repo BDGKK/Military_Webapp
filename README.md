@@ -1,18 +1,20 @@
 # To-Do/Issues/Warnings/etc.
 - Important Ones
-1. Create a list of all interaction of the application
-2. Create the full architecture using the list
-3. Make a list of URIs of webpage connections to their APIs and send to frontend devs to implement the webpage connections, each consist of:
+0. Make logo available to all pages
+1. Host admin pages on server
+2. Connect the webpages to the server (sample responses only)
+3. Use Google Oauth and Encryption before storing registry in db
+4. Make a list of URIs of webpage connections to their APIs and send to frontend devs to implement the webpage connections, each consist of:
     - Web page name
     - URI name
     - What data to send to and get from the API
-4. Create GET, POST, PUT methods for each API where needed and exchange sample data
-5. Add database queries to the APIs where needed
-6. Send user login data to backend
+5. Create GET, POST, PUT methods for each API where needed and exchange sample data
+6. Add database queries to the APIs where needed
+7. Send user login data to backend
     - Use Google Oauth to verify the user email (change database tables accordingly)
-7. Send user registration to backend
+8. Send user registration to backend
     - Use bcrypt module to encrypt the password (do not encrypt NIC and other details)
-8. Deploy the node.js when the important parts of the project is done
+9. Deploy the node.js when the important parts of the project is done
 
 - Optional
 1. Host all common images and make HTML file use '(domain_name)/(image)' where the image was used previously
