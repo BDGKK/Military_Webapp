@@ -22,36 +22,29 @@
     </style>
 </head>
 <body>
-        
-    <form method="post" action="#" onsubmit="return checkforblank()">
+    <div class="d-flex justify-content-center">
+        <span class="bg-dark p-5">
+        <h1 class="text-white">User Login</h1>
+        <div class="container">
 
-        <div class="d-flex justify-content-center">
-            <span class="bg-dark p-5">
-            <h1 class="text-white">User Login</h1>
-            <div class="container">
+            <p class="text-white mt-3">Email</p>
+            <input type="email" class="from-control" name="uemail" id="uemail" title="Enter Email" size="40" placeholder="example@gmail.com" >
 
-                <p class="text-white mt-3">Email</p>
-                <form class="mt-4"></form>
-                <input type="email" class="from-control" name="uemail" id="uemail" title="Enter Email" size="40" placeholder="example@gmail.com" >
-
-                <p class="text-white mt-3">Password</p>
-                <form class="mt-4"></form> 
-                <input type="password" class="from-control" name="upaw" id="upaw" title="Enter Password" size="25"placeholder="User Password">
-                
-                <form class="mt-4"></form>    
-                <div class="frogot-password-link mt-3">
-                    <!-- forgot_password page needs to be linked here -->
-                    <a href="" id="forget-password-page-link" title="Forgot Password" class="text-decoration-none text-white">Forgot Password ? </a>
-                    <!-- registration page needs to be linked here -->
-                    <a href="" id="registration-page-link" title="registration-page" class="text-decoration-none text-white"> Register Now</a>
-                </div>
+            <p class="text-white mt-3">Password</p>
+            <input type="password" class="from-control" name="upaw" id="upaw" title="Enter Password" size="25"placeholder="User Password">
+            
+            <form class="mt-4"></form>    
+            <div class="frogot-password-link mt-3">
+                <!-- forgot_password page needs to be linked here -->
+                <a href="" id="forget-password-page-link" title="Forgot Password" class="text-decoration-none text-white">Forgot Password? </a>
+                <!-- registration page needs to be linked here -->
+                <a href="" id="registration-page-link" title="registration-page" class="text-decoration-none text-white"> Register Now</a>
             </div>
-                <form class="mt-3"></form>
-                <button title="Login" type="submit" class="btn btn-outline-primary btn-block text-white mt-3">Log In</button>
-            </div>
-            </span>
-        </div> 
-    </form>
+        </div>
+            <button id="login-btn" title="Login" class="btn btn-outline-primary btn-block text-white mt-3">Log In</button>
+        </div>
+        </span>
+    </div> 
 
     <script defer src="user_login.js"></script>
 </body>
