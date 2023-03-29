@@ -444,7 +444,7 @@ const getRegistryData = () => {
 		landNumber: removeSpaces(landNumberInput.value),
 		NIC: removeSpaces(NICInput.value),
 		emailAddr: removeSpaces(emailAddrInput.value),
-		password: removeSpaces(passwordInput.value), // Decision to encrypt this later
+		password: removeSpaces(passwordInput.value),
 		soldierNumber: removeSpaces(soldierNoInput.value),
 		salary: parseFloat(salaryInput.value),
 		recruitedDate: recruitedDateInput.value.trim(),

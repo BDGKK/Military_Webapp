@@ -14,9 +14,6 @@
     - Use bcrypt module to encrypt the password (do not encrypt NIC and other details)
 9. Deploy the node.js when the important parts of the project is done
 
-(Update the database)(Remove feedback table)
-(Add the encryptions to the login and registry related pages)(Add bcrypt module to README file)
-
 - Optional
 1. Host all common images and make HTML file use '(domain_name)/(image)' where the image was used previously
 2. Add express.js code to make all webpages have the favicon logo image
@@ -40,10 +37,10 @@ Provides support for pensions, loans and accomodations to ensure a comfortable a
 - Setup the git folder to use this repository 
 - Make you are signed in to your GitHub account in your browser
 - Pull the code from this repository into the folder using 'git pull'
-- Open your IDE or Code Editor and install the module
+- Open your IDE or Code Editor and install the modules
     - To install them all, enter in the terminal:
 ```
-npm install cors dotenv express mysql
+npm install cors dotenv express mysql bcrypt
 ```
 
 # How to run the server code

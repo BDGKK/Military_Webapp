@@ -46,7 +46,7 @@ const userTableQuery = `
         landNumber VARCHAR(10),
         NIC VARCHAR(15),
         emailAddr VARCHAR(30),
-        password VARCHAR(10),
+        password VARCHAR(60),
         soldierNumber VARCHAR(20),
         salary FLOAT,
         recruitedDate DATE,
