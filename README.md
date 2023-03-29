@@ -1,6 +1,5 @@
 # To-Do/Issues/Warnings/etc.
 - Important Ones
-0. Make logo available to all pages
 1. Host admin pages on server
 2. Connect the webpages to the server (sample responses only)
 3. Use Google Oauth and Encryption before storing registry in db
