@@ -46,6 +46,7 @@ const userTableQuery = `
         landNumber VARCHAR(10),
         NIC VARCHAR(15),
         emailAddr VARCHAR(30),
+        password VARCHAR(10),
         soldierNumber VARCHAR(20),
         salary FLOAT,
         recruitedDate DATE,
@@ -66,18 +67,6 @@ const pensionTableQuery = `
         CONSTRAINT pk_PENSION PRIMARY KEY(pensionID),
         CONSTRAINT fk_USER FOREIGN KEY(userID) REFERENCES USER_TABLE(userID));
 `;
-const feedbackTableQuery = `
-    ${createTableIfNotExistQuery} FEEDBACK(
-        feedbackID VARCHAR(10),
-        name VARCHAR(20),
-        email VARCHAR(30),
-        subject VARCHAR(50),
-        userID VARCHAR(10),
-        adminEmail VARCHAR(30),
-        CONSTRAINT pk_FEEDBACK PRIMARY KEY(feedbackID),
-        CONSTRAINT fk_U FOREIGN KEY(userID) REFERENCES USER_TABLE(userID),
-        CONSTRAINT fk_ADMIN FOREIGN KEY(adminEmail) REFERENCES ADMIN(email));
-`;
 const loanTableQuery = `
         ${createTableIfNotExistQuery} LOAN(
         loanID VARCHAR(10),
@@ -92,7 +81,7 @@ const loanTableQuery = `
 
 const dbTables = [forcesTableQuery, userRankTableQuery,
     adminTableQuery, regimentTableQuery, userTableQuery,
-    pensionTableQuery, feedbackTableQuery, loanTableQuery];
+    pensionTableQuery, loanTableQuery];
 
 const connection = mysql.createConnection({
     host: DB_HOST,
@@ -120,7 +109,7 @@ connection.connect((err) => {
     
     connection.changeUser({database: DB_NAME}, (err) => {
         if (err) throw err;
-    }); // Select database name for connection
+    }); // Set database for connection
     
     // Create All Database tables
     dbTables.map((table) => {
