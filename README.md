@@ -1,7 +1,7 @@
 # To-Do/Issues/Warnings/etc.
 - Important Ones
 1. Host admin pages on server
-2. Connect the webpages to the server (sample responses only)
+2. Connect the webpages to the database (sample responses only)
 3. Use Google Oauth and Encryption before storing registry in db
 4. Make a list of URIs of webpage connections to their APIs and send to frontend devs to implement the webpage connections, each consist of:
     - Web page name
@@ -14,6 +14,9 @@
 8. Send user registration to backend
     - Use bcrypt module to encrypt the password (do not encrypt NIC and other details)
 9. Deploy the node.js when the important parts of the project is done
+
+(Update the database)
+(Add the encryptions to the login and registry related pages)
 
 - Optional
 1. Host all common images and make HTML file use '(domain_name)/(image)' where the image was used previously

@@ -13,6 +13,9 @@ const loanPage = require('./server-side/loan');
 const needHelpPage = require('./server-side/needHelp');
 const pensionPage = require('./server-side/pension');
 const userLogPage = require('./server-side/userLog');
+const adminLoginPage = require('./server-side/adminLogin');
+const adminHomePage = require('./server-side/adminHomepage');
+const adminUserPage = require('./server-side/adminUser');
 
 const app = express();
 
@@ -38,5 +41,8 @@ app.use(loanPage);
 app.use(needHelpPage);
 app.use(pensionPage);
 app.use(userLogPage);
+app.use(adminLoginPage);
+app.use(adminHomePage);
+app.use(adminUserPage);
 
 app.listen(PORT, () => console.log(`Open this link: ${DOMAIN_NAME}`));
