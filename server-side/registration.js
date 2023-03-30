@@ -1,15 +1,10 @@
 const connection = require('../database/connection');
 const columnData = require('../columnData');
 const express = require('express');
-const bcrypt = require('bcrypt');
+const encryptPassword = require('./encryptPassword');
 
 const router = express.Router();
 router.use('/registration', express.static('./client-side/registration-page'));
-
-const encryptPassword = async(password) => {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    return hashedPassword;
-}
 
 router.post('/registration/registryData', (req, res) => {
     const registryData = req.body.registryData;

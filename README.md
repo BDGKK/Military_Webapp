@@ -1,17 +1,13 @@
 # To-Do/Issues/Warnings/etc.
 - Important Ones
+0.5. Add code in admin login to verify the admin login.
+1. Work on Gmail verification in registration page
+    - Use Google Oauth and use to check if an email actually exists or not. Put it into a function to return boolean accordingly.
+    - Add function to registration page API
+    - Make it send error message to frontend if email doesn't exist - add code for this in frontend as well
+2. Work on feedback form sending message through email
+3. Work on storing documents in google cloud (Or use Google Drive API)
 2. Connect the webpages to the database (sample responses only)
-3. Use Google Oauth and Encryption before storing registry in db
-4. Make a list of URIs of webpage connections to their APIs and send to frontend devs to implement the webpage connections, each consist of:
-    - Web page name
-    - URI name
-    - What data to send to and get from the API
-5. Create GET, POST, PUT methods for each API where needed and exchange sample data
-6. Add database queries to the APIs where needed
-7. Send user login data to backend
-    - Use Google Oauth to verify the user email (change database tables accordingly)
-8. Send user registration to backend
-    - Use bcrypt module to encrypt the password (do not encrypt NIC and other details)
 9. Deploy the node.js when the important parts of the project is done
 
 - Optional
