@@ -1,6 +1,5 @@
 # To-Do/Issues/Warnings/etc.
 - Important Ones
-0.5. Add code in admin login to verify the admin login.
 1. Work on Gmail verification in registration page
     - Use Google Oauth and use to check if an email actually exists or not. Put it into a function to return boolean accordingly.
     - Add function to registration page API
