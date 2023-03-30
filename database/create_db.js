@@ -1,5 +1,6 @@
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_NAME } = require('../config');
 const columnData = require('../columnData');
+const encryptPassword = require('../server-side/encryptPassword');
 const mysql = require('mysql');
 
 const createTableIfNotExistQuery = 'CREATE TABLE IF NOT EXISTS';
@@ -19,8 +20,8 @@ const userRankTableQuery = `
 `;
 const adminTableQuery = `
     ${createTableIfNotExistQuery} ADMIN(
-        email VARCHAR(30),
-        password VARCHAR(20),
+        email VARCHAR(35),
+        password VARCHAR(60),
         CONSTRAINT pk_ADMIN PRIMARY KEY(email));
 `;
 const regimentTableQuery = `
@@ -37,9 +38,9 @@ const userTableQuery = `
         firstName VARCHAR(20),
         lastName VARCHAR(30),
         gender VARCHAR(10),
-        permanentAddress VARCHAR(50),
+        permanentAddress VARCHAR(80),
         permanentPostCode INT,
-        temporaryAddress VARCHAR(50),
+        temporaryAddress VARCHAR(80),
         temporaryPostCode INT,
         dateOfBirth DATE,
         mobileNumber VARCHAR(10),
@@ -90,7 +91,7 @@ const connection = mysql.createConnection({
     port: DB_PORT
 });
 
-connection.connect((err) => {
+connection.connect(async(err) => {
     if (err) {
         const mysqlNotConnectedRegexp = /(connect)*(econnrefused)\b/i;
 
@@ -133,7 +134,12 @@ connection.connect((err) => {
     ranksInsertionQuery += columnData.ranks.map((rank) =>
         `('${rank.id}', '${rank.name}', '${rank.forceID}')`).join(',') + ";";
 
-    [forcesInsertionQuery, regimentsInsertionQuery, ranksInsertionQuery].map((insertionQuery) => {
+    const adminEmail = "militarysaluteweb2023@gmail.com";
+    const adminPassword = "Th!$!S@dm!N";
+    const adminInsertionQuery = `INSERT INTO ADMIN (email, password) VALUES \
+        ("${adminEmail}", "${await encryptPassword(adminPassword)}")`;
+
+    [adminInsertionQuery, forcesInsertionQuery, regimentsInsertionQuery, ranksInsertionQuery].map((insertionQuery) => {
         connection.query(insertionQuery, (err) => {
             if (err) {
                 if (duplicatePrimaryKeyErrorRegex.test(err.message)) {
