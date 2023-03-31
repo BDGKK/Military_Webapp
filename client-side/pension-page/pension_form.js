@@ -10,6 +10,7 @@ const text = document.getElementById("comment")
 const gname = document.getElementById("gname")
 const grelation = document.getElementById("grelationship")
 
+const domain = window.location.origin;
 
 function checkblank(){
 
@@ -46,8 +47,27 @@ function checknumber(inputText){
     }
 }
 
+// `${domain}/profile/${userId}` => The fetch URL to get user profile data
 
-  
+// Activate this function when submit button is clicked
+const submitPension = async() => {
+    // Replace these data with the real totalAmount, renewDate and userId
+    const pensionInfo = {
+        totalAmount: 1234,
+        renewDate: "2024-02-27", // Date format: YYYY-MM-DD
+        userId: "1"
+    }
+    
+    const response = await fetch(`${domain}/pension/pensionInfo`, {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(pensionInfo)
+    });
 
-
-
+    if (response.ok) {
+        alert("Successfully Submitted");
+    }
+}
