@@ -42,8 +42,7 @@ const hasNumbersOnly = (value) => {
 	return /^[0-9]+$/i.test(value);
 }
 const hasEmailFormat = (value) => {
-	return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(value);
-	//return /^[^\s@]+@gmail\.com$/i.test(value);
+	return /^[^\s@]+@gmail\.com$/i.test(value);
 }
 
 const getGender = () => {
