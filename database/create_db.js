@@ -61,7 +61,7 @@ const userTableQuery = `
 `;
 const pensionTableQuery = `
     ${createTableIfNotExistQuery} PENSION(
-        pensionID VARCHAR(10),
+        pensionID INT AUTO_INCREMENT,
         totalAmount FLOAT,
         renewDate DATE,
         userID VARCHAR(10),
@@ -70,7 +70,7 @@ const pensionTableQuery = `
 `;
 const loanTableQuery = `
         ${createTableIfNotExistQuery} LOAN(
-        loanID VARCHAR(10),
+        loanID INT AUTO_INCREMENT,
         amount FLOAT,
         interestRate FLOAT,
         timePeriod INT, 
