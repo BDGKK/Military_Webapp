@@ -61,11 +61,12 @@ needHelpPageLink.addEventListener('click', () => {
 
 
 function applyedloan() {
-    alert("You have not applyed for loans !! check Need help? for instructions");
+    // I closed these functions for now since they were getting kind of annoying - Kehan
+    //alert("You have not applyed for loans !! check Need help? for instructions");
  }
 
  function applyedpension(){
-    alert("You are not applyed for pension, check Need help? for instructions")
+    //alert("You are not applyed for pension, check Need help? for instructions")
  }
 
 let messages = [];
