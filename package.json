@@ -1,7 +1,7 @@
 {
   "name": "faq-chatbot",
   "version": "1.0.0",
-  "description": "- Add the image for the homepage into the home-page folder\r - Put all web pages in their own directory with suitable names in the client-side folder\r - Host the web pages - create their own files in server-side folder and create a router for each page",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

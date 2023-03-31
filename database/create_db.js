@@ -1,6 +1,6 @@
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_NAME } = require('../config');
 const columnData = require('../columnData');
-const encryptPassword = require('../server-side/encryptPassword');
+const encryptPassword = require('../server-side/side-functions/encryptPassword');
 const mysql = require('mysql');
 
 const createTableIfNotExistQuery = 'CREATE TABLE IF NOT EXISTS';

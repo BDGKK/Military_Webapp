@@ -1,7 +1,8 @@
 const connection = require('../database/connection');
 const columnData = require('../columnData');
 const express = require('express');
-const encryptPassword = require('./encryptPassword');
+const encryptPassword = require('./side-functions/encryptPassword');
+const isRegistryEmailSent = require('./side-functions/sendRegistryEmail');
 
 const router = express.Router();
 router.use('/registration', express.static('./client-side/registration-page'));
@@ -11,10 +12,7 @@ router.post('/registration/registryData', (req, res) => {
     
     if (registryData) {
         connection.query('SELECT MAX(userID) as max_id FROM user_table', async(err, result) => {
-            // Increment highest userid for new user
             if (err) throw err;
-            let userId = result[0].max_id;
-            userId = userId === null ? 1 : parseInt(userId)+1;
 
             const {
                 firstName, lastName, gender, permanentAddress,
@@ -23,6 +21,15 @@ router.post('/registration/registryData', (req, res) => {
                 salary, recruitedDate, yearsOfService, retiredDate,
                 rankID, regimentID
             } = registryData;
+            
+            if (!isRegistryEmailSent(emailAddr)) {
+                res.status(400).send({message: "Error with verifying gmail address"});
+                return;
+            }
+
+            // Increment highest userid for new user
+            let userId = result[0].max_id;
+            userId = userId === null ? 1 : parseInt(userId)+1;
 
             const encryptedPassword = await encryptPassword(password);
 
@@ -59,7 +66,7 @@ router.post('/registration/registryData', (req, res) => {
         });
         
     } else {
-        res.status(400).send("Failed");
+        res.status(400).send({message: "Registration Failed"});
     }
 });
 

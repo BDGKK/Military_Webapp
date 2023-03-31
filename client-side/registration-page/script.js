@@ -43,6 +43,7 @@ const hasNumbersOnly = (value) => {
 }
 const hasEmailFormat = (value) => {
 	return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(value);
+	//return /^[^\s@]+@gmail\.com$/i.test(value);
 }
 
 const getGender = () => {
@@ -275,7 +276,7 @@ const isEmailValid = () => {
 		alert("Please fill in your email address");
 		return false;
 	} else if (!hasEmailFormat(email)) {
-		alert("Please enter email address in 'someone@example.com' format");
+		alert("Please enter email address in 'someone@gmail.com' format");
 		return false;
 	}
 
@@ -473,6 +474,7 @@ const submit = async() => {
 		const userId = await response.json();
 		window.location.href = `${domain}/profile?userid=${userId.userId}`;
 	} else {
-		alert("Submission Failed");
+		const responseData = await response.json();
+        alert(responseData.message);
 	}
 }
