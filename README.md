@@ -1,13 +1,18 @@
 # To-Do/Issues/Warnings/etc.
 - Important Ones
-1. Work on Gmail verification in registration page
-    - Use Google Oauth and use to check if an email actually exists or not. Put it into a function to return boolean accordingly.
-    - Add function to registration page API
-    - Make it send error message to frontend if email doesn't exist - add code for this in frontend as well
+2. Create API for admin-user page to send all (profile, pension, loan) user details to frontend
+    - Use GET method
+    - Join user_table, pension, loan, rank, regiment, force, etc. tables to send the combined data of user
+    - Send admin to homepage after their login
+    - Open URL '(domain)/adminUser?userid={userid}' when admin selects a user
+    - Use the '(domain)/adminUser/(userid)' API to get all data of the user
 2. Work on feedback form sending message through email
 3. Work on storing documents in google cloud (Or use Google Drive API)
-2. Connect the webpages to the database (sample responses only)
-9. Deploy the node.js when the important parts of the project is done
+4. Connect the webpages to the database (sample responses only)
+5. Use sessions to dynamically render the webpages for the user
+6. Plan and implement a tree for the webpage links (eg: user going to user page and admin goin to admin page)
+7. Implement securities in website to prevent unauthorized access (eg: Admin can never visit the admin homepage or user page unless they pass the login page)
+7. Deploy the node.js when the important parts of the project is done
 
 - Optional
 1. Host all common images and make HTML file use '(domain_name)/(image)' where the image was used previously
@@ -35,7 +40,7 @@ Provides support for pensions, loans and accomodations to ensure a comfortable a
 - Open your IDE or Code Editor and install the modules
     - To install them all, enter in the terminal:
 ```
-npm install cors dotenv express mysql bcrypt
+npm install cors dotenv express mysql bcrypt googleapis nodemailer
 ```
 
 # How to run the server code
