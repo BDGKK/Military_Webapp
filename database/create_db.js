@@ -46,7 +46,7 @@ const userTableQuery = `
         mobileNumber VARCHAR(10),
         landNumber VARCHAR(10),
         NIC VARCHAR(15),
-        emailAddr VARCHAR(30),
+        emailAddr VARCHAR(30) UNIQUE,
         password VARCHAR(60),
         soldierNumber VARCHAR(20),
         salary FLOAT,

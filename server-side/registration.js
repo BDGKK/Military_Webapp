@@ -21,11 +21,6 @@ router.post('/registration/registryData', (req, res) => {
                 salary, recruitedDate, yearsOfService, retiredDate,
                 rankID, regimentID
             } = registryData;
-            
-            if (!isRegistryEmailSent(emailAddr)) {
-                res.status(400).send({message: "Error with verifying gmail address"});
-                return;
-            }
 
             // Increment highest userid for new user
             let userId = result[0].max_id;
@@ -58,8 +53,23 @@ router.post('/registration/registryData', (req, res) => {
                     '${rankID}', '${regimentID}'
                 );`;
             
+            const duplicatePrimaryKeyErrorRegex = /(ER_DUP_ENTRY)/;
+
             connection.query(registryDataInsertQuery, (err) => {
-                if (err) throw err;
+                if (err) {
+                    if (duplicatePrimaryKeyErrorRegex.test(err.message)) {
+                        res.status(400).send({message: "Email is already in use. Please use a different Gmail address"});
+                        return;
+                    } else {
+                        throw err;
+                    }
+                }
+
+                if (!isRegistryEmailSent(emailAddr)) {
+                    res.status(400).send({message: "Error with verifying gmail address"});
+                    return;
+                }
+
                 console.log(`Added User ${userId}`);
                 res.status(200).send({userId});
             });
