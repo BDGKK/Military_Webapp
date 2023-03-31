@@ -18,6 +18,8 @@ const patronNameEl = document.getElementById("gname");
 const patronNICEl = document.getElementById("NIC");
 const patronIncomeEvidenceEl = document.getElementById("parton_evi");
 
+const domain = window.location.origin;
+
 const hasNumbersOnly = (value) => {
 	return /^[0-9]+$/i.test(value);
 }
@@ -219,10 +221,31 @@ document.querySelectorAll('input').forEach((item, index) => {
     })
 });
 
-document.querySelector('button').addEventListener('click', () => {
+document.querySelector('button').addEventListener('click', async() => {
     if (!isDataValid(19)) {
         console.log("Invalid");
         return;
     }
-    console.log("valid");
+
+    // Replace these data with the real amount, interestRate, timePeriod, partonName and userId
+    const loanInfo = {
+        amount: 123,
+        interestRate: 5,
+        timePeriod: 12, // Put time period in either years or months (not both at once)
+        partonName: 'Johnny',
+        userId: '1'
+    }
+
+    const response = await fetch(`${domain}/loan/loanInfo`, {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loanInfo)
+    });
+
+    if (response.ok) {
+        alert("Successfully Submitted");
+    }
 });
