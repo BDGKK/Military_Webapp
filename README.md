@@ -64,49 +64,64 @@ const domain = window.location.origin; // Put this is in the JS files to get the
 ```
 
 - admin-user page:
-GET (domain)/adminUser/(userId)	=> This API gets the profile, pensions and loans of the user (Tables: user_table, user_rank, regiments, pension, loan, forces)
-				                => If 'profile' key is not in the retrieved object, the user does not exist
-				                => Open (domain)/adminUser?userId=(userId) when admin clicks a user
+    - GET (domain)/adminUser/(userId)
+        - This API gets the profile, pensions and loans of the user (Tables: user_table, user_rank, regiments, pension, loan, forces)
+        - If 'profile' key is not in the retrieved object, the user does not exist
+        - Open (domain)/adminUser?userId=(userId) when admin clicks a user
 
 - admin-homepage:
-GET (domain)/adminHomepage/allUserIds	=> This API gets all the user ids available in the database (Tables: user_table)
+    - GET (domain)/adminHomepage/allUserIds
+        - This API gets all the user ids available in the database (Tables: user_table)
 
 - admin-login page:
-POST (domain)/adminLogin/adminLoginInfo	=> This API takes the email and password of the admin in the request body
-					                    => It makes sure that the email exists in the database (Tables: user_table)
-					                    => It encrypts the password and compares it to the password in the database
-					                    => If the password matches, it will send an OK response
-					                    => If email is not found/password is incorrect, it will send an error message
+    - POST (domain)/adminLogin/adminLoginInfo
+        - This API takes the email and password of the admin in the request body
+		- It makes sure that the email exists in the database (Tables: user_table)
+		- It encrypts the password and compares it to the password in the database
+		- If the password matches, it will send an OK response
+		- If email is not found/password is incorrect, it will send an error message
 
 - download-application page:
-(No APIs yet)
+    - (No APIs yet)
 
 - forget-password page:
-(No APIs yet - must wait till frontend has altered the page)
+    - (No APIs yet - must wait till frontend has altered the page)
 
 - loan page:
-POST (domain)/loan/loanInfo	=> This API takes the amount,interestRate,timePeriod,partonName,userId in the request body
-				            => It inserts the loan data into the Database (Tables: loan)
-				            => It sends an OK response if data is inserted successfully
-(Must implement code to get loan documents as well)
+    - POST (domain)/loan/loanInfo
+        - This API takes the amount,interestRate,timePeriod,partonName,userId in the request body
+		- It inserts the loan data into the Database (Tables: loan)
+		- It sends an OK response if data is inserted successfully
+    - (Must implement code to get loan documents as well)
 
 - need-help page:
-(No APIs - does not require an API)
+    - (No APIs - does not require an API)
 
 - pension page:
-POST (domain)/pension/pensionInfo	=> This API takes the totalAmount,renewDate,userId in the request body
-					                => It inserts the pension data into the Database (Tables: pension)
-					                => It sends an OK response if data is inserted successfully
-(Must implement code to get pension documents as well)
+    - POST (domain)/pension/pensionInfo
+        - This API takes the totalAmount,renewDate,userId in the request body
+		- It inserts the pension data into the Database (Tables: pension)
+		- It sends an OK response if data is inserted successfully
+    - (Must implement code to get pension documents as well)
 
 - profile page:
-GET (domain)/profile/(userId)   => This API gets the data of the user except for the password (Tables: user_table, user_rank, regiments, forces)
+    - GET (domain)/profile/(userId)
+        - This API gets the data of the user except for the password (Tables: user_table, user_rank, regiments, forces)
 
 - registration page:
-GET (domain)/registration/columnData	=> This API gets the ranks, regiments, cities and provinces data
-					                    => This data is for the dropdown fields in the registry page
+    - GET (domain)/registration/columnData
+        - This API gets the ranks, regiments, cities and provinces data
+        - This data is for the dropdown fields in the registry page
 
-POST (domain)/registration/registryData	=> This API gets the 'registryData' in the request body containing:
+    - POST (domain)/registration/registryData
+		- It inserts the data into the Database (Tables: user_table)
+		- If there are no issues, it sends an OK response with the userId
+		- It checks whether the gmail address already exists in the table
+            - If so, it doesn't insert the data and sends an error message
+		- It sends a Welcome message to the user's gmail address before inserting the data
+		    - If an error occurs in this process, it doesn't insert the data and sends an error message
+		- It checks whether the data 'registryData' body is null, if so, it only sends an error message
+        - This API gets the 'registryData' in the request body containing:
 ```
 {
     firstName,
@@ -139,17 +154,11 @@ POST (domain)/registration/registryData	=> This API gets the 'registryData' in t
     regimentID
 }
 ```
-					                    => It inserts the data into the Database (Tables: user_table)
-					                    => If there are no issues, it sends an OK response with the userId
-					                    => It checks whether the gmail address already exists in the table
-					                    	If so, it doesn't insert the data and sends an error message
-					                    => It sends a Welcome message to the user's gmail address before inserting the data
-					                    	If an error occurs in this process, it doesn't insert the data and sends an error message
-					                    => It checks whether the data 'registryData' body is null, if so, it only sends an error message
 
 - user-login page:
-POST (domain)/user-log/userLoginInfo	=> This API gets the email and password of the user in the request body
-					                    => It does the same as the admin login but checks in the user_table
+    - POST (domain)/user-log/userLoginInfo
+        - This API gets the email and password of the user in the request body
+		- It does the same as the admin login but checks in the user_table
 
 # Group Members
 - Gayantha Kavindu  (Project Manager & Security Consultant)
