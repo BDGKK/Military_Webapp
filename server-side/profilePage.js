@@ -7,7 +7,7 @@ router.use('/profile', express.static('./client-side/profile-page'));
 router.get('/profile/:id', (req, res) => {
     const id = parseInt(req.params.id);
     
-    const userTableInsertionQuery = `
+    const getUserProfileQuery = `
     SELECT
       userID, firstName, lastName, gender,
       permanentAddress, permanentPostCode,
@@ -23,7 +23,7 @@ router.get('/profile/:id', (req, res) => {
     WHERE ut.rankID = ur.rankID AND ut.regimentID = reg.regimentID 
       AND reg.forceID = frcs.forceID AND userID = ${id};`;
     
-    connection.query(userTableInsertionQuery, (err, result) => {
+    connection.query(getUserProfileQuery, (err, result) => {
       if (err) {
         return res.status(500).send(err);
       }
