@@ -1,16 +1,15 @@
+const body = document.querySelector('body');
 const domain = window.location.origin;
-let UserIDs = [] 
 
-fetch('https://example.com/users')
+fetch(`${domain}/adminHomepage/allUserIds`)
 .then(response => response.json())
 .then(data => {
-	UserIDs = data.map(user => user.id)
-	console.log(UserIDs)
-	const userIdsList = document.getElementById('userIdsList')
-	UserIDs.forEach(id => {
-		const li = document.createElement('li')
-		li.innertext = id
-		userIdsList.appendChild(li)
-	});
+	body.innerHTML = data.map(userId => {
+		const onClickUrl = `${domain}/adminUser?userId=${userId}`;
+		return `
+			<a href="${onClickUrl}">
+				<button>User ${userId}</button>
+			</a>`;
+	}).join("");
 })
 .catch(error => console.error(error));
