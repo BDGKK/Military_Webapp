@@ -46,7 +46,7 @@ git init
 git remote add origin https://github.com/BDGKK/Military_Webapp.git
 git branch -M main
 ```
-    - Refer the git cheatsheet (https://training.github.com/downloads/github-git-cheat-sheet/)
+- Refer the git cheatsheet (https://training.github.com/downloads/github-git-cheat-sheet/)
 6. Make you are signed in to your GitHub account in your browser
 7. Pull the code from this repository into the folder, enter in the terminal:
 ```
