@@ -70,16 +70,16 @@ WEBSITE_PASSWORD='(website-app-password-from-basecamp-docs)'
 11. Stop the server by hitting 'Ctrl + C' in the terminal
 12. For the frontend developers, only change codes in the client-side folder
 13. After making a change to any piece, commit it to Git. For example:
-    1. If you enabled admin-user-page to send the data to the backend
-    2. Save the changes, enter in the terminal:
+    - If you enabled admin-user-page to send the data to the backend
+    - Save the changes, enter in the terminal:
     ```
     git add .
     ```
-    3. Commit the code, enter in the terminal (Commit msg can be "Enabled admin-user-page to send data to backend"):
+    - Commit the code, enter in the terminal (Commit msg can be "Enabled admin-user-page to send data to backend"):
     ```
     git commit -m (commit msg)
     ```
-    4. At end of the day, push all your changes to the GitHub repository, enter in the terminal:
+    - At end of the day, push all your changes to the GitHub repository, enter in the terminal:
     ```
     git push
     ```
@@ -88,10 +88,10 @@ WEBSITE_PASSWORD='(website-app-password-from-basecamp-docs)'
     git push -u origin main
     ```
 14. Make sure only one person is changing a specific file, otherwise a Merge Conflict may occur
-    1. Send a message in the Group Chat, telling which file you are changing
-    2. Make sure no one else works on that file
-    3. Before changing another file, ask in the group chat whether someone is working on that file
-    4. Always make sure to push your changes to the GitHub repository after your changes in one day
+    - Send a message in the Group Chat, telling which file you are changing
+    - Make sure no one else works on that file
+    - Before changing another file, ask in the group chat whether someone is working on that file
+    - Always make sure to push your changes to the GitHub repository after your changes in one day
 15. Always pull the code from the repository before starting work, enter in the terminal:
 ```
 git pull
@@ -161,38 +161,38 @@ const domain = window.location.origin; // Put this is in the JS files to get the
 		    - If an error occurs in this process, it doesn't insert the data and sends an error message
 		- It checks whether the data 'registryData' body is null, if so, it only sends an error message
         - This API gets the 'registryData' in the request body containing:
-```
-{
-    firstName,
-    lastName,
-    gender,
-    permanentAddress: {
-        streetAddress,
-        city,
-        province,
-        postCode
-    },
-    temporaryAddress: {
-        streetAddress,
-        city,
-        province,
-        postCode
-    },
-    dateOfBirth,
-    mobileNumber,
-    landNumber,
-    NIC,
-    emailAddr,
-    password,
-    soldierNumber,
-    salary,
-    recruitedDate,
-    yearsOfService,
-    retiredDate,
-    rankID,
-    regimentID
-}
-```
+        ```
+        {
+            firstName,
+            lastName,
+            gender,
+            permanentAddress: {
+                streetAddress,
+                city,
+                province,
+                postCode
+            },
+            temporaryAddress: {
+                streetAddress,
+                city,
+                province,
+                postCode
+            },
+            dateOfBirth,
+            mobileNumber,
+            landNumber,
+            NIC,
+            emailAddr,
+            password,
+            soldierNumber,
+            salary,
+            recruitedDate,
+            yearsOfService,
+            retiredDate,
+            rankID,
+            regimentID
+        }
+        ```
 
 - user-login page:
     - POST (domain)/user-log/userLoginInfo
