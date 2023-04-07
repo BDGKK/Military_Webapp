@@ -1,5 +1,6 @@
 const express = require("express");
 const connection = require('../database/connection');
+const { saveUserDataToCache, getUserDataFromCache } = require('./side-functions/handleVerificationCodeCaching');
 const isVerificationEmailSent = require('./side-functions/sendVerificationCodeToEmail');
 
 const router = express.Router();
@@ -31,15 +32,20 @@ router.post('/forget-password/newUserData', (req, res) => {
             return;
         }
 
-        /*
+        
         const verificationCode = generateCode();
+        saveUserDataToCache(email, newPassword, verificationCode);
+        /*
         if (!isVerificationEmailSent(email, verificationCode)) {
             res.status(400).send({message: "Error with verifying gmail address"});
             return;
         }
         */
-
-        res.send({message: "Success"});
+        
+        getUserDataFromCache(email, (err, cachedData) => {
+            if (err) throw err;
+            res.send(cachedData);
+        })
     });
 });
 
