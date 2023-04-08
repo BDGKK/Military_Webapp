@@ -1,12 +1,7 @@
 const redis = require('redis');
 const redisClient = redis.createClient();
 
-redisClient.on('connect', () => {
-    console.log('Connected to Redis');
-});
-redisClient.on('error', (err) => {
-    console.log('Redis error: ', err);
-});
+redisClient.connect();
 
 const saveUserDataToCache = (email, password, verificationCode) => {
     const key = email;
