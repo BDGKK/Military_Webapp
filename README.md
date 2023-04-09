@@ -34,7 +34,7 @@ Provides support for pensions, loans and accomodations to ensure a comfortable a
 1. Install and Setup Node.js on your computer (https://nodejs.org/en/download/)
 2. Install and Setup Git on your computer (https://git-scm.com/download/)
     - Use the same account as your GitHub repository
-3. Install and Setup MySQL on your computer (https://www.youtube.com/watch?v=OM4aZJW_Ojs)
+3. Install and Setup MySQL on your computer (https://dev.mysql.com/downloads/mysql/)
     - Note your host, user, password and port number
 4. Create a folder for the project and initialize it as a Nodejs App, enter in the terminal:
 ```
