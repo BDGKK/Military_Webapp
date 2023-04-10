@@ -37,12 +37,13 @@ router.post('/forget-password/newUserData', (req, res) => {
             return;
         }
 
-        
         const verificationCode = generateCode();
-        const values = JSON.stringify({ verificationCode: 'ho'});
-        redisClient.setEx('names', 20, values);
 
-        res.send(await redisClient.get('names'));
+        await redisClient.hSet(email, 'password', newPassword);
+        await redisClient.hSet(email, 'verificationCode', verificationCode);
+
+        let userData = await redisClient.hGetAll(email);
+        res.send(userData);
         //saveUserDataToCache(email, newPassword, verificationCode);
         /*
         if (!isVerificationEmailSent(email, verificationCode)) {
