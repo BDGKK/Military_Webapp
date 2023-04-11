@@ -47,13 +47,9 @@ sendVerificationCodeBtn.addEventListener('click', async() => {
         },
         body: JSON.stringify(newUserData)
     });
-
-    if (response.ok) {
-        alert("Please enter the verification code sent to your email");
-    } else {
-        const responseData = await response.json();
-        alert(responseData.message);
-    }
+    
+    const responseData = await response.json();
+    alert(responseData.message);
 });
 
 setNewPasswordBtn.addEventListener('click', () => {

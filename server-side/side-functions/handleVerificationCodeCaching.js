@@ -3,25 +3,16 @@ const redisClient = redis.createClient();
 
 redisClient.connect();
 
-const saveUserDataToCache = (email, password, verificationCode) => {
-    const key = email;
-    const value = JSON.stringify({ password, verificationCode });
-    const durationToKeepDataCachedInSeconds = 10;
-    redisClient.setEx(key, durationToKeepDataCachedInSeconds, value, (err) => {
-        if (err) throw err;
-    });
+const saveUserDataToCache = async(email, password, verificationCode) => {
+    await redisClient.hSet(email, 'password', password);
+    await redisClient.hSet(email, 'verificationCode', verificationCode);
+
+    await redisClient.expire(email, 60); // Code expires in 60 seconds
 }
 
-const getUserDataFromCache = (email, callback) => {
-    const key = email;
-    redisClient.get(key, (err, cachedData) => {
-        if (err) {
-            console.log('Redis error: ', err);
-            callback(err, null);
-        } else {
-            callback(null, JSON.parse(cachedData));
-        }
-    });
+const getUserDataFromCache = async(email) => {
+    const userData = await redisClient.hGetAll(email);
+    return userData;
 }
 
 module.exports = { saveUserDataToCache, getUserDataFromCache };
