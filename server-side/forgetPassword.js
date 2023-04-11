@@ -43,6 +43,33 @@ router.post('/forget-password/newUserData', (req, res) => {
     });
 });
 
-//res.send(await getUserDataFromCache(email));
+router.post('/forget-password/userVerificationData', async(req, res) => {
+    const email = req.body.email;
+    const verificationCode = req.body.verificationCode;
+
+    const isEmailInDatabaseQuery = `SELECT * FROM user_table WHERE emailAddr='${email}'`;
+    connection.query(isEmailInDatabaseQuery, async(err, result) => {
+        if (err) throw err;
+        if (result.length === 0) {
+            res.status(400).send({message: "Email is incorrect"});
+            return;
+        }
+
+        const userData = await getUserDataFromCache(email);
+        if (Object.entries(userData).length === 0) {
+            res.status(400).send({message: "Sorry, the verification code for this email has either expired or has not been sent yet.\n"+
+            "Please request a new verification code"});
+            return;
+        }
+
+        if (userData.verificationCode !== verificationCode) {
+            res.status(400).send({message: "Verification Code is Incorrect"});
+            return;
+        }
+        
+        // Add code to update data in user_table accordingly
+        res.status(200).send({message: "Verification Successful"});
+    });
+});
 
 module.exports = router;

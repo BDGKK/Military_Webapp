@@ -52,6 +52,27 @@ sendVerificationCodeBtn.addEventListener('click', async() => {
     alert(responseData.message);
 });
 
-setNewPasswordBtn.addEventListener('click', () => {
+setNewPasswordBtn.addEventListener('click', async() => {
     if (checkblank(1)) return;
+
+    const userVerificationData = {
+        email: userEmail.value,
+        verificationCode: verificationCode.value
+    }
+
+    const response = await fetch(`${domain}/forget-password/userVerificationData`, {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userVerificationData)
+    });
+
+    if (response.ok) {
+        window.location.href = `${domain}/user-log`;
+    } else {
+        const responseData = await response.json();
+        alert(responseData.message);
+    }
 });
