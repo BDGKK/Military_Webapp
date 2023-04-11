@@ -1,22 +1,3 @@
-# To-Do/Issues/Warnings/etc.
-- Important Ones
-2. Work on feedback form sending message through email
-3. Work on storing documents in google cloud (Or use Google Drive API)
-5. Use sessions to dynamically render the webpages for the user
-6. Plan and implement a tree for the webpage links (eg: user going to user page and admin goin to admin page)
-7. Implement securities in website to prevent unauthorized access (eg: Admin can never visit the admin homepage or user page unless they pass the login page)
-7. Deploy the node.js when the important parts of the project is done
-
-- Optional
-1. Host all common images and make HTML file use '(domain_name)/(image)' where the image was used previously
-3. Optimizing webpages
-4. Language Translation in web pages
-5. Use socket.io module (websocket) and allow user to interact with admin on chatbot
-    - If user enters unavailable questions, chatbot asks user if they want to connect with admin
-    - If yes, chatbot backend is removed from websocket connection and replaced with admin
-    - Admin gets a notification to interact with user
-    - Test this first with 2 users interacting using socket.io and implement in chatbot window later
-
 # Project Description
 A Full Stack Web Application that helps military retirees and leaver transition smoothly into civilian life.
 Provides support for pensions, loans and accomodations to ensure a comfortable and stress-free retirement.
@@ -63,6 +44,8 @@ git branch -M main
 8. Pull the code from this repository into the folder, enter in the terminal:
 ```
 git pull
+or
+git pull origin main
 ```
 9. Install all the modules, enter in the terminal:
 ```
