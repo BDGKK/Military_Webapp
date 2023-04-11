@@ -15,10 +15,6 @@ function checkforblank(){
         alert('please enter password');
         return false;
     }
-    if(upaw.value.length < 8){
-        alert('password shuold be 8 charakters');
-        return false;
-    }
     return true;
 }
 

@@ -2,15 +2,6 @@
 - Important Ones
 2. Work on feedback form sending message through email
 3. Work on storing documents in google cloud (Or use Google Drive API)
-4. Work on forget-password verification
-    x Get email and new password from frontend
-    x Make sure that email is in the database
-    x Use uuid module to send a verification code to user's email
-    - Save verification code in server memory
-    - Get verification code entered by user on frontend
-    - Check if user VC and server VC matches
-    - If yes, update user's password in database to the new password
-    - If no, send error message accordingly
 5. Use sessions to dynamically render the webpages for the user
 6. Plan and implement a tree for the webpage links (eg: user going to user page and admin goin to admin page)
 7. Implement securities in website to prevent unauthorized access (eg: Admin can never visit the admin homepage or user page unless they pass the login page)

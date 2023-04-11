@@ -2,6 +2,7 @@ const express = require("express");
 const connection = require('../database/connection');
 const { saveUserDataToCache, getUserDataFromCache } = require('./side-functions/handleVerificationCodeCaching');
 const isVerificationEmailSent = require('./side-functions/sendVerificationCodeToEmail');
+const encryptPassword = require('./side-functions/encryptPassword');
 
 const router = express.Router();
 router.use('/forget-password', express.static('./client-side/forget-password-page'));
@@ -39,7 +40,7 @@ router.post('/forget-password/newUserData', (req, res) => {
             return;
         }
 
-        res.status(200).send({message: "Verification Code was sent to your email\nCode will expire in 60 seconds"});
+        res.status(200).send({message: "Verification Code was sent to your email\nCode will expire in 120 seconds"});
     });
 });
 
@@ -67,8 +68,17 @@ router.post('/forget-password/userVerificationData', async(req, res) => {
             return;
         }
         
-        // Add code to update data in user_table accordingly
-        res.status(200).send({message: "Verification Successful"});
+        // Update password for the user in the database
+        const newEncryptedPassword = await encryptPassword(userData.password);
+        const updateUserPasswordQuery = `
+            UPDATE user_table
+            SET password='${newEncryptedPassword}'
+            WHERE emailAddr='${email}';`
+        
+        connection.query(updateUserPasswordQuery, (err) => {
+            if (err) throw err;
+            res.status(200).send({message: "Password Changed Succesfully"});
+        });
     });
 });
 
