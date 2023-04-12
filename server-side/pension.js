@@ -26,9 +26,7 @@ const upload = multer({
 
 function checkFileType(file, cb) {
     const allowedFileTypes = /jpeg|jpg|png|gif/;
-
     const isExtensionValid = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
-
     const isMIMETypeValid = allowedFileTypes.test(file.mimetype);
 
     if (isExtensionValid && isMIMETypeValid) {
@@ -58,7 +56,7 @@ router.post('/pension/pensionInfo', (req, res) => {
 });
 
 // Handle file upload
-app.post('/pension/fileUpload', (req, res) => {
+router.post('/pension/fileUpload', (req, res) => {
     upload(req, res, (err) => {
         if (err) throw err;
 

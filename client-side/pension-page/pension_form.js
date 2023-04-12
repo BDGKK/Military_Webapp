@@ -5,7 +5,7 @@ const no = document.getElementById("radio-no")
 const rank = document.getElementById("rank")
 const service = document.getElementById("years")
 const quantity = document.getElementById("number")
-const file = document.getElementById("file")
+const fileInput = document.getElementById("file")
 const text = document.getElementById("comment")
 const gname = document.getElementById("gname")
 const grelation = document.getElementById("grelationship")
@@ -58,7 +58,7 @@ const submitPension = async() => {
         userId: "1"
     }
     
-    const response = await fetch(`${domain}/pension/pensionInfo`, {
+    const infoResponse = await fetch(`${domain}/pension/pensionInfo`, {
         method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -67,7 +67,20 @@ const submitPension = async() => {
         body: JSON.stringify(pensionInfo)
     });
 
-    if (response.ok) {
+    // Submit the pension document
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append('myFile');
+    const documentResponse = await fetch(`${domain}/pension/fileUpload`, {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: formData
+    });
+
+    if (infoResponse.ok) {
         alert("Successfully Submitted");
     }
 }
