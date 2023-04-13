@@ -1,5 +1,6 @@
 const { DOMAIN_NAME, PORT } = require('./config');
 const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
 require('./database/create_db'); // Create database at initial server setup
 
@@ -18,6 +19,13 @@ const adminHomePage = require('./server-side/adminHomepage');
 const adminUserPage = require('./server-side/adminUser');
 
 const app = express();
+
+// Setup session middleware
+app.use(session({
+    secret: 'randomcharactersxyz',
+    resave: false,
+    saveUninitialized: true
+}));
 
 // Enable CORS only for GET and POST methods
 app.use('*', cors());

@@ -49,7 +49,7 @@ git pull origin main
 ```
 9. Install all the modules, enter in the terminal:
 ```
-npm install cors dotenv express mysql bcrypt googleapis nodemailer redis multer
+npm install cors dotenv express mysql bcrypt googleapis nodemailer redis multer express-session
 ```
 10. Create a .env file in the main directory and enter the following:
 ```
