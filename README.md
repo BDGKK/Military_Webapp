@@ -1,3 +1,6 @@
+# Notes
+- Get sessions from pension and loan pages to send correct data to the webpages
+
 # Project Description
 A Full Stack Web Application that helps military retirees and leaver transition smoothly into civilian life.
 Provides support for pensions, loans and accomodations to ensure a comfortable and stress-free retirement.
