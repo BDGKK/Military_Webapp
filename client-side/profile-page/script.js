@@ -23,6 +23,7 @@ const returnToHomePage = () => {
 
 const renderPage = async() => {
   const response = await fetch('/profile/userData');
+  console.log(await response.json());
 }
 renderPage();
 /*
