@@ -4,7 +4,9 @@ const connection = require('../database/connection');
 const router = express.Router();
 router.use('/profile', express.static('./client-side/profile-page'));
 
-router.get('/profile/:id', (req, res) => {
+router.get('/profile/userData', (req, res) => {
+    console.log(req.session.userId);
+    return;
     const id = parseInt(req.params.id);
     
     const getUserProfileQuery = `

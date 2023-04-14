@@ -16,7 +16,7 @@ router.post('/user-log/userLoginInfo', (req, res) => {
         const isUserInDatabase = result.length === 1;
 
         if (isUserInDatabase) {
-            const userIdInDB = result[0].userID;
+            const userIdInDB = result[0].userid;
             const userPasswordInDB = result[0].password;
             const isPasswordMatching = await bcrypt.compare(userPassword, userPasswordInDB);
             

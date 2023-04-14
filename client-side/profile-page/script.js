@@ -21,6 +21,11 @@ const returnToHomePage = () => {
   window.location.href = `${window.location.origin}/`;
 }
 
+const renderPage = async() => {
+  const response = await fetch('/profile/userData');
+}
+renderPage();
+/*
 const getUserDetails = async() => {
   const domain = window.location.origin;
   const uri = new URLSearchParams(window.location.search);
@@ -88,3 +93,4 @@ const renderPage = async() => {
 }
 
 renderPage();
+*/
