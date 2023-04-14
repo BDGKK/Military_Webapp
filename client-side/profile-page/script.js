@@ -21,18 +21,8 @@ const returnToHomePage = () => {
   window.location.href = `${window.location.origin}/`;
 }
 
-const renderPage = async() => {
-  const response = await fetch('/profile/userData');
-  console.log(await response.json());
-}
-renderPage();
-/*
 const getUserDetails = async() => {
-  const domain = window.location.origin;
-  const uri = new URLSearchParams(window.location.search);
-  const userid = uri.get('userid');
-
-  const rawData = await fetch(`${domain}/profile/${userid}`);
+  const rawData = await fetch('/profile/userData');
   return await rawData.json();
 }
 
@@ -94,4 +84,3 @@ const renderPage = async() => {
 }
 
 renderPage();
-*/
