@@ -186,7 +186,6 @@
           </div>
           <div id="feedback-form" class="col-sm-4">
             <h2 class="text-center">Feedback</h2>
-            <form method="post" action="#" onsubmit="return checkforblank()">
             <div class="container">
                   <div class="form-group">
                     <p for="name">Name:</p>
@@ -204,9 +203,8 @@
                     <p for="Comment">Comment:</p>
                     <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
                   </div>
-                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                  <button id="feedback-submit-btn" type="submit" class="btn btn-primary btn-block">Submit</button>
             </div>
-            </form>
           </div>
         </div> 
       </div>

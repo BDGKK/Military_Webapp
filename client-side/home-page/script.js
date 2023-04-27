@@ -5,6 +5,7 @@ const uname = document.getElementById('uname')
 const email = document.getElementById('email')
 const subject = document.getElementById('subject')
 const comment = document.getElementById('comment')
+const feedbackSubmitBtn = document.getElementById('feedback-submit-btn');
 
 const userLoginLink = document.getElementById('user-login-link');
 const profilePageLink = document.getElementById('profile-page-link');
@@ -121,7 +122,6 @@ const generateMessage = async() => {
 }
 
 function checkforblank(){
-
     if(uname.value == ""){
         alert('please enter Name');
         return false;
@@ -141,5 +141,31 @@ function checkforblank(){
         alert('please enter Comment');
         return false;
     }
-
+    return true;
 }
+
+feedbackSubmitBtn.addEventListener('click', async() => {
+    if (!checkforblank()) return;
+
+    const feedbackInfo = {
+        name: uname.value,
+        email: email.value,
+        subject: subject.value,
+        comment: comment.value
+    }
+
+    const response = await fetch(`${domain}/feedback`, {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(feedbackInfo)
+    });
+
+    if (response.ok) {
+        alert("Thank you for your feedback!");
+    } else {
+        alert("Could not send feedback");
+    }
+});
