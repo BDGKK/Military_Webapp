@@ -8,7 +8,6 @@ const comment = document.getElementById('comment')
 
 const userLoginLink = document.getElementById('user-login-link');
 const profilePageLink = document.getElementById('profile-page-link');
-const registrationPageLink = document.getElementById('registration-page-link');
 const downloadAppPageLink = document.getElementById("download-app-page-link");
 const needHelpPageLink = document.getElementById("need-help-page-link");
 
@@ -38,9 +37,6 @@ userLoginLink.addEventListener('click', () => {
 });
 profilePageLink.addEventListener('click', () => {
     profilePageLink.href = `${domain}/profile`; // Find a way to get the ?userid=<> here
-});
-registrationPageLink.addEventListener('click', () => {
-    registrationPageLink.href = `${domain}/registration`;
 });
 document.querySelectorAll('.pension-page-link').forEach((item) => {
     item.addEventListener('click', () => {

@@ -2,11 +2,12 @@
     scroll-behavior: smooth;
 }
 .navbar{
-  position: fixed;
-  width: 100%;
-  z-index: 1;
-  left: 0;
-  top: 0;
+    background-image: linear-gradient(#4CD9FE,#1F2F98);
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
 }
 .dropdown{
   padding: 1px 20px;
@@ -20,7 +21,7 @@
 }
 .border {
   padding: 25px;
-  background-color:darkslategrey;
+  background-image: linear-gradient(#4CD9FE,#1F2F98);
 }
 hr{
     border: 1px solid black;

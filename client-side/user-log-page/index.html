@@ -10,39 +10,56 @@
     <link rel="icon" type="image/x-icon" href="../../images/logo.png"> <!-- Image Path Changed -->
     <style>
         body{
-            background-image: url("image22.jpg");
-            background-size: cover;
+            background-image: linear-gradient(#4CD9FE,#1F2F98);
+            height: 100vh;
+            width: 200vh;
         }
         .p-5{
-            opacity: 94%;
+            background-color: white;
             border-radius: 20px;
-            margin-top: 10%;
+            margin-top: 1%;
+        }
+        .column1{
+            margin-left: 15%;
+        }
+        .column2{
+            margin-top: 5%;
+            margin-left: 12.5%;
+            font-family: 'Orbitron', sans-serif;
         }
 
     </style>
 </head>
 <body>
+    <div class="row">
+        <div class="column1">
+            <img src="logo.png" height="180" alt="logo">
+        </div>
+        <div class="column2">
+            <h1 class="name">MILITARY SALUTE</h1>
+        </div>
+    </div>
     <div class="d-flex justify-content-center">
-        <span class="bg-dark p-5">
-        <h1 class="text-white">User Login</h1>
+        <span class=" p-5">
+            <center>
+            <h1 class="text-dark">User Login</h1>
+            </center>
         <div class="container">
-
-            <p class="text-white mt-3">Email</p>
+            <h5 class="text-dark mt-4">Email</h5>
             <input type="email" class="from-control" name="uemail" id="uemail" title="Enter Email" size="40" placeholder="example@gmail.com" >
 
-            <p class="text-white mt-3">Password</p>
+            <h5 class="text-dark mt-4">Password</h5>
             <input type="password" class="from-control" name="upaw" id="upaw" title="Enter Password" size="25"placeholder="User Password">
             
             <form class="mt-4"></form>    
             <div class="frogot-password-link mt-3">
                 <!-- forgot_password page needs to be linked here -->
-                <a href="" id="forget-password-page-link" title="Forgot Password" class="text-decoration-none text-white">Forgot Password? </a>
+                <a href="" id="forget-password-page-link" title="Forgot Password" class="text-decoration-none text-dark">Forgot Password? </a>
                 <!-- registration page needs to be linked here -->
-                <a href="" id="registration-page-link" title="registration-page" class="text-decoration-none text-white"> Register Now</a>
+                <a href="" id="registration-page-link" title="registration-page" class="text-decoration-none text-dark"> Register Now</a>
             </div>
         </div>
-            <button id="login-btn" title="Login" class="btn btn-outline-primary btn-block text-white mt-3">Log In</button>
-        </div>
+            <button id="login-btn" title="Login" class="btn btn-outline-primary btn-block text-dark mt-3"><h5>Log In</h5></button>
         </span>
     </div> 
 
