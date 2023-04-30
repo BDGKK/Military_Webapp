@@ -2,8 +2,12 @@ const express = require('express');
 const chatbotModel = require("./chatbotModel");
 const isFeedbackEmailSent = require("../side-functions/sendFeedbackEmail");
 
-// Initialize the Router and display the frontend at the root URL (localhost:<port>/)
-const router = express.Router();
+const router = express.Router(); // Initialize the Router
+
+// Send user to login page if their login details aren't saved in the session
+router.get('/', (req, res, next) => {
+    !req.session.userId ? res.redirect('/user-log') : next();
+});
 router.use('/', express.static('./client-side/home-page'));
 
 let chatbotResponse = {};

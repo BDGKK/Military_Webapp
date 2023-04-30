@@ -1,10 +1,14 @@
 const express = require("express");
-const connection = require('../database/connection')
-
 const multer = require('multer');
 const path = require('path');
+const connection = require('../database/connection')
 
 const router = express.Router();
+
+// Prevent user from accessing page if their login details aren't saved
+router.get('/pension', (req, res, next) => {
+    !req.session.userId ? res.redirect('/user-log') : next();
+});
 router.use('/pension', express.static('./client-side/pension-page'));
 
 // Set storage engine for uploaded files

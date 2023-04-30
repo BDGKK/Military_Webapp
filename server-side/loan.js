@@ -2,6 +2,11 @@ const express = require("express");
 const connection = require('../database/connection');
 
 const router = express.Router();
+
+// Prevent user from accessing page if their login details aren't saved
+router.get('/loan', (req, res, next) => {
+    !req.session.userId ? res.redirect('/user-log') : next();
+});
 router.use('/loan', express.static('./client-side/loan-page'));
 
 router.post('/loan/loanInfo', (req, res) => {
