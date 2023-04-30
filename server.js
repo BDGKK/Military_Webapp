@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-app.use(express.static('./images')); // Host all public images
+app.use(express.static('./download-application-documents')); // Host the download application documents
 
 // Connect the routers of the webpage to the main app
 app.use(homepage);
