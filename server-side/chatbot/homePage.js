@@ -3,11 +3,6 @@ const chatbotModel = require("./chatbotModel");
 const isFeedbackEmailSent = require("../side-functions/sendFeedbackEmail");
 
 const router = express.Router(); // Initialize the Router
-
-// Send user to login page if their login details aren't saved in the session
-router.get('/', (req, res, next) => {
-    !req.session.userId ? res.redirect('/user-log') : next();
-});
 router.use('/', express.static('./client-side/home-page'));
 
 let chatbotResponse = {};
