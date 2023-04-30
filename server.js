@@ -24,7 +24,10 @@ const app = express();
 app.use(session({
     secret: 'randomcharactersxyz',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        expires: false
+    }
 }));
 
 // Enable CORS only for GET and POST methods
