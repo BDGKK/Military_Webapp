@@ -2,6 +2,10 @@ const express = require("express");
 const connection = require('../database/connection');
 
 const router = express.Router();
+
+router.get('/adminUser', (req, res, next) => {
+    !req.session.isAdminLoggedIn ? res.redirect('/adminLogin') : next();
+});
 router.use('/adminUser', express.static('./client-side/admin-user-page'));
 
 router.get('/adminUser/:id', (req, res) => {

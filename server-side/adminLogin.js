@@ -19,6 +19,7 @@ router.post('/adminLogin/adminLoginInfo', (req, res) => {
             const isPasswordMatching = await bcrypt.compare(adminPassword, adminPasswordInDB);
 
             if (isPasswordMatching) {
+                req.session.isAdminLoggedIn = true;
                 res.status(200).send({message: "Admin is verified"});
             } else {
                 res.status(400).send({message: "Password is incorrect"});
