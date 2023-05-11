@@ -2,76 +2,61 @@
 <html>
 <head>
   <style>
-    a:link {
-      color: green;
-      background-color: transparent;
-      text-decoration: none;
-      font-size: 20px;
-      display: inline-block;
-      
-    }
-    a:visited {
-      color: white;
-      background-color: transparent;
-      text-decoration: none;
-      display: inline-block;
-    }
-    a:hover {
-      color: orange;
-      background-color: transparent;
-      text-decoration: underline;
-    }
-    a:active {
-      color: white;
-      background-color: transparent;
-      text-decoration: underline;
-    }
     body {
+      display: flex;
+      padding: 0;
+      margin: 0;
       background-image: url('soldiers-4679698_1280.png');
-      background-repeat: no-repeat;
-      background-size: 100% 300%;
-    }
-    .nad, .naz{
-      padding: 40px 70px;
-      width: 20%;
-      text-align: center;
-      display: inline-table;
-      margin: 8px 100px;
+      background-size: 100vw 100vh;
+      font-family: Arial, Helvetica, sans-serif;
       justify-content: center;
-      background-color: gray;
-      border-radius: 18px;
-      border-color: black;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+    main {
+      display: flex;
+      background-color: black;
+      opacity: 95%;
+      padding: 2em;
+      border-radius: 0.5em;
+      gap: 3em;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
     }
     a {
-      margin-inline: revert-layer;
-      margin: 12px 203px;
+      background-color: rgb(0, 106, 255);
+      padding: 0.5em;
+      width: 15em;
+      border: none;
+      color: white;
+      border-radius: 0.25em;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: 0.1s;
     }
-
-    
-    
+    a:hover {
+      background-color: rgb(0, 69, 167);
+    }
   </style>
 </head>
 <body>
-
-<form>
-  <div class="nad">
-  <h3><center>Pension</center></h3>
-  </div>
-
-  <div class="naz">
-  <h3><center>Loan</center></h3>
-  </div>
-
-</form>
-</div>
-
-<div>
-  <a href="/pension_sinhala.docx">Pension Application-Sinhala</a>
-  <a href="/loan_sinhala.docx">Loan Application-Sinhala</a>
-  <a href="/pension_english.docx">Pension Application-English</a>
-  <a href="/loan_english.docx">Loan Application-English</a>
-  <a href="/pension_tamil.docx">Pension Application-Tamil</a>
-  <a href="/loan_tamil.docx">Loan Application-Tamil</a>
-</div>
+  <main>
+    <div class="container">
+      <h1>Pension</h1>
+      <a href="/pension_english.docx">Download Pension Application (English)</a>
+      <a href="/pension_sinhala.docx">Download Pension Application (Sinhala)</a>
+      <a href="/pension_tamil.docx">Download Pension Application (Tamil)</a>
+    </div>
+    <div class="container">
+      <h1>Loan</h1>
+      <a href="/loan_english.docx">Download Loan Application (English)</a>
+      <a href="/loan_sinhala.docx">Download Loan Application (Sinhala)</a>
+      <a href="/loan_tamil.docx">Download Loan Application (Tamil)</a>
+    </div>
+  </main>
 </body>
 </html>
