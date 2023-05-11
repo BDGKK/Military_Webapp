@@ -1,3 +1,8 @@
+- Work on Google-drive interaction for pension page
+- Clean up the codes
+- Host and link the images of webpages in node.js
+- Look through webpages and make sure all functions are working
+
 # Project Description
 A Full Stack Web Application that helps military retirees and leaver transition smoothly into civilian life.
 Provides support for pensions, loans and accomodations to ensure a comfortable and stress-free retirement.
@@ -95,47 +100,52 @@ git pull
 ```
 
 # API connections
-```
-const domain = window.location.origin; // Put this is in the JS files to get the domain name
-```
-
 - admin-user page:
     - GET (domain)/adminUser/(userId)
-        - This API gets the profile, pensions and loans of the user (Tables: user_table, user_rank, regiments, pension, loan, forces)
+        - Gets the profile, pensions and loans of the user (Tables: user_table, user_rank, regiments, pension, loan, forces)
         - If 'profile' key is not in the retrieved object, the user does not exist
-        - Open (domain)/adminUser?userId=(userId) when admin clicks a user
 
 - admin-homepage:
     - GET (domain)/adminHomepage/allUserIds
-        - This API gets all the user ids available in the database (Tables: user_table)
+        - Gets all the user ids available in the database (Tables: user_table)
 
 - admin-login page:
     - POST (domain)/adminLogin/adminLoginInfo
-        - This API takes the email and password of the admin in the request body
+        - Takes the email and password of the admin in the request body
 		- It makes sure that the email exists in the database (Tables: user_table)
-		- It encrypts the password and compares it to the password in the database
+		- It encrypts the password and compares it to the encrypted password in the database
 		- If the password matches, it will send an OK response
 		- If email is not found/password is incorrect, it will send an error message
 
 - download-application page:
-    - (No APIs yet)
+    - Doesn't use APIs
+    - Pension and Loan Documents are hosted on server and can be downloaded through hyperlinks
 
 - forget-password page:
-    - (No APIs yet - must wait till frontend has altered the page)
+    - POST (domain)/forget-password/newUserData
+        - Takes the email and new password of the user from request body
+        - Checks if the email is in the database and rejects if it's not
+        - Generates a random code and sends it to user email through gmail
+        - Saves the code in cache
+        - Send OK message to frontend
+    - POST (domain)/forget-password/userVerificationData
+        - Takes the email and verification code of the user from request body
+        - Checks if the email is in the database and rejects it if not
+        - Checks if the VC of user is correct
+            - Sends error message if code has expired, doesn't exist or wrong
+        - Encrypts the new password and updates it in user_table in database
+        - Sends OK message to frontend
 
 - loan page:
     - POST (domain)/loan/loanInfo
-        - This API takes the amount,interestRate,timePeriod,partonName,userId in the request body
+        - Takes the amount,interestRate,timePeriod,partonName,userId in the request body
 		- It inserts the loan data into the Database (Tables: loan)
 		- It sends an OK response if data is inserted successfully
     - (Must implement code to get loan documents as well)
 
-- need-help page:
-    - (No APIs - does not require an API)
-
 - pension page:
     - POST (domain)/pension/pensionInfo
-        - This API takes the totalAmount,renewDate,userId in the request body
+        - Takes the totalAmount,renewDate,userId in the request body
 		- It inserts the pension data into the Database (Tables: pension)
 		- It sends an OK response if data is inserted successfully
     - (Must implement code to get pension documents as well)
@@ -146,11 +156,11 @@ const domain = window.location.origin; // Put this is in the JS files to get the
 
 - registration page:
     - GET (domain)/registration/columnData
-        - This API gets the ranks, regiments, cities and provinces data
+        - Gets the ranks, regiments, cities and provinces data
         - This data is for the dropdown fields in the registry page
 
     - POST (domain)/registration/registryData
-		- It inserts the data into the Database (Tables: user_table)
+		- It inserts the new user data into the Database (Tables: user_table)
 		- If there are no issues, it sends an OK response with the userId
 		- It checks whether the gmail address already exists in the table
             - If so, it doesn't insert the data and sends an error message
