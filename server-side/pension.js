@@ -1,9 +1,21 @@
 const express = require("express");
+const stream = require('stream');
 const multer = require('multer');
 const path = require('path');
+const { google } = require('googleapis');
 const connection = require('../database/connection')
 
 const router = express.Router();
+const upload = multer(); // Initialize upload middleware
+
+const keyFilePath = path.join(__dirname, '..', 'credentials.json');
+const SCOPES = ['https://www.googleapis.com/auth/drive'];
+
+// Authenticate the service account
+const auth = new google.auth.GoogleAuth({
+    keyFile: keyFilePath,
+    scopes: SCOPES
+});
 
 // Prevent user from accessing page if their login details aren't saved
 router.get('/pension', (req, res, next) => {
@@ -11,41 +23,46 @@ router.get('/pension', (req, res, next) => {
 });
 router.use('/pension', express.static('./client-side/pension-page'));
 
-/*
-// Set storage engine for uploaded files
-const storage = multer.diskStorage({
-    destination: './uploads/',
-    filename: function(req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
+const uploadFileToDrive = async(fileObject, userId) => {
+    const bufferStream = new stream.PassThrough(); // bufferStream turns the file into smaller chunks/packages
+    bufferStream.end(fileObject.buffer);
+    
+    // Initialize instance of Google Drive
+    const drive = await google.drive({ version: 'v3', auth });
 
-// Initialize upload middleware
-const upload = multer({
-    storage: storage,
-    limits: { fileSize: 1000000 }, // 1 MB file size limit
-    fileFilter: function(req, file, cb) {
-        checkFileType(file, cb);
-    }
-}).single('myFile'); // 'myFile' is the name of the input field
-
-function checkFileType(file, cb) {
-    const allowedFileTypes = /jpeg|jpg|png|gif/;
-    const isExtensionValid = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
-    const isMIMETypeValid = allowedFileTypes.test(file.mimetype);
-
-    if (isExtensionValid && isMIMETypeValid) {
-        return cb(null, true);
-    } else {
-        return cb('Error: Images only!');
-    }
+    // Request to upload file stream to google drive 
+    const response = await drive.files.create({
+        media: {
+            mimeType: fileObject.mimeType,
+            body: bufferStream
+        },
+        requestBody: {
+            name: `pension_user${userId}`, // Add userid to name of the file
+            parents: [process.env.GOOGLEDRIVEFOLDERID] // Google Drive Folder id
+        },
+        fields: "id,name"
+    });
+    
+    const { data } = response;
+    console.log(`User ${userId} uploaded ${data.name}`);
 }
-*/
+
+router.post('/pension/uploadDocument', (req, res) => {
+    // 'myFile' is the name of the input from the HTML form
+    upload.single('myFile')(req, res, (err) => {
+        if (err) throw err;
+        
+        uploadFileToDrive(req.file, req.session.userId);
+        res.status(200).json({
+            message: 'File uploaded successfully',
+        });
+    });
+});
 
 router.post('/pension/pensionInfo', (req, res) => {
     const totalAmount = req.body.totalAmount;
     const renewDate = req.body.renewDate;
-    const userId = req.body.userId;
+    const userId = req.session.userId;
     
     const insertPensionDataQuery = `
         INSERT INTO pension(totalAmount, renewDate, userID)
@@ -56,27 +73,6 @@ router.post('/pension/pensionInfo', (req, res) => {
         console.log(`User ${userId} applied for a pension`);
         res.status(200).send({message: "Successfully Submitted!"});
     });
-
-    // Add code later to get pension document and upload to Google Drive
-
 });
-
-/*
-// Handle file upload
-router.post('/pension/fileUpload', (req, res) => {
-    upload(req, res, (err) => {
-        if (err) throw err;
-
-        if (req.file == undefined) {
-            res.status(400).json({ message: 'Error: No file selected!' });
-        } else {
-            res.status(200).json({
-                message: 'File uploaded successfully!',
-                file: `uploads/${req.file.filename}`
-            });
-        }
-    });
-});
-*/
 
 module.exports = router;

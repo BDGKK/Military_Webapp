@@ -1,4 +1,3 @@
-- Work on Google-drive interaction for pension page
 - Clean up the codes
 - Host and link the images of webpages in node.js
 - Look through webpages and make sure all functions are working
@@ -65,6 +64,7 @@ DB_PASSWORD='(mysql-host-password)'
 DB_PORT=(mysql-host-password)
 WEBSITE_EMAIL='(website-email-from-basecamp-docs)'
 WEBSITE_PASSWORD='(website-app-password-from-basecamp-docs)'
+GOOGLEDRIVEFOLDERID='<id-of-the-folder-in-your-google-drive>'
 ```
 11. Start the Redis server first
     - Revisit instructions from Step 4.5
