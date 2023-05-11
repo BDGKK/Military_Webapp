@@ -11,6 +11,7 @@ router.get('/pension', (req, res, next) => {
 });
 router.use('/pension', express.static('./client-side/pension-page'));
 
+/*
 // Set storage engine for uploaded files
 const storage = multer.diskStorage({
     destination: './uploads/',
@@ -39,6 +40,7 @@ function checkFileType(file, cb) {
         return cb('Error: Images only!');
     }
 }
+*/
 
 router.post('/pension/pensionInfo', (req, res) => {
     const totalAmount = req.body.totalAmount;
@@ -59,6 +61,7 @@ router.post('/pension/pensionInfo', (req, res) => {
 
 });
 
+/*
 // Handle file upload
 router.post('/pension/fileUpload', (req, res) => {
     upload(req, res, (err) => {
@@ -74,5 +77,6 @@ router.post('/pension/fileUpload', (req, res) => {
         }
     });
 });
+*/
 
 module.exports = router;
