@@ -1,6 +1,4 @@
-- Clean up the codes
 - Host and link the images of webpages in node.js
-- Look through webpages and make sure all functions are working
 
 # Project Description
 A Full Stack Web Application that helps military retirees and leaver transition smoothly into civilian life.

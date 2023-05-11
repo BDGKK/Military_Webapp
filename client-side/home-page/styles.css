@@ -94,6 +94,9 @@ section{
     border-radius: 0.7em;
     z-index: 100;
 }
+.chatbot-icon:hover {
+    background-color: rgb(155, 155, 155);
+}
 .chatbot-icon:active {
     opacity: 50%;
 }

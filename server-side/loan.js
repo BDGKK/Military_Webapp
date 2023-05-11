@@ -14,7 +14,7 @@ router.post('/loan/loanInfo', (req, res) => {
     const interestRate = req.body.interestRate;
     const timePeriod = req.body.timePeriod;
     const partonName = req.body.partonName;
-    const userId = req.body.userId;
+    const userId = req.session.userId;
     
     const insertLoanDataQuery = `
         INSERT INTO loan(amount, interestRate, timePeriod, partonName, userID)

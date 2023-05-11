@@ -3,7 +3,8 @@ const stream = require('stream');
 const multer = require('multer');
 const path = require('path');
 const { google } = require('googleapis');
-const connection = require('../database/connection')
+const connection = require('../database/connection');
+const { GOOGLE_DRIVE_FOLDER_ID } = require('../config');
 
 const router = express.Router();
 const upload = multer(); // Initialize upload middleware
@@ -37,8 +38,8 @@ const uploadFileToDrive = async(fileObject, userId) => {
             body: bufferStream
         },
         requestBody: {
-            name: `pension_user${userId}`, // Add userid to name of the file
-            parents: [process.env.GOOGLEDRIVEFOLDERID] // Google Drive Folder id
+            name: `pension_user${userId}`,
+            parents: [GOOGLE_DRIVE_FOLDER_ID]
         },
         fields: "id,name"
     });

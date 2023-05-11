@@ -32,7 +32,7 @@ button {
 	border: none;
 	border: 0.1em solid black;
 	border-radius: 0.2em;
-	font-size: 0.85em;
+	font-size: 0.95em;
 }
 select {
 	height: 2.4em;
@@ -99,4 +99,9 @@ button:active {
 	display:flex;
 	flex-direction:row;
 	justify-content:space-around;
+}
+.inline-radio-buttons > label {
+	display: flex;
+	align-items: center;
+	gap: 0.25em;
 }

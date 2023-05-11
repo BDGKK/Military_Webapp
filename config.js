@@ -10,5 +10,6 @@ module.exports = {
     DB_PORT: process.env.DB_PORT,
     WEBSITE_EMAIL: process.env.WEBSITE_EMAIL,
     WEBSITE_PASSWORD: process.env.WEBSITE_PASSWORD,
+    GOOGLE_DRIVE_FOLDER_ID: process.env.GOOGLEDRIVEFOLDERID,
     PORT,
 };
