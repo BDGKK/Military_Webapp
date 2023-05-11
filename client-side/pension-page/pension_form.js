@@ -4,7 +4,7 @@ const yes = document.getElementById("radio-yes")
 const no = document.getElementById("radio-no")
 const rank = document.getElementById("rank")
 const service = document.getElementById("years")
-const quantity = document.getElementById("number")
+const quantity = document.getElementById("quantity")
 const fileInput = document.getElementById("myFileInput")
 const text = document.getElementById("comment")
 const gname = document.getElementById("gname")
@@ -52,17 +52,36 @@ function checknumber(inputText){
         return false;
     }
 }
+function calculateRenewalDate() {
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let nextRenewalDate = new Date();
+  
+    nextRenewalDate.setMonth(currentMonth + 1, 1);
+    let nextRenewalYear = nextRenewalDate.getFullYear();
+    let nextRenewalMonth = (nextRenewalDate.getMonth() + 1).toString().padStart(2, '0');
+    let formattedNextRenewalDate = nextRenewalYear + '/' + (nextRenewalMonth) + '/' + '01';
+  
+    return formattedNextRenewalDate;
+}
+function calculateMonthlyPayment() {
+    let yearsOfService = parseInt(service.value);
+    let salary = parseInt(quantity.value);
+
+    return yearsOfService > 22 ? (salary * 90) / 100 : 0;
+}
 
 const submitPension = async() => {
     if (!checkblank() || !checknumber(service.value)) {
         return;
     }
 
-    // Replace these data with the real totalAmount, renewDate and userId
+    const renewalDate = calculateRenewalDate();
+    const monthlyPayment = calculateMonthlyPayment();
+
     const pensionInfo = {
-        totalAmount: 1234,
-        renewDate: "2024-02-27", // Date format: YYYY-MM-DD
-        userId: "1"
+        totalAmount: monthlyPayment,
+        renewDate: renewalDate,
     }
     
     const infoResponse = await fetch(`${domain}/pension/pensionInfo`, {
@@ -74,13 +93,30 @@ const submitPension = async() => {
         body: JSON.stringify(pensionInfo)
     });
 
+    if (!infoResponse.ok) {
+        alert("Failed to submit the form");
+        return;
+    }
+
     // Submit the pension document
     const formData = new FormData();
     const file = fileInput.files[0];
     formData.append('myFile', file);
 
-    await fetch(`${domain}/pension/uploadDocument`, {
+    const fileUploadResponse = await fetch(`${domain}/pension/uploadDocument`, {
         method: 'POST',
         body: formData
     });
+
+    if (fileUploadResponse.ok) {
+        localStorage.setItem('disabilities', text.value);
+        localStorage.setItem('granterName', gname.value);
+        localStorage.setItem('granterRelationship', grelation.value);
+        localStorage.setItem('renewalDate', renewalDate);
+        localStorage.setItem('monthlyPayment', monthlyPayment);
+
+        window.location.href = `${domain}/pension-calculated`;
+    } else {
+        alert("Could not submit successfully");
+    }
 }
