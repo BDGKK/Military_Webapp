@@ -35,6 +35,8 @@ const tempPostCodeInput 	= document.getElementById("temp-post-code");
 
 const domain = window.location.origin;
 
+document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
+
 const hasLettersOnly = (value) => {
 	return /^[a-z]+$/i.test(value);
 }

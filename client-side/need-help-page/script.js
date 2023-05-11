@@ -4,6 +4,7 @@ const pensionPageLink = document.getElementById('pension-page-link');
 const loanPageLink = document.getElementById('loan-page-link');
 
 const domain = window.location.origin;
+document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 
 registryPageLink.addEventListener('click', () => {
     registryPageLink.href = `${domain}/registration`;

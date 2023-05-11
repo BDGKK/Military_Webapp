@@ -10,6 +10,7 @@ const renewDateEl       = document.getElementById("renew-date");
 const paymentEl         = document.getElementById("payment");
 
 const domain = window.location.origin;
+document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 
 const loadData = async() => {
     const userDataResponse = await fetch(`${domain}/profile/userData`);

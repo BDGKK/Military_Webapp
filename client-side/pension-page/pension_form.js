@@ -11,6 +11,7 @@ const gname = document.getElementById("gname")
 const grelation = document.getElementById("grelationship")
 
 const domain = window.location.origin;
+document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 
 function checkblank(){
 	if(email.value == ""){

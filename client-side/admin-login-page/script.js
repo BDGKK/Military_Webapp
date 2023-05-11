@@ -3,6 +3,8 @@ const adminPasswordEl = document.getElementById("password");
 const loginBtnEl = document.getElementById("login-btn");
 const domain = window.location.origin;
 
+document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
+
 const areInputsValid = () => {
     // Add input validation here
     return true;

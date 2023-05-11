@@ -7,6 +7,7 @@ const sendVerificationCodeBtn = document.getElementById('send-vc-btn');
 const setNewPasswordBtn = document.getElementById('set-password-btn');
 
 const domain = window.location.origin;
+document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 
 function checkblank(x){
     if (userEmail.value === "") {

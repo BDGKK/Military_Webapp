@@ -19,6 +19,7 @@ const patronNICEl = document.getElementById("NIC");
 const patronIncomeEvidenceEl = document.getElementById("parton_evi");
 
 const domain = window.location.origin;
+document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 
 const hasNumbersOnly = (value) => {
 	return /^[0-9]+$/i.test(value);

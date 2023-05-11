@@ -17,9 +17,9 @@ const recruitedDateEl   = document.getElementById("recruited-date");
 const yearsOfServiceEl  = document.getElementById("years-of-service");
 const retiredDateEl     = document.getElementById("retired-date");
 
-const returnToHomePage = () => {
-  window.location.href = `${window.location.origin}/`;
-}
+const domain = window.location.origin;
+
+document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 
 const getUserDetails = async() => {
   const rawData = await fetch('/profile/userData');

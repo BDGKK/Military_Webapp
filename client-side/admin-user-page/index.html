@@ -31,6 +31,9 @@
 	</div>
 	<div class="column" style="width: 65%">
 	</div>
-
+	<script>
+		const domain = window.location.origin;
+		document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
+	</script>
 </body>
 </html>

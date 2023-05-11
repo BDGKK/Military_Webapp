@@ -5,6 +5,10 @@ const forgetPasswordPageLink = document.getElementById("forget-password-page-lin
 const registrationPageLink = document.getElementById("registration-page-link")
 
 const domain = window.location.origin;
+const logoUrl = `${domain}/logo.png`;
+
+document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${logoUrl}">`;
+document.querySelector('.column1').innerHTML = `<img src="${logoUrl}" height="180" alt="logo">`;
 
 function checkforblank(){
     if(uemail.value == ""){
