@@ -40,4 +40,17 @@ router.post('/feedback', async(req, res) => {
     }
 });
 
+router.get('/userLoginStatus', (req, res) => {
+    res.status(200).send(req.session.userId ? true : false);
+});
+
+router.get('/logout', (req, res) => {
+    try {
+        req.session.destroy();
+        res.status(200).send({message: 'Success'});
+    } catch (e) {
+        res.status(200).send({message: 'Failed'});
+    }
+});
+
 module.exports = router;

@@ -21,6 +21,23 @@ const logoUrl = `${domain}/logo.png`;
 document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${logoUrl}">`;
 document.querySelector('.navbar-header').innerHTML = `<img class="logo-img" src="${logoUrl}" alt="align box">`;
 
+// Change Log button to 'Log in' or 'Log out' if user is logged in or not respectively
+fetch('/userLoginStatus')
+.then(response => response.json())
+.then(loggedIn => {
+    document.querySelector('#user-login-link').innerHTML = loggedIn ?
+        '<a href="" onclick="logout()" title="user login" class="text-decoration-none text-white">Log Out</a>' :
+        '<a href="/user-log" title="user login" class="text-decoration-none text-white">Log In</a>';
+});
+
+const logout = () => {
+    fetch('/logout')
+    .then(response => response.json())
+    .then(data => {
+        if (data.message !== 'Success') alert("Could not Log Out. Please try again");
+    });
+}
+
 window.onscroll = () =>{
     section.forEach(sec => {
         let top = window.scrollY;
@@ -64,11 +81,11 @@ needHelpPageLink.addEventListener('click', () => {
 function applyedloan() {
     // I closed these functions for now since they were getting kind of annoying - Kehan
     //alert("You have not applyed for loans !! check Need help? for instructions");
- }
+}
 
- function applyedpension(){
+function applyedpension(){
     //alert("You are not applyed for pension, check Need help? for instructions")
- }
+}
 
 let messages = [];
 
