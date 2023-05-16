@@ -8,7 +8,9 @@ body {
 	width: 100%;
 	justify-content: center;
 	background-image: url("image64.jpg");
-    background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
 }
 h1 {
 	text-align: center;
