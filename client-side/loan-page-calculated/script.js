@@ -12,48 +12,24 @@ const partonNIC         = document.getElementById("parton-nic");
 const domain = window.location.origin;
 document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 
-function calculateDueDate(dueDateEl) {
-  var currentDate = new Date();
+/*
+const loadData = async() => {
+  const userDataResponse = await fetch(`${domain}/profile/userData`);
+  const userData = await userDataResponse.json();
 
-  var currentMonth = currentDate.getMonth();
-  var today = currentDate.getDate();
+  userIDEl.innerHTML = userData.userId;
+  emailAddrEl.innerHTML = userData.emailAddr;
 
-  var nextRenewalDate = new Date();
-  nextRenewalDate.setMonth(currentMonth + 1, 1);
+  reasonEl.innerHTML = localStorage.getItem('reasonForLoan') || null;
+  typeEl.innerHTML = localStorage.getItem('typeOfLoan') || null;
+  amountEl.innerHTML = localStorage.getItem('loanAmount') || null;
+  timePeriodEl.innerHTML = localStorage.getItem('timePeriod') || null;
+  paymentEl.innerHTML = localStorage.getItem('monthlyPayment') || null;
+  dueDateEl.innerHTML = localStorage.getItem('dueDate') || null;
+  partonName.innerHTML = localStorage.getItem('partonName') || null;
+  partonNIC.innerHTML = localStorage.getItem('partonNIC') || null;
 
-  var nextRenewalYear = nextRenewalDate.getFullYear();
-  var nextRenewalMonth = nextRenewalDate.getMonth();
-
-  if(today > 15){
-    var formattedNextRenewalDate = nextRenewalYear + ' / ' + (nextRenewalMonth + 1) + ' / ' + '15';
-  }else{
-    var formattedNextRenewalDate = nextRenewalYear + ' / ' + (nextRenewalMonth) + ' / ' + '15';
-  }
-
-  dueDateEl.textContent = formattedNextRenewalDate;
+  localStorage.clear();
 }
-
-calculateDueDate(dueDateEl);
-
-function calculateMonthlyPayment(amountEl, timePeriodEl, paymentEl) {
-  var amount = parseInt(amountEl.textContent);
-  var timePeriod = parseInt(timePeriodEl.textContent);
-
-  var fullPayment;
-  var monthlyPayment;
-
-  if (timePeriod === 12) {
-    fullPayment = (amount * 105) / 100;
-    monthlyPayment = fullPayment / 12;
-  } else if (timePeriod === 24) {
-    fullPayment = (amount * 108) / 100;
-    monthlyPayment = fullPayment / 24;
-  } else if (timePeriod >= 36 && timePeriod <= 60) {
-    fullPayment = (amount * 110) / 100;
-    monthlyPayment = fullPayment / timePeriod;
-  }
-
-  paymentEl.textContent = monthlyPayment.toFixed(2);
-}
-
-calculateMonthlyPayment(amountEl, timePeriodEl, paymentEl);
+loadData();
+*/

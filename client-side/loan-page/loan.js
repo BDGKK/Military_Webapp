@@ -198,7 +198,6 @@ const validateInputs = [
     isInterestRateForTimePeriodValid, isIncomeEvidenceValid,
     isPatronNameValid, isPatronNICValid, isPatronIncomeEvidenceValid
 ];
-
 const isDataValid = (index) => {
 	// Change the index to match with the correct function in the array
     if (index === 3) index--;
@@ -215,26 +214,68 @@ const isDataValid = (index) => {
     }
     return true;
 }
-
 document.querySelectorAll('input').forEach((item, index) => {
     item.addEventListener('focus', () => {
         isDataValid(index);
     })
 });
 
-document.querySelector('button').addEventListener('click', async() => {
-    if (!isDataValid(19)) {
-        console.log("Invalid");
-        return;
+function calculateDueDate(dueDateEl) {
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let today = currentDate.getDate();
+
+    let nextRenewalDate = new Date();
+    nextRenewalDate.setMonth(currentMonth + 1, 1);
+
+    let nextRenewalYear = nextRenewalDate.getFullYear();
+    let nextRenewalMonth = (nextRenewalDate.getMonth() + 1).toString().padStart(2, '0');
+    let formattedNextRenewalDate;
+    
+    if (today > 15) {
+        formattedNextRenewalDate = nextRenewalYear + '/' + (nextRenewalMonth + 1) + '/' + '15';
+    } else {
+        formattedNextRenewalDate = nextRenewalYear + '/' + (nextRenewalMonth) + '/' + '15';
     }
 
-    // Replace these data with the real amount, interestRate, timePeriod, partonName and userId
+    return formattedNextRenewalDate;
+}
+
+function calculateMonthlyPayment(amountEl, timePeriodEl, paymentEl) {
+    let amount = parseInt(amountEl.textContent);
+    let timePeriod = parseInt(timePeriodEl.textContent);
+
+    let fullPayment;
+    let monthlyPayment;
+
+    if (timePeriod === 12) {
+        fullPayment = (amount * 105) / 100;
+        monthlyPayment = fullPayment / 12;
+    } else if (timePeriod === 24) {
+        fullPayment = (amount * 108) / 100;
+        monthlyPayment = fullPayment / 24;
+    } else if (timePeriod >= 36 && timePeriod <= 60) {
+        fullPayment = (amount * 110) / 100;
+        monthlyPayment = fullPayment / timePeriod;
+    }
+
+    paymentEl.textContent = monthlyPayment.toFixed(2);
+}
+
+document.querySelector('button').addEventListener('click', async() => {
+    if (!isDataValid(19)) { return; }
+
+    const amount = null; // loan amount
+    const interestRate = null; // interest rate
+    const timePeriod = null; // Time Period
+    const partonName = null; // Parton Name
+
     const loanInfo = {
         amount: 123,
         interestRate: 5,
         timePeriod: 12, // Put time period in either years or months (not both at once)
-        partonName: 'Johnny',
-        userId: '1'
+        partonName: 'Johnny'
+        //userId: '1'
     }
 
     const response = await fetch(`${domain}/loan/loanInfo`, {
@@ -246,7 +287,25 @@ document.querySelector('button').addEventListener('click', async() => {
         body: JSON.stringify(loanInfo)
     });
 
-    if (response.ok) {
-        alert("Successfully Submitted");
+    if (!response.ok) {
+        alert("Failed to submit the form");
+        return;
+    }
+
+    // Submit the loan document
+    const formData = new FormData();
+    const file = incomeEvidenceEl.files[0];
+    formData.append('myFile', file);
+
+    const fileUploadResponse = await fetch(`${domain}/loan/uploadDocument`, {
+        method: 'POST',
+        body: formData
+    });
+
+    if (fileUploadResponse.ok) {
+        // Upload stuff to localstorage
+        window.location.href = `${domain}/loan-calculated`;
+    } else {
+        alert("Could not submit successfully");
     }
 });
