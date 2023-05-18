@@ -29,6 +29,16 @@
             font-family: 'Orbitron', sans-serif;
         }
 
+        footer {
+            display: flex;
+            position: fixed;
+            bottom: 2em;
+            right: 2em;
+        }
+        a {
+            padding: 0.5em 1em;
+            border-radius: 0.25em;
+        }
     </style>
 </head>
 <body>
@@ -60,7 +70,8 @@
         </div>
             <button id="login-btn" title="Login" class="btn btn-outline-primary btn-block text-dark mt-3"><h5>Log In</h5></button>
         </span>
-    </div> 
+    </div>
+    <footer><a class="btn btn-outline-primary btn-block text-white mt-3" href="/adminLogin">Login as Admin</a></footer>
 
     <script defer src="user_login.js"></script>
 </body>
