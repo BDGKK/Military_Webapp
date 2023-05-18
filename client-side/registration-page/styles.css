@@ -7,7 +7,7 @@ body {
 	display: flex;
 	width: 100%;
 	justify-content: center;
-	background-image: url("image64.jpg");
+    background-image: linear-gradient(#4CD9FE,#1F2F98);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: 100% 100%;
@@ -47,13 +47,13 @@ button {
 	height: 2.5em;
 	font-size: 1em;
 	font-weight: bold;
-	background-color: black;
-	color: yellow;
-	border: 0.2em solid yellow;
+	background-color: #1F2F98;
+	color: white;
+	border: 0.2em solid #1F2F98;
 }
 button:hover {
-	background-color: yellow;
-	color: black;
+	background-color: white;
+	color: #1F2F98;
 }
 button:active {
 	opacity: 80%;
