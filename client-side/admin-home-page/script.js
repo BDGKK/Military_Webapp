@@ -1,7 +1,7 @@
 const body = document.querySelector('body');
 const domain = window.location.origin;
 
-document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
+document.querySelector('head').innerHTML += ``;
 
 fetch(`${domain}/adminHomepage/allUserIds`)
 .then(response => response.json())
