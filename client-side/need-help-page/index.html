@@ -1,52 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Help Desk</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="/logo.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .cad {
+            background-image: linear-gradient(#4CD9FE, #1F2F98);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            height: 100%;
+        }
+
+        .xy {
+            background-color: white;
+            margin-left: 5%;
+            padding: 2%;
+            margin-right: 5%;
+            border-radius: 10px;
+        }
+
+        .column1 {
+            margin-left: 15%;
+        }
+
+        .column2 {
+            margin-top: 5%;
+            margin-left: 12.5%;
+            font-family: 'Orbitron', sans-serif;
+        }
+    </style>
     <script defer src="script.js"></script>
 </head>
-<body>
-    <body style="background-image: url('image60.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%;">
 
-    <div class="d-flex justify-content-center mt-3 text-white">
-        <h2 style="font-family:cursive;"><b>Welcome to the military salute!!!</b></h2>
-        </span>
+<body>
+    <div class= cad>
+        <div class="row">
+        <div class="column1"></div> <!-- Logo Holder -->
+        <div class="column2">
+            <h1 class="name">MILITARY SALUTE</h1>
+        </div>
+    </div>
+    <h2 class="text-dark d-flex justify-content-center" style="font-family:cursive;"><b>Welcome to the military salute!!!</b></h2>
+    <br>
+    <h5 style="font-family:cursive; text-align:center;" class="text-dark"><i> This page will help you to give instructions about how to use our web page.</i></h5>
+        <div class=xy>
+            <h5 class="text-dark">Registration</h5>
+            <p class="text-dark">If you alredy have an account please log in to the web page by entering your email and user password. If you don't have an account please go to the <b>registraion</b> tab in the home page and upload your details. </p>
+            <!-- registration page should be linked end of this line -->
+            <p class="text-dark">If your details are confirmed by the admins, you will have your own profile in this web page. To see your own profile please click on the <b>profile</b> tab in our services. <a href="/registration">Registration Tab</a></p>
+        </div>
+    <br>
+    <div class=xy>
+        <h5 class="text-dark">Forget password</h5>
+        <!-- forget password page should be linked in this line -->
+        <p class="text-dark"> If you forget your password please go through this link and create a new password.<a href="/forget-password">Forget password tab</a></p>
     </div>
     <br>
-    <h5 style="font-family:cursive; text-align:center;" class="text-white"><i> This page will help you to give instructions about how to use our web page.</i></h5>
-    <div class="p-4 mt-4">
-    <h5 class="text-white">Registration</h5>
-    <p class="text-white">If you alredy have an account please log in to the web page by entering your email and user password. If you don't have an account please go to the <b>registraion</b> tab in the home page and upload your details. </p>
-    <!-- registration page should be linked end of this line -->
-    <p class="text-white">If your details are confirmed by the admins, you will have your own profile in this web page. To see your own profile please click on the <b>profile</b> tab in our services. <a href="" id="registration-page-link">Registration Tab</a></p>
+    <div class=xy>
+        <h5 class="text-dark">Pension</h5>
+        <!-- pension form page should be linked in this line -->
+        <p class="text-dark">After registering to the our military salute web page If you want to apply for the <b>pension</b>, please click on the download application tab >> pension tab to go to the pension application page. If you can't find pension application page please go through this link. <a href="/pension">Pension Application tab</a></p>
+        <p class="text-dark">your <b>monthly pension</b> will calculate as a precentage of the salary you had when you leave from the service.</p>
+        <p class=text-dark>If you are eligible for pension, The date of you recieve your monthly payment will inform you through your user email address.</p>
+        <p class="text-dark">you can take a direct look at your pension summery by cliking <b>Pension</b> tab. </p>
+    </div>
     <br>
-    <h5 class="text-white">Forget password</h5>
-    <!-- forget password page should be linked in this line -->
-    <p class="text-white"> If you forget your password please go through this link and create a new password.<a href="" id="forget-password-page-link">Forget password tab</a></p>
+    <div class=xy>
+        <h5 class="text-dark">Loan</h5>
+        <!-- loan page should be linked linked in this line -->
+        <p class="text-dark">After registering to the our military salute web page If you want to apply for the loan, please click on the download application tab >> loan tab to go to the loan application page. If you can't find loan application page please go through this link. <a href="/loan">Loan Application Tab</a></p>
+        <p class="text-dark">your <b>monthly interset payment</b> will be calculate based on the interest rate for time period you selected in your loan application </p>
+        <p class="text-dark">If you are eligible for recieve the loan, The date of you have to pay your monthly payment will inform you through your user email address. </p>
+        <p class="text-dark">Submission of your documents and your parton documents to confirm your loan application is mandatory.</p>
+        <p class="text-dark">you can take a direct look at your loan summery by cliking <b>Loan</b> tab.</p>
+    </div>
     <br>
-    <h5 class="text-white">Pension</h5>
-    <!-- pension form page should be linked in this line -->
-    <p class="text-white">After registering to the our military salute web page If you want to apply for the <b>pension</b>, please click on the download application tab >> pension tab to go to the pension application page. If you can't find pension application page please go through this link. <a href="" id="pension-page-link">Pension Application tab</a></p>
-    <p class="text-white">your <b>monthly pension</b> will calculate as a precentage of the salary you had when you leave from the service.</p>
-    <p class="text-white">If you are eligible for pension, The date of you recieve your monthly payment will inform you through your user email address.</p>
-    <p class="text-white">you can take a direct look at your pension summery by cliking <b>Pension</b> tab. </p>
+    <div class=xy>
+        <h5 class="text-dark">Chat-bot</h5>
+        <p class="text-dark">If you have any questions about the process and you need help please connect with <b>chatbot</b> in the corner and it will response you some pre-planed answers and if you need more help please kindly wait for admin response.</p>
+    </div>
     <br>
-    <h5 class="text-white">Loan</h5>
-    <!-- loan page should be linked linked in this line -->
-    <p class="text-white">After registering to the our military salute web page If you want to apply for the loan, please click on the download application tab >> loan tab to go to the loan application page. If you can't find loan application page please go through this link. <a href="" id="loan-page-link">Loan Application Tab</a></p>
-    <p class="text-white">your <b>monthly interset payment</b> will be calculate based on the interest rate for time period you selected in your loan application </p>
-    <p class="text-white">If you are eligible for recieve the loan, The date of you have to pay your monthly payment will inform you through your user email address. </p>
-    <p class="text-white">Submission of your documents and your parton documents to confirm your loan application is mandatory.</p>
-    <p class="text-white">you can take a direct look at your loan summery by cliking <b>Loan</b> tab.</p>
-    <br>
-    <h5 class="text-white">Chat-bot</h5>
-    <p class="text-white">If you have any questions about the process and you need help please connect with <b>chatbot</b> in the corner and it will response you some pre-planed answers and if you need more help please kindly wait for admin response.</p>
-    <br>
-    <h5 class="text-white">Feedback</h5>
-    <p class="text-white">If you happy about our webpage please kindly leave a feedback and share your ideas with us. Using that we can give you more suitable and more efficient service for you.</p>
+    <div class=xy>
+        <h5 class="text-dark">Feedback</h5>
+        <p class="text-dark">If you happy about our webpage please kindly leave a feedback and share your ideas with us. Using that we can give you more suitable and more efficient service for you.</p>
+    </div>
 </div>
 </body>
+
 </html>
