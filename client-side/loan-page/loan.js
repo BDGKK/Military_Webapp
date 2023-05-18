@@ -22,7 +22,7 @@ const domain = window.location.origin;
 document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 
 const hasNumbersOnly = (value) => {
-	return /^[0-9]+$/i.test(value);
+    return /^[0-9]+$/i.test(value);
 }
 const isADocument = (value) => {
     return /(\.pdf|\.docx?)/i.test(value);
@@ -33,17 +33,17 @@ const getLoanPurpose = () => {
         loanPurposeCheck1El.checked &&
         !loanPurposeCheck2El.checked &&
         !loanPurposeCheck3El.checked;
-    
+
     const isHouseLoan =
         !loanPurposeCheck1El.checked &&
         loanPurposeCheck2El.checked &&
         !loanPurposeCheck3El.checked;
-    
+
     const ishouseLoan =
         !loanPurposeCheck1El.checked &&
         !loanPurposeCheck2El.checked &&
         loanPurposeCheck3El.checked;
-    
+
     return isPersonalLoan ? 'personal loan' : isHouseLoan ?
         'house loan' : ishouseLoan ? 'house loan' : 'invalid';
 }
@@ -57,43 +57,43 @@ const getSourceOfIncome = () => {
         sourceOfIncomePensionCheckEl.checked &&
         !sourceOfIncomeSavingsCheckEl.checked &&
         !sourceOfIncomeJobCheckEl.checked;
-    
+
     const savings =
         !sourceOfIncomePensionCheckEl.checked &&
         sourceOfIncomeSavingsCheckEl.checked &&
         !sourceOfIncomeJobCheckEl.checked;
-    
+
     const job =
         !sourceOfIncomePensionCheckEl.checked &&
         !sourceOfIncomeSavingsCheckEl.checked &&
         sourceOfIncomeJobCheckEl.checked;
-    
+
     return pension ? 'pension' : savings ? 'savings' : job ? 'job' : 'invalid';
 }
 const getInterestRateForTimePeriod = () => {
-    const months12 = 
+    const months12 =
         interestRate12MonthsCheckEl.checked &&
         !interestRate24MonthsCheckEl.checked &&
         !interestRate36MonthsCheckEl.checked &&
-        !interestRateHigherCheckEl.checked;
-    const months24 = 
+        interestRateHigherCheckEl.value.trim() === "";
+    const months24 =
         !interestRate12MonthsCheckEl.checked &&
         interestRate24MonthsCheckEl.checked &&
         !interestRate36MonthsCheckEl.checked &&
-        !interestRateHigherCheckEl.checked;
-    const months36 = 
+        interestRateHigherCheckEl.value.trim() === "";
+    const months36 =
         !interestRate12MonthsCheckEl.checked &&
         !interestRate24MonthsCheckEl.checked &&
         interestRate36MonthsCheckEl.checked &&
-        !interestRateHigherCheckEl.checked;
-    const monthsAbove = 
+        interestRateHigherCheckEl.value.trim() === "";
+    const monthsAbove =
         !interestRate12MonthsCheckEl.checked &&
         !interestRate24MonthsCheckEl.checked &&
         !interestRate36MonthsCheckEl.checked &&
-        interestRateHigherCheckEl.checked;
-    
+        interestRateHigherCheckEl.value.trim() !== "";
+
     return months12 ? '12 months' : months24 ? '24 months' : months36 ? '36 months'
-    : monthsAbove ? 'above 5 years' : 'invalid';
+        : monthsAbove ? 'above 5 years' : 'invalid';
 }
 
 const isUIDValid = () => {
@@ -199,7 +199,7 @@ const validateInputs = [
     isPatronNameValid, isPatronNICValid, isPatronIncomeEvidenceValid
 ];
 const isDataValid = (index) => {
-	// Change the index to match with the correct function in the array
+    // Change the index to match with the correct function in the array
     if (index === 3) index--;
     if (index >= 4) index -= 2;
     if (index > 3) index--;
@@ -210,17 +210,17 @@ const isDataValid = (index) => {
     }
 
     for (let i = 0; i < index; i++) {
-        if(!validateInputs[i]()) return false;
+        if (!validateInputs[i]()) return false;
     }
     return true;
 }
 document.querySelectorAll('input').forEach((item, index) => {
     item.addEventListener('focus', () => {
-        isDataValid(index);
-    })
+        if (!isDataValid(index)) item.blur();
+    });
 });
 
-function calculateDueDate(dueDateEl) {
+function calculateDueDate() {
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let today = currentDate.getDate();
@@ -229,60 +229,54 @@ function calculateDueDate(dueDateEl) {
     nextRenewalDate.setMonth(currentMonth + 1, 1);
 
     let nextRenewalYear = nextRenewalDate.getFullYear();
-    let nextRenewalMonth = (nextRenewalDate.getMonth() + 1).toString().padStart(2, '0');
-    let formattedNextRenewalDate;
-    
-    if (today > 15) {
-        formattedNextRenewalDate = nextRenewalYear + '/' + (nextRenewalMonth + 1) + '/' + '15';
-    } else {
-        formattedNextRenewalDate = nextRenewalYear + '/' + (nextRenewalMonth) + '/' + '15';
-    }
+    let nextRenewalMonth = (nextRenewalDate.getMonth() + (today > 15 ? 2 : 1) ).toString().padStart(2, '0');
+    let formattedNextRenewalDate = nextRenewalYear + '/' + (nextRenewalMonth) + '/' + '15';
 
     return formattedNextRenewalDate;
 }
-
-function calculateMonthlyPayment(amountEl, timePeriodEl, paymentEl) {
-    let amount = parseInt(amountEl.textContent);
-    let timePeriod = parseInt(timePeriodEl.textContent);
-
+function calculateMonthlyPayment(amount, timePeriod) {
     let fullPayment;
-    let monthlyPayment;
 
     if (timePeriod === 12) {
         fullPayment = (amount * 105) / 100;
-        monthlyPayment = fullPayment / 12;
+
     } else if (timePeriod === 24) {
         fullPayment = (amount * 108) / 100;
-        monthlyPayment = fullPayment / 24;
-    } else if (timePeriod >= 36 && timePeriod <= 60) {
+
+    } else if (timePeriod > 35 && timePeriod < 61) {
         fullPayment = (amount * 110) / 100;
-        monthlyPayment = fullPayment / timePeriod;
     }
 
-    paymentEl.textContent = monthlyPayment.toFixed(2);
+    const monthlyPayment = fullPayment / timePeriod;
+    return monthlyPayment.toFixed(2);
 }
 
-document.querySelector('button').addEventListener('click', async() => {
+document.querySelector('button').addEventListener('click', async () => {
     if (!isDataValid(19)) { return; }
 
-    const amount = null; // loan amount
-    const interestRate = null; // interest rate
-    const timePeriod = null; // Time Period
-    const partonName = null; // Parton Name
+    const amount = loanAmountEl.value;
+
+    let interestRate = getInterestRateForTimePeriod();
+    interestRate = (interestRate === '12 months') ? 5 : (interestRate === '24 months') ? 8 : (interestRate === '36 months') ? 10 : 12;
+
+    let timePeriod = getInterestRateForTimePeriod();
+    timePeriod = (timePeriod === '12 months') ? 12 : (timePeriod === '24 months') ? 24 : (timePeriod === '36 months') ? 36 :
+        parseInt(interestRateHigherCheckEl.value);
+
+    const partonName = patronNameEl.value;
 
     const loanInfo = {
-        amount: 123,
-        interestRate: 5,
-        timePeriod: 12, // Put time period in either years or months (not both at once)
-        partonName: 'Johnny'
-        //userId: '1'
+        amount,
+        interestRate,
+        timePeriod,
+        partonName
     }
 
     const response = await fetch(`${domain}/loan/loanInfo`, {
         method: 'POST',
         headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(loanInfo)
     });
@@ -292,6 +286,17 @@ document.querySelector('button').addEventListener('click', async() => {
         return;
     }
 
+    localStorage.setItem('reasonForLoan', getLoanPurpose());
+    localStorage.setItem('typeOfLoan', getSourceOfIncome());
+    localStorage.setItem('loanAmount', amount);
+    localStorage.setItem('timePeriod', timePeriod);
+    localStorage.setItem('monthlyPayment', calculateMonthlyPayment(amount, timePeriod));
+    localStorage.setItem('dueDate', calculateDueDate());
+    localStorage.setItem('partonName', partonName);
+    localStorage.setItem('partonNIC', patronNICEl.value);
+
+    window.location.href = `${domain}/loan-calculated`;
+    /*
     // Submit the loan document
     const formData = new FormData();
     const file = incomeEvidenceEl.files[0];
@@ -308,4 +313,5 @@ document.querySelector('button').addEventListener('click', async() => {
     } else {
         alert("Could not submit successfully");
     }
+    */
 });
