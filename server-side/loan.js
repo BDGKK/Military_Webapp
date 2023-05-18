@@ -24,10 +24,10 @@ router.get('/loan', (req, res, next) => {
 });
 router.use('/loan', express.static('./client-side/loan-page'));
 
-const uploadFileToDrive = async(fileObject, userId) => {
+const uploadFileToDrive = async (fileObject, userId) => {
     const bufferStream = new stream.PassThrough(); // bufferStream turns the file into smaller chunks/packages
     bufferStream.end(fileObject.buffer);
-    
+
     // Initialize instance of Google Drive
     const drive = await google.drive({ version: 'v3', auth });
 
@@ -43,7 +43,7 @@ const uploadFileToDrive = async(fileObject, userId) => {
         },
         fields: "id,name"
     });
-    
+
     const { data } = response;
     console.log(`User ${userId} uploaded ${data.name}`);
 }
@@ -52,7 +52,7 @@ router.post('/loan/uploadDocument', (req, res) => {
     // 'myFile' is the name of the input from the HTML form
     upload.single('myFile')(req, res, (err) => {
         if (err) throw err;
-        
+
         uploadFileToDrive(req.file, req.session.userId);
         res.status(200).json({
             message: 'File uploaded successfully',
@@ -66,15 +66,15 @@ router.post('/loan/loanInfo', (req, res) => {
     const timePeriod = req.body.timePeriod;
     const partonName = req.body.partonName;
     const userId = req.session.userId;
-    
+
     const insertLoanDataQuery = `
         INSERT INTO loan(amount, interestRate, timePeriod, partonName, userID)
         VALUES (${amount}, ${interestRate}, ${timePeriod}, '${partonName}', '${userId}')`;
-    
+
     connection.query(insertLoanDataQuery, (err) => {
         if (err) throw err;
         console.log(`User ${userId} applied for a loan`);
-        res.status(200).send({message: "Successfully Submitted!"});
+        res.status(200).send({ message: "Successfully Submitted!" });
     });
 });
 

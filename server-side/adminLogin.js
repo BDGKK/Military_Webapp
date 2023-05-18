@@ -10,7 +10,7 @@ router.post('/adminLogin/adminLoginInfo', (req, res) => {
     const adminPassword = req.body.password;
 
     const findAdminEmailQuery = `SELECT password FROM admin WHERE email = "${adminEmail}"`;
-    connection.query(findAdminEmailQuery, async(err, result) => {
+    connection.query(findAdminEmailQuery, async (err, result) => {
         if (err) throw err;
         const isAdminInDatabase = result.length === 1;
 
@@ -20,12 +20,12 @@ router.post('/adminLogin/adminLoginInfo', (req, res) => {
 
             if (isPasswordMatching) {
                 req.session.isAdminLoggedIn = true;
-                res.status(200).send({message: "Admin is verified"});
+                res.status(200).send({ message: "Admin is verified" });
             } else {
-                res.status(400).send({message: "Password is incorrect"});
+                res.status(400).send({ message: "Password is incorrect" });
             }
         } else {
-            res.status(400).send({message: "Email is incorrect"});
+            res.status(400).send({ message: "Email is incorrect" });
         }
     });
 });

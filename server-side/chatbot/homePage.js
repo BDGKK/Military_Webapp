@@ -22,7 +22,7 @@ router.post('/chatbot/userinput', (req, res) => {
         });
     }
 
-    chatbotResponse = {message: chatbotModel(humanMessage)};
+    chatbotResponse = { message: chatbotModel(humanMessage) };
 
     res.status(200).send({
         message: "Posted successfully"
@@ -30,13 +30,13 @@ router.post('/chatbot/userinput', (req, res) => {
 });
 
 // Send user feedback to Our Website as an email
-router.post('/feedback', async(req, res) => {
+router.post('/feedback', async (req, res) => {
     const { name, email, subject, comment } = req.body;
 
     if (!isFeedbackEmailSent(name, email, subject, comment)) {
-        res.status(400).send({message: "Could not send Feedback"});
+        res.status(400).send({ message: "Could not send Feedback" });
     } else {
-        res.status(200).send({message: "Feedback Sent Successfully"});
+        res.status(200).send({ message: "Feedback Sent Successfully" });
     }
 });
 
@@ -47,9 +47,9 @@ router.get('/userLoginStatus', (req, res) => {
 router.get('/logout', (req, res) => {
     try {
         req.session.destroy();
-        res.status(200).send({message: 'Success'});
+        res.status(200).send({ message: 'Success' });
     } catch (e) {
-        res.status(200).send({message: 'Failed'});
+        res.status(200).send({ message: 'Failed' });
     }
 });
 

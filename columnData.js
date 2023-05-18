@@ -109,167 +109,167 @@ const data = {
         {
             id: 'UR001',
             name: 'Field Marshal',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR002',
             name: 'General',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR003',
             name: 'Lieutenant General',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR004',
             name: 'Major General',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR005',
             name: 'Brigadier',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR006',
             name: 'Colonel',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR007',
             name: 'Lieutenant Colonel',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR008',
             name: 'Major',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR009',
             name: 'Captain ',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR010',
             name: 'Lieutenant',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR011',
             name: '2nd Lieutenant',
-            forceID: 'F001' 
+            forceID: 'F001'
         },
         {
             id: 'UR012',
             name: 'Admiral of the Fleet',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR013',
             name: 'Admiral',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR014',
             name: 'Vice Admiral',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR015',
             name: 'Rear Admiral',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR016',
             name: 'Commodor',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR017',
             name: 'Captain',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR018',
             name: 'Commander',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR019',
             name: 'Lieutenant Commander',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR020',
             name: 'Lieutenant',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR021',
             name: 'Sub Lieutenant',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR022',
             name: 'Act Sub Lieutenant',
-            forceID: 'F002' 
+            forceID: 'F002'
         },
         {
             id: 'UR023',
             name: 'Marshal of the Air Force',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR024',
             name: 'Air Chief Marshal',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR025',
             name: 'Air Marshal',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR026',
             name: 'Air Vice Marshal',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR027',
             name: 'Air Commodore',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR028',
             name: 'Group Captain',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR029',
             name: 'Wing Commander',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR030',
             name: 'Squadron Leader',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR031',
             name: 'Flight Lieutenant ',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR032',
             name: 'Flying Officer',
-            forceID: 'F003' 
+            forceID: 'F003'
         },
         {
             id: 'UR033',
             name: 'Piolt Officer',
-            forceID: 'F003' 
+            forceID: 'F003'
         }
     ],
     SLCities: [

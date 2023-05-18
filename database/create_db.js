@@ -91,7 +91,7 @@ const connection = mysql.createConnection({
     port: DB_PORT
 });
 
-connection.connect(async(err) => {
+connection.connect(async (err) => {
     if (err) {
         const mysqlNotConnectedRegexp = /(connect)*(econnrefused)\b/i;
 
@@ -107,11 +107,11 @@ connection.connect(async(err) => {
     connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`, (err) => {
         if (err) throw err;
     });
-    
-    connection.changeUser({database: DB_NAME}, (err) => {
+
+    connection.changeUser({ database: DB_NAME }, (err) => {
         if (err) throw err;
     }); // Set database for connection
-    
+
     // Create All Database tables
     dbTables.map((table) => {
         connection.query(table, (err) => {
@@ -125,7 +125,7 @@ connection.connect(async(err) => {
     let forcesInsertionQuery = 'INSERT INTO FORCES (forceID, forceName) VALUES ';
     forcesInsertionQuery += columnData.forces.map((force) =>
         `('${force.id}', '${force.name}')`).join(',') + ";";
-    
+
     let regimentsInsertionQuery = 'INSERT INTO REGIMENT (regimentID, regimentName, forceID) VALUES ';
     regimentsInsertionQuery += columnData.regiments.map((regiment) =>
         `('${regiment.id}', '${regiment.name}', '${regiment.forceID}')`).join(',') + ";";

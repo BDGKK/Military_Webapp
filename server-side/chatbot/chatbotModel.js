@@ -7,44 +7,44 @@ const chatbotDataset = {
 
     "help": "Of course! What can I help you with?",
 
-    "creators": "The creators of this application can be found on the homepage in the About section. "+
-        "Please click on the link below to see the website authors<br>"+
+    "creators": "The creators of this application can be found on the homepage in the About section. " +
+        "Please click on the link below to see the website authors<br>" +
         `<a href='${DOMAIN_NAME}/#about-section'>Click here</a>`,
-    
-    "pensions": "The pension is a retirement plan that gives income to military members after "+
-        "they have retired. Click the link below to move to the pensions page<br>"+
+
+    "pensions": "The pension is a retirement plan that gives income to military members after " +
+        "they have retired. Click the link below to move to the pensions page<br>" +
         `<a href='${DOMAIN_NAME}/pension'>Click here</a>`,
-    
-    "loans": "The loan is the amount of money that the military leaver has borrowed that must be "+
-        "repaid with interest. Click the link below to move to the loans page<br>"+
+
+    "loans": "The loan is the amount of money that the military leaver has borrowed that must be " +
+        "repaid with interest. Click the link below to move to the loans page<br>" +
         `<a href='${DOMAIN_NAME}/loan'>Click here</a>`,
-    
-    "register": "To register, please click the link below to move the registration page. Please fill in "+
+
+    "register": "To register, please click the link below to move the registration page. Please fill in " +
         `your details and submit the form to register<br><a href='${DOMAIN_NAME}/registration'>Click here</a>`,
-    
-    "feedback": "To submit feedback or contact customer support, please click on the link below to move "+
-        "to the feedback form. Please fill in the boxes and submit the form to send your request.<br>"+
+
+    "feedback": "To submit feedback or contact customer support, please click on the link below to move " +
+        "to the feedback form. Please fill in the boxes and submit the form to send your request.<br>" +
         `<a href='${DOMAIN_NAME}/#feedback-form'>Click here</a>`,
-    
-    "get-started": "1. Complete the registration process, {0}<br><br>"+
-        "2. Explore your pension options, {1}<br><br>"+
-        "3. Check out our loans page, {2}<br><br>"+
+
+    "get-started": "1. Complete the registration process, {0}<br><br>" +
+        "2. Explore your pension options, {1}<br><br>" +
+        "3. Check out our loans page, {2}<br><br>" +
         "4. (Additional instructions to enter - still in development)",
 
-    "chatbot-tasks": "I am a chatbot designed to assist in any of the following requests.<br><br>"+
-        "1. Give information on the website authors<br>"+
-        "2. Help you with pensions<br>"+
-        "3. Help you with loans<br>"+
-        "4. Help you with registration<br>"+
-        "5. Help you contact customer support<br>"+
-        "6. Help you get started with this website<br>"+
-        "7. Help you with transferring account details<br><br>"+
+    "chatbot-tasks": "I am a chatbot designed to assist in any of the following requests.<br><br>" +
+        "1. Give information on the website authors<br>" +
+        "2. Help you with pensions<br>" +
+        "3. Help you with loans<br>" +
+        "4. Help you with registration<br>" +
+        "5. Help you contact customer support<br>" +
+        "6. Help you get started with this website<br>" +
+        "7. Help you with transferring account details<br><br>" +
         "If you need any assistance, please let me know and I'll do my best to help!",
 
-    "account-transfer": "I'm sorry, you cannot transfer your data to another account.<br>"+
+    "account-transfer": "I'm sorry, you cannot transfer your data to another account.<br>" +
         "It is suggested that you create another account and fill your details from the beginning.",
-    
-    "description": "Our website is dedicated to help military retirees and leavers transition smoothly into civilian life. "+
+
+    "description": "Our website is dedicated to help military retirees and leavers transition smoothly into civilian life. " +
         "We provide support for pensions, loans and accomodations to ensure a comfortable and stress-free retirement.",
 
     "thanks": "Your welcome! I'm glad to help :)",
@@ -74,7 +74,7 @@ const getResponse = (message) => {
         anyMatch = true;
         response += chatbotDataset["greeting"] + "<br><br>";
     }
-    
+
     if (helpRegex.test(message)) {
         anyMatch = true;
         response += chatbotDataset['help'] + "<br><br>";
@@ -109,9 +109,9 @@ const getResponse = (message) => {
         anyMatch = true;
 
         response += chatbotDataset['get-started']
-        .replace('{0}', chatbotDataset['register'])
-        .replace('{1}', chatbotDataset['pensions'])
-        .replace('{2}', chatbotDataset['loans']) + "<br><br>";
+            .replace('{0}', chatbotDataset['register'])
+            .replace('{1}', chatbotDataset['pensions'])
+            .replace('{2}', chatbotDataset['loans']) + "<br><br>";
     }
 
     if (chatbotTasksRegex.test(message)) {

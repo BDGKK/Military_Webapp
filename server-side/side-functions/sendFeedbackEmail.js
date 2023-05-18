@@ -28,7 +28,7 @@ const isFeedbackEmailSent = (username, useremail, subject, comment) => {
     try {
         transporter.sendMail(mailOptions);
         return true;
-        
+
     } catch (err) {
         console.log(err);
         return false;

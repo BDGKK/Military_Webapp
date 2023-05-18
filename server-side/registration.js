@@ -9,9 +9,9 @@ router.use('/registration', express.static('./client-side/registration-page'));
 
 router.post('/registration/registryData', (req, res) => {
     const registryData = req.body.registryData;
-    
+
     if (registryData) {
-        connection.query('SELECT MAX(userID) as max_id FROM user_table', async(err, result) => {
+        connection.query('SELECT MAX(userID) as max_id FROM user_table', async (err, result) => {
             if (err) throw err;
 
             const {
@@ -24,7 +24,7 @@ router.post('/registration/registryData', (req, res) => {
 
             // Increment highest userid for new user
             let userId = result[0].max_id;
-            userId = userId === null ? 1 : parseInt(userId)+1;
+            userId = userId === null ? 1 : parseInt(userId) + 1;
 
             const encryptedPassword = await encryptPassword(password);
 
@@ -33,8 +33,8 @@ router.post('/registration/registryData', (req, res) => {
                 + permanentAddress.city + ',' + permanentAddress.province;
             const temporaryFullAddress = temporaryAddress.streetAddress + ','
                 + temporaryAddress.city + ',' + temporaryAddress.province;
-            
-            const registryDataInsertQuery = 
+
+            const registryDataInsertQuery =
                 `INSERT INTO user_table (
                     userID, firstName, lastName, gender,
                     permanentAddress, permanentPostCode,
@@ -52,13 +52,13 @@ router.post('/registration/registryData', (req, res) => {
                     '${recruitedDate}', ${yearsOfService}, '${retiredDate}',
                     '${rankID}', '${regimentID}'
                 );`;
-            
+
             const duplicatePrimaryKeyErrorRegex = /(ER_DUP_ENTRY)/;
 
             connection.query(registryDataInsertQuery, (err) => {
                 if (err) {
                     if (duplicatePrimaryKeyErrorRegex.test(err.message)) {
-                        res.status(400).send({message: "Email is already in use. Please use a different Gmail address"});
+                        res.status(400).send({ message: "Email is already in use. Please use a different Gmail address" });
                         return;
                     } else {
                         throw err;
@@ -66,24 +66,24 @@ router.post('/registration/registryData', (req, res) => {
                 }
 
                 if (!isRegistryEmailSent(emailAddr)) {
-                    res.status(400).send({message: "Error with verifying gmail address"});
+                    res.status(400).send({ message: "Error with verifying gmail address" });
                     return;
                 }
 
                 console.log(`Added User ${userId}`);
-                res.status(200).send({userId});
+                res.status(200).send({ userId });
             });
         });
-        
+
     } else {
-        res.status(400).send({message: "Registration Failed"});
+        res.status(400).send({ message: "Registration Failed" });
     }
 });
 
 // This API contains the ranks, regiments, cities and provinces to be shown in the registry page
 router.get('/registration/columnData', (req, res) => {
     const { ranks, regiments, SLCities, SLProvinces } = columnData;
-    res.send({ranks, regiments, SLCities, SLProvinces});
+    res.send({ ranks, regiments, SLCities, SLProvinces });
 });
 
 module.exports = router;

@@ -24,10 +24,10 @@ router.get('/pension', (req, res, next) => {
 });
 router.use('/pension', express.static('./client-side/pension-page'));
 
-const uploadFileToDrive = async(fileObject, userId) => {
+const uploadFileToDrive = async (fileObject, userId) => {
     const bufferStream = new stream.PassThrough(); // bufferStream turns the file into smaller chunks/packages
     bufferStream.end(fileObject.buffer);
-    
+
     // Initialize instance of Google Drive
     const drive = await google.drive({ version: 'v3', auth });
 
@@ -43,7 +43,7 @@ const uploadFileToDrive = async(fileObject, userId) => {
         },
         fields: "id,name"
     });
-    
+
     const { data } = response;
     console.log(`User ${userId} uploaded ${data.name}`);
 }
@@ -52,7 +52,7 @@ router.post('/pension/uploadDocument', (req, res) => {
     // 'myFile' is the name of the input from the HTML form
     upload.single('myFile')(req, res, (err) => {
         if (err) throw err;
-        
+
         uploadFileToDrive(req.file, req.session.userId);
         res.status(200).json({
             message: 'File uploaded successfully',
@@ -64,15 +64,15 @@ router.post('/pension/pensionInfo', (req, res) => {
     const totalAmount = req.body.totalAmount;
     const renewDate = req.body.renewDate;
     const userId = req.session.userId;
-    
+
     const insertPensionDataQuery = `
         INSERT INTO pension(totalAmount, renewDate, userID)
         VALUES (${totalAmount}, '${renewDate}', '${userId}')`;
-    
+
     connection.query(insertPensionDataQuery, (err) => {
         if (err) throw err;
         console.log(`User ${userId} applied for a pension`);
-        res.status(200).send({message: "Successfully Submitted!"});
+        res.status(200).send({ message: "Successfully Submitted!" });
     });
 });
 

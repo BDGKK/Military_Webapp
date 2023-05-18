@@ -26,7 +26,7 @@ router.get('/adminUser/:id', (req, res) => {
 
     WHERE ut.rankID = ur.rankID AND ut.regimentID = reg.regimentID 
       AND reg.forceID = frcs.forceID AND userID = ${userId};`;
-    
+
     connection.query(getUserProfileQuery, (err, userProfile) => {
         if (err) throw err;
 
@@ -47,7 +47,7 @@ router.get('/adminUser/:id', (req, res) => {
 
             connection.query(getUserLoanData, (err, userLoanData) => {
                 if (err) throw err;
-                
+
                 const allUserData = {
                     profile: userProfile[0],
                     pensions: userPensionData,

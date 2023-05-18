@@ -23,7 +23,7 @@ const isRegistryEmailSent = (userEmail) => {
   try {
     transporter.sendMail(mailOptions);
     return true;
-    
+
   } catch (err) {
     console.log(err);
     return false;

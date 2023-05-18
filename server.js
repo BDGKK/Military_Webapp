@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./download-application-documents')); // Host the download application documents
 app.use(express.static('./images')); // Host the images
 

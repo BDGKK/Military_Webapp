@@ -25,7 +25,7 @@ const isVerificationEmailSent = (userEmail, verificationCode) => {
     try {
         transporter.sendMail(mailOptions);
         return true;
-        
+
     } catch (err) {
         console.log(err);
         return false;

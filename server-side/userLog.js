@@ -10,7 +10,7 @@ router.post('/user-log/userLoginInfo', (req, res) => {
     const userPassword = req.body.password;
 
     const findUserEmailQuery = `SELECT userid, password FROM user_table WHERE emailAddr = "${userEmail}"`;
-    connection.query(findUserEmailQuery, async(err, result) => {
+    connection.query(findUserEmailQuery, async (err, result) => {
         if (err) throw err;
         const isUserInDatabase = result.length === 1;
 
@@ -18,15 +18,15 @@ router.post('/user-log/userLoginInfo', (req, res) => {
             const userIdInDB = result[0].userid;
             const userPasswordInDB = result[0].password;
             const isPasswordMatching = await bcrypt.compare(userPassword, userPasswordInDB);
-            
+
             if (isPasswordMatching) {
                 req.session.userId = userIdInDB;
-                res.status(200).send({message: "User is verified"});
+                res.status(200).send({ message: "User is verified" });
             } else {
-                res.status(400).send({message: "Password is incorrect"});
+                res.status(400).send({ message: "Password is incorrect" });
             }
         } else {
-            res.status(400).send({message: "Email is incorrect"});
+            res.status(400).send({ message: "Email is incorrect" });
         }
     });
 });
