@@ -1,66 +1,90 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <style>
-    body {
-      display: flex;
-      padding: 0;
-      margin: 0;
-      background-image: url('soldiers-4679698_1280.png');
-      background-size: 100vw 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white;
-    }
-    main {
-      display: flex;
-      background-color: black;
-      opacity: 95%;
-      padding: 2em;
-      border-radius: 0.5em;
-      gap: 3em;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5em;
-    }
-    a {
-      background-color: rgb(0, 106, 255);
-      padding: 0.5em;
-      width: 15em;
-      border: none;
-      color: white;
-      border-radius: 0.25em;
+    a:link {
+      background-color: transparent;
       text-decoration: none;
-      font-size: 1.1em;
-      transition: 0.1s;
+      font-size: 20px;
+      display: inline-block;
+    }
+    a:visited {
+      color: black;
+      background-color: transparent;
+      text-decoration: none;
+      display: inline-block;
     }
     a:hover {
-      background-color: rgb(0, 69, 167);
+      color: blue;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: linear-gradient(#4CD9FE, #1F2F98);
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .column1 {
+      margin-left: 15%;
+    }
+    .column2 {
+      margin-top: 5%;
+      margin-left: 12.5%;
+    }
+    .nad {
+      padding: 75px 75px;
+      width: 30%;
+      text-align: center;
+      display: inline-table;
+      margin: 8px 50px;
+      justify-content: center;
+      background-color: white;
+      border-radius: 18px;
+    }
+    .row {
+      width: 100%;
+      display: flex;
     }
   </style>
 </head>
+
 <body>
-  <main>
-    <div class="container">
-      <h1>Pension</h1>
-      <a href="/pension_english.docx">Download Pension Application (English)</a>
-      <a href="/pension_sinhala.docx">Download Pension Application (Sinhala)</a>
-      <a href="/pension_tamil.docx">Download Pension Application (Tamil)</a>
+  <div class="row">
+    <div class="column1">
+      <img src="/logo.png" height="180" alt="logo">
     </div>
-    <div class="container">
-      <h1>Loan</h1>
-      <a href="/loan_english.docx">Download Loan Application (English)</a>
-      <a href="/loan_sinhala.docx">Download Loan Application (Sinhala)</a>
-      <a href="/loan_tamil.docx">Download Loan Application (Tamil)</a>
+    <div class="column2">
+      <h1 class="name">MILITARY SALUTE</h1>
     </div>
-  </main>
+  </div>
+  <div class="row">
+    <div class="nad">
+      <h2>
+        <center>Pension</center>
+      </h2>
+      <a href="/pension_english.docx">Pension Application-English</a><br>
+      <a href="/pension_sinhala.docx">Pension Application-Sinhala</a><br>
+      <a href="/pension_tamil.docx">Pension Application-Tamil</a>
+    </div>
+    <div class="nad">
+      <h2>
+        <center>Loan</center>
+      </h2>
+      <a href="/loan_english.docx">Loan Application-English</a><br>
+      <a href="/loan_sinhala.docx">Loan Application-Sinhala</a><br>
+      <a href="/loan_tamil.docx">Loan Application-Tamil</a>
+    </div>
+  </div>
+
   <script>
     const domain = window.location.origin;
     document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
   </script>
 </body>
+
 </html>
