@@ -271,7 +271,6 @@ document.querySelector('button').addEventListener('click', async () => {
         timePeriod,
         partonName
     }
-
     const response = await fetch(`${domain}/loan/loanInfo`, {
         method: 'POST',
         headers: {
@@ -286,17 +285,6 @@ document.querySelector('button').addEventListener('click', async () => {
         return;
     }
 
-    localStorage.setItem('reasonForLoan', getLoanPurpose());
-    localStorage.setItem('typeOfLoan', getSourceOfIncome());
-    localStorage.setItem('loanAmount', amount);
-    localStorage.setItem('timePeriod', timePeriod);
-    localStorage.setItem('monthlyPayment', calculateMonthlyPayment(amount, timePeriod));
-    localStorage.setItem('dueDate', calculateDueDate());
-    localStorage.setItem('partonName', partonName);
-    localStorage.setItem('partonNIC', patronNICEl.value);
-
-    window.location.href = `${domain}/loan-calculated`;
-    /*
     // Submit the loan document
     const formData = new FormData();
     const file = incomeEvidenceEl.files[0];
@@ -308,10 +296,17 @@ document.querySelector('button').addEventListener('click', async () => {
     });
 
     if (fileUploadResponse.ok) {
-        // Upload stuff to localstorage
+        localStorage.setItem('reasonForLoan', getLoanPurpose());
+        localStorage.setItem('typeOfLoan', getSourceOfIncome());
+        localStorage.setItem('loanAmount', amount);
+        localStorage.setItem('timePeriod', timePeriod);
+        localStorage.setItem('monthlyPayment', calculateMonthlyPayment(amount, timePeriod));
+        localStorage.setItem('dueDate', calculateDueDate());
+        localStorage.setItem('partonName', partonName);
+        localStorage.setItem('partonNIC', patronNICEl.value);
+    
         window.location.href = `${domain}/loan-calculated`;
     } else {
         alert("Could not submit successfully");
     }
-    */
 });
