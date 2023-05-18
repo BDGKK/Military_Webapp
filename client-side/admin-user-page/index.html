@@ -5,35 +5,46 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Admin</title>
 	<style>
-         .button1 {
-            color: white;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            margin: 100px;
-            cursor: pointer;
-            font-size: 50px;
-            border-radius: 8px;
-            width: 200px;
-         }
-         .column {
-  			float: left;
-  			padding: 10px;
+        body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			background-image: linear-gradient(#4CD9FE, #1F2F98);
 		}
 
+		.button1 {
+			color: black;
+			padding: 25px 50px;
+			text-align: center;
+			display: flex;
+			margin: 100px;
+			cursor: pointer;
+			font-size: 50px;
+			border-radius: 8px;
+			width: 200px;
+			background-color: white;
+		}
+
+		.column {
+			float: center;
+			padding: 10px;
+		}
       </style>
+	  <link rel="icon" type="image/x-icon" href="/logo.png">
 </head>
 <body>
-	<div class="column" style="width: 30%;">
-		<div class="button1" style="background-color: #2A52BE;">Profile</div>
-		<div class="button1" style="background-color: #96D406">Pension</div>
-		<div class="button1" style="background-color: #F75C75;">Loan</div>
+	<div class="column">
+		<center>
+			<div class="button1">Profile</div>
+			<div class="button1">Pension</div>
+			<div class="button1">Loan</div>
+		</center>
 	</div>
-	<div class="column" style="width: 65%">
-	</div>
+
 	<script>
 		const domain = window.location.origin;
-		document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 	</script>
 </body>
 </html>
