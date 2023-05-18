@@ -6,6 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="/logo.png">
     <style>
         .p-5{
             opacity: 94%;
@@ -14,32 +15,60 @@
         }
         input {
             padding: 0.3em 0.25em;
-            border: none;
+        }
+        body{
+            background-image: linear-gradient(#4CD9FE,#1F2F98);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .column1{
+            margin-left: 15%;
+        }
+        .column2{
+            margin-top: 5%;
+            margin-left: 12.5%;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .abc{
+            border-radius: 2%;
+            padding: 10px;
         }
     </style>
 </head>
-<body style="background-image: url('image48.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%;">
-    <div class="d-flex justify-content-center">
-        <span class="bg-dark p-5">
-        <h1 class="text-white">User Forget Password</h1>
+<body>
+    <div class="row">
+        <div class="column1">
+            <img src="/logo.png" height="180" alt="logo">
+        </div>
+        <div class="column2">
+            <h1 class="name">MILITARY SALUTE</h1>
+        </div>
+    </div>
+    
+    <div class="d-flex justify-content-center abc">
+        <span class="bg-white abc">
+        <h1 class="text-dark">User Forget Password</h1>
 
         <div class="container">
-            <p class="text-white mt-3">Enter your E-mail</p>
-            <input type="email" class="from-control rounded-0" id="uemail" title="Enter Email" size="25" placeholder="enter your E-mail">
+            <p class="text-dark mt-3">Enter your E-mail</p>
+            <input type="E-mail" class="from-control rounded-0" id="uemail" title="Enter Email" size="30" placeholder="enter your E-mail">
 
-            <p class="text-white mt-3">New Password</p>
-            <input type="password" class="from-control rounded-0" id="newpw" title="Enter Password" size="25" placeholder="enter new password">
+            <p class="text-dark mt-3">New Password</p>
+            <input type="password" class="from-control rounded-0" id="newpw" title="Enter Password" size="30" placeholder="enter new password">
 
-            <p class="text-white mt-3">Confirm Password</p> 
-            <input type="password" class="from-control rounded-0" id="cmpw" title="Enter Password" size="25"placeholder="confirm your Password">
+            <p class="text-dark mt-3">Confirm Password</p>
+            <input type="password" class="from-control rounded-0" id="cmpw" title="Enter Password" size="30"placeholder="confirm your Password">
             
-            <p class="text-white mt-3">Verify Code</p> 
-            <input type="text" class="from-control rounded-0" id="digit" title="Verify Code" size="25"placeholder="Verify your code">
-
-            <form class="mt-2"></form>
-            <button id="send-vc-btn" title="Send verify code" type="submit" class="btn btn-outline-primary text-white mt-3">Send verify code</button>
+            <p class="text-dark mt-3">Verify Code</p>
+            <input class="from-control rounded-0" id="digit" title="Verify Code" size="30"placeholder="Verify your code">
+            
             <form class="mt-1"></form>
-            <button id="set-password-btn" title="Set new password" type="submit" class="btn btn-outline-primary text-white mt-3">Set new password</button>
+            <button id="send-vc-btn" title="Send verify code" type="submit" class="btn btn-outline-primary text-dark mt-3">Send verify code</button>
+            <form class="mt-3"></form>
+            <button id="set-password-btn" title="Set new password" type="submit" class="btn btn-outline-primary text-dark mt-3">Set new password</button>
         </div>
         </span>
     </div>
