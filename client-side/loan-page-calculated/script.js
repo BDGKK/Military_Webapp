@@ -1,19 +1,18 @@
-const userIDEl          = document.getElementById('user-id');
-const emailAddrEl       = document.getElementById("email-addr");
-const reasonEl          = document.getElementById("reason");
-const typeEl            = document.getElementById("type");
-const amountEl          = document.getElementById("amount");
-const timePeriodEl      = document.getElementById("time-period");
-const paymentEl         = document.getElementById("monthly-payment");
-const dueDateEl         = document.getElementById("due-date");
-const partonName        = document.getElementById("parton-name");
-const partonNIC         = document.getElementById("parton-nic");
+const userIDEl = document.getElementById('user-id');
+const emailAddrEl = document.getElementById("email-addr");
+const reasonEl = document.getElementById("reason");
+const typeEl = document.getElementById("type");
+const amountEl = document.getElementById("amount");
+const timePeriodEl = document.getElementById("time-period");
+const paymentEl = document.getElementById("monthly-payment");
+const dueDateEl = document.getElementById("due-date");
+const partonName = document.getElementById("parton-name");
+const partonNIC = document.getElementById("parton-nic");
 
 const domain = window.location.origin;
 document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${domain}/logo.png">`;
 
-/*
-const loadData = async() => {
+const loadData = async () => {
   const userDataResponse = await fetch(`${domain}/profile/userData`);
   const userData = await userDataResponse.json();
 
@@ -32,4 +31,3 @@ const loadData = async() => {
   localStorage.clear();
 }
 loadData();
-*/
