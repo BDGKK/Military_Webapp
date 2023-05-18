@@ -16,10 +16,7 @@ let section = document.querySelectorAll('section');
 let navlinks = document.querySelectorAll('header nav a');
 
 let domain = window.location.origin;
-const logoUrl = `${domain}/logo.png`;
-
-document.querySelector('head').innerHTML += `<link rel="icon" type="image/x-icon" href="${logoUrl}">`;
-document.querySelector('.navbar-header').innerHTML = `<img class="logo-img" src="${logoUrl}" alt="align box">`;
+document.querySelector('.navbar-header').innerHTML = `<img class="logo-img" src="${domain}/logo.png" alt="align box">`;
 
 // Change Log button to 'Log in' or 'Log out' if user is logged in or not respectively
 fetch('/userLoginStatus')

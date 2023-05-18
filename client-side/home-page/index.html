@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Home Page</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Home Page</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="icon" type="image/x-icon" href="/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-      <!-- navigation bar -->
-    <section id="home">
+  <!-- navigation bar -->
+  <section id="home">
     <nav class="navbar p-1">
       <div class="navbar-header"></div> <!-- Logo Holder -->
       <div class="d-flex justify-content-center">
@@ -47,162 +51,219 @@
         </div>
       </div>
     </div>
-    </section>   
+  </section>
 
-    <!-- Chatbot code here -->
-    <div id="chatbot-window" class="chatbot-window">
-      <div id="messaging-body" class="text-body"></div>
-      <div class="user-input">
-          <input id="user-input" type="text" placeholder="Type here...">
-          <button onclick="generateMessage()">Enter</button>
+  <!-- Chatbot code here -->
+  <div id="chatbot-window" class="chatbot-window">
+    <div id="messaging-body" class="text-body"></div>
+    <div class="user-input">
+      <input id="user-input" type="text" placeholder="Type here...">
+      <button onclick="generateMessage()">Enter</button>
+    </div>
+  </div>
+
+  <button onclick="openChatbotWindow()" class="chatbot-icon">
+    <span class="material-symbols-outlined">live_help</span>
+  </button>
+  
+  <!-- service section -->
+  <section id="services"></section>
+  <div class="container-fluid text-center">
+    <h1 class="mt-5">SERVICES</h1>
+    <div class="row mt-4">
+      <div class="border col-sm-4 mt-5 text-dark">
+        <div class="row">
+          <div class="col-sm-4 mt-2">
+            <img src="account-profile-user-icon--icon-search-engine-10.png" height="130" alt="">
+          </div>
+          <div class="col-sm-8 mt-4">
+            <a class="text-white" href="" id="profile-page-link">
+              <h3 title="Profile" class="text-white">Profile</h3>
+            </a>
+            <p class="text-white">Provides the detailed information about your profile.</p>
+          </div>
+        </div>
+      </div>
+      <div class="border col-sm-4 mt-5">
+        <div class="row">
+          <div class="col-sm-4 mt-2">
+            <img src="1117933.png" height="130" alt="">
+          </div>
+          <div class="col-sm-8 mt-4">
+            <a class="text-white pension-page-link" href="">
+              <h3 title="Pension" onmouseover="applyedpension();" class="text-white">Pension</h3>
+            </a>
+            <p class="text-white">Find out your pension details, next renew date and monthly payment.</p>
+          </div>
+        </div>
+      </div>
+      <div class="border col-sm-4 mt-5">
+        <div class="row">
+          <div class="col-sm-4 mt-4">
+            <img src="img_187814.png" height="110" alt="">
+          </div>
+          <div class="col-sm-8 mt-4">
+            <a class="text-white loan-page-link" href="">
+              <h3 title="Loan" onmouseover="applyedloan();" class="text-white">Loan</h3>
+            </a>
+            <p class="text-white">Find out your loan detailes and monthly loan payment.</p>
+          </div>
+        </div>
       </div>
     </div>
-
-    <button onclick="openChatbotWindow()" class="chatbot-icon">
-      <span class="material-symbols-outlined">live_help</span>
-    </button>
-
-
-    <!-- service section -->
-    <section id="services"></section>
-    <div class="container-fluid text-center">
-        <h1 class="mt-5">SERVICES</h1>
-        <div class="row mt-5">
-          <div class="border col-sm-4 mt-5 text-dark">
-            <!-- profile page is linked here -->
-            <a class="text-white" href="" id="profile-page-link"><h3 title="Profile" class="text-white">Profile</h3></a>
+    <div class="row mt-5">
+      <div class="border col-sm-4 mt-5">
+        <div class="row">
+          <div class="col-sm-4 mt-2">
+            <img src="4345551.png" height="100" alt="">
           </div>
-          <div class="border col-sm-4 mt-5">
-            <!-- applyedloan fumction prevents user from entering to this page and send alert -->
-            <a class="text-white pension-page-link" href=""><h3 title="Pension" onmouseover = "applyedpension();" class="text-white">Pension</h3></a>
-          </div>
-          <div class="border col-sm-4 mt-5">
-            <!-- registration page is linked here -->
-            <a class="text-white loan-page-link" href=""><h3 title="Loan" onmouseover = "applyedloan();" class="text-white">Loan</h3></a>
-          </div>
-        </div>
-        <div class="row mt-5">
-          <div class="border col-sm-4 mt-5">
-            <!-- applyedloan fumction prevents user from entering to this page and send alert -->
-            <h3 data-toggle="dropdown" class="text-white pointer">Application Forms</h3>
-                <div class="dropdown-menu">
-                  <!-- pension form is linked here -->
-                  <a class="dropdown-item pension-page-link" href="">Pension form</a>
-                  <!-- loan form is linked here -->
-                  <a class="dropdown-item loan-page-link" href="">Loan form</a>
-                </div>
-          </div>
-          <div class=" border col-sm-4 mt-5">
-            <div class="doc">
-              <a class="text-white" href="" id="download-app-page-link"><h3 title="Need Help?" class="text-white">Download application</h3></a>
+          <div class="col-sm-8 mt-4">
+            <h3 data-toggle="dropdown" class="doc text-white">Application Forms</h3>
+            <p class="text-white">Apply for a Loan or the Pension.</p>
+            <div class="dropdown-menu">
+              <a class="dropdown-item pension-page-link" href="">Pension form - Application form for a pension.</a>
+              <br>
+              <a class="dropdown-item loan-page-link" href="">Loan form - Application form for a loan.</a>
             </div>
           </div>
-          <div class="border col-sm-4 mt-5">
-            <!-- need help page is linked here -->
-            <a class="text-white" href="" id="need-help-page-link"><h3 title="Need Help?" class="text-white">Need Help?</h3></a>
-          </div>
         </div>
       </div>
-
-
-
-      <section id="about-section" class="abt">
-      <div class="container-fluid text-center">
-        <h1 class="mt-5">About Us</h1>
-        <div class="row mt-5">
-          <div class="col-sm-4 mt-5">
-            <img src="pfp_kavindu.jpeg" height="400" alt="project-manager">
-            <p class="mt-3">Project Manager / Security Consultant</p>
-            <p>Kavindu Gayantha</p>
-            <a href="https://www.linkedin.com/in/kavindu-karunarathna-2877461b1/"><i class="fa fa-linkedin-square" style="font-size:30px"></i></a>
-            <a href="mailto:kavindugayanthakaru@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
-          </div>
-          <div class="col-sm-4 mt-5">
-            <img src="pfp_dilshani.jpg" height="400" width="350" alt="">
-            <p class="mt-3">Frontend developer / Database Analyst</p>
-            <p>Dilshani Navodya</p>
-            <a href="https://www.linkedin.com/in/dilshani-nawodya-4579a423a"><i class="fa fa-linkedin-square" style="font-size:30px"></i></a>
-            <a href="mailto:dilshaninawodya189@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
-          </div>
-          <div class="col-sm-4 mt-5">
-            <img src="pfp_kehan.jpeg" height="400" alt="backend-dev">
-            <p class="mt-3">Backend Developer / Security Consultant</p>
-            <p>Kehan Rathnayake</p>
-            <a href="https://www.linkedin.com/in/kehaninsitha"><i class="fa fa-linkedin-square" style="font-size:30px"></i></a>
-            <a href="mailto:kehanrathnayake@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
-          </div>
-        </div>
-        <div class="row mt-5">
-          <div class="col-sm-4 mt-5">
-            <img src="pfp_nadeesha.jpg" height="400" alt="">
-            <P class="mt-3">Database Analyst / Frontend Developer</P>
-            <p>Nadeesha Perera</p>
-            <a href="http://www.linkedin.com/in/nadeesha-perera-18201623b"><i class="fa fa-linkedin-square" style="font-size:30px"></i></a>
-            <a href="mailto:nadeeshap74@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
-          </div>
-          <div class="col-sm-4 mt-5">
-            <img src="pfp_pasan.jpeg" height="400" alt="">
-            <P class="mt-3">Frontend Developer / Backend Developer</P>
-            <p>Pasan Ranasinghe</p>
-            <a href="https://www.linkedin.com/in/pasan-ranasinghe-6403b1240/"><i class="fa fa-linkedin-square" style="font-size:30px"></i></a>
-            <a href="mailto:tharanaranasinghe2000@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
-          </div>
-          <div class="col-sm-4 mt-5">
-            <img src="pfp_udari.jpg" height="400" alt="Business-analys">
-            <p class="mt-3">Business Analyst / Frontend Developer</p>
-            <P>Udari Sathsarani</p>
-              <a href="https://www.linkedin.com/in/udari-sathsarani-971228241/"><i class="fa fa-linkedin-square" style="font-size:30px"></i></a>
-              <a href="mailto:chethanasathsarani1001@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-      
-      
-      <section id="contact" class="footer">
-      <div class="container-fluid ">
+      <div class=" border col-sm-4 mt-5">
         <div class="row">
-          <div class="col-sm-4">
-            <h2 class="text-center">Contact Us</h2>
-            <center>
+          <div class="col-sm-3 mt-2">
+            <img src="document+documents+down+download+file+page+paper+text+icon-1320185922472753180.png" height="100"
+              alt="">
+          </div>
+          <div class="col-sm-8 mt-2">
+            <div class="doc">
+              <a class="text-white" href="" id="download-app-page-link">
+                <h3 title="Need Help?" class="text-white">Download application</h3>
+              </a>
+              <p class="text-white">Download the Pension application and Loan application.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border col-sm-4 mt-5">
+        <div class="row">
+          <div class="col-sm-4 mt-2">
+            <img src="7391247.png" height="100" alt="">
+          </div>
+          <div class="col-sm-7 mt-2">
+            <a class="text-white" href="" id="need-help-page-link">
+              <h3 title="Need Help?" class="text-white">Need Help?</h3>
+            </a>
+            <p class="text-white">Find out how the website works.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="about-section" class="abt">
+    <div class="container-fluid text-center">
+      <h1 class="mt-5">About Us</h1>
+      <div class="row mt-5">
+        <div class="col-sm-4 mt-5">
+          <img src="pfp_kavindu.jpeg" height="400" alt="project-manager">
+          <p class="mt-3">Project Manager / Security Consultant</p>
+          <p>Kavindu Gayantha</p>
+          <a href="https://www.linkedin.com/in/kavindu-karunarathna-2877461b1/"><i class="fa fa-linkedin-square"
+              style="font-size:30px"></i></a>
+          <a href="mailto:kavindugayanthakaru@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
+        </div>
+        <div class="col-sm-4 mt-5">
+          <img src="pfp_dilshani.jpg" height="400" width="350" alt="">
+          <p class="mt-3">Frontend developer / Database Analyst</p>
+          <p>Dilshani Navodya</p>
+          <a href="https://www.linkedin.com/in/dilshani-nawodya-4579a423a"><i class="fa fa-linkedin-square"
+              style="font-size:30px"></i></a>
+          <a href="mailto:dilshaninawodya189@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
+        </div>
+        <div class="col-sm-4 mt-5">
+          <img src="pfp_kehan.jpeg" height="400" alt="backend-dev">
+          <p class="mt-3">Backend Developer / Security Consultant</p>
+          <p>Kehan Rathnayake</p>
+          <a href="https://www.linkedin.com/in/kehaninsitha"><i class="fa fa-linkedin-square"
+              style="font-size:30px"></i></a>
+          <a href="mailto:kehanrathnayake@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-sm-4 mt-5">
+          <img src="pfp_nadeesha.jpg" height="400" alt="">
+          <P class="mt-3">Database Analyst / Frontend Developer</P>
+          <p>Nadeesha Perera</p>
+          <a href="http://www.linkedin.com/in/nadeesha-perera-18201623b"><i class="fa fa-linkedin-square"
+              style="font-size:30px"></i></a>
+          <a href="mailto:nadeeshap74@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
+        </div>
+        <div class="col-sm-4 mt-5">
+          <img src="pfp_pasan.jpeg" height="400" alt="">
+          <P class="mt-3">Frontend Developer / Backend Developer</P>
+          <p>Pasan Ranasinghe</p>
+          <a href="https://www.linkedin.com/in/pasan-ranasinghe-6403b1240/"><i class="fa fa-linkedin-square"
+              style="font-size:30px"></i></a>
+          <a href="mailto:tharanaranasinghe2000@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
+        </div>
+        <div class="col-sm-4 mt-5">
+          <img src="pfp_udari.jpg" height="400" alt="Business-analys">
+          <p class="mt-3">Business Analyst / Frontend Developer</p>
+          <P>Udari Sathsarani</p>
+          <a href="https://www.linkedin.com/in/udari-sathsarani-971228241/"><i class="fa fa-linkedin-square"
+              style="font-size:30px"></i></a>
+          <a href="mailto:chethanasathsarani1001@gmail.com"><i class="fa fa-envelope" style="font-size:30px"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contact" class="footer">
+    <div class="container-fluid ">
+      <div class="row">
+        <div class="col-sm-4">
+          <h2 class="text-center">Contact Us</h2>
+          <center>
             <p class="mt-5">Web site email: </p>
             <a type="email" href="mailto:militarysaluteweb2023@gmail.com">militarysaluteweb2023@gmail.com</a>
             <p class="mt-5">Project Manager : Kavidu Gayanth</p>
             <p>T.P : 078-3181452</p>
             <p class="mt-5">Business Analyst : Udari Sathsarani</p>
             <p>T.P : 076-2509945</p>
-            </center>
-          </div>
-          <div class="col-sm-4">
+          </center>
+        </div>
+        <div class="col-sm-4">
 
-          </div>
-          <div id="feedback-form" class="col-sm-4">
-            <h2 class="text-center">Feedback</h2>
-            <div class="container">
-                  <div class="form-group">
-                    <p for="name">Name:</p>
-                    <input type="uname" class="form-control" id="uname" placeholder="Enter name" name="uname">
-                  </div>
-                  <div class="form-group">
-                    <p for="email">Email:</p>
-                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
-                  </div>
-                  <div class="form-group">
-                    <p for="Subject">Subject:</p>
-                    <input type="subject" class="form-control" id="subject" placeholder="Enter subject" name="subject">
-                  </div>
-                  <div class="form-group">
-                    <p for="Comment">Comment:</p>
-                    <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
-                  </div>
-                  <button id="feedback-submit-btn" type="submit" class="btn btn-primary btn-block">Submit</button>
+        </div>
+        <div id="feedback-form" class="col-sm-4">
+          <h2 class="text-center">Feedback</h2>
+          <div class="container">
+            <div class="form-group">
+              <p for="name">Name:</p>
+              <input type="uname" class="form-control" id="uname" placeholder="Enter name" name="uname">
             </div>
+            <div class="form-group">
+              <p for="email">Email:</p>
+              <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
+            </div>
+            <div class="form-group">
+              <p for="Subject">Subject:</p>
+              <input type="subject" class="form-control" id="subject" placeholder="Enter subject" name="subject">
+            </div>
+            <div class="form-group">
+              <p for="Comment">Comment:</p>
+              <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+            </div>
+            <button id="feedback-submit-btn" type="submit" class="btn btn-primary btn-block">Submit</button>
           </div>
-        </div> 
+        </div>
       </div>
-      </section>
+    </div>
+  </section>
 
-      <script src="script.js"></script>
-      
+  <script src="script.js"></script>
+
 </body>
+
 </html>
