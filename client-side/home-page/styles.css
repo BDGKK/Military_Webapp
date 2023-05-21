@@ -49,48 +49,15 @@ section{
     margin-bottom: 3%;
 }
 
-.slides-container {
-    margin: 12vh 1%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-image: linear-gradient(#4CD9FE,#1F2F98);
-    border-radius: 1em;
-}
-.slideshow {
-    overflow: hidden;
-    height: 500px;
-    width: 1200px;
-}
-@keyframes slide_animation{
-   0% {left:0px;}
-   10% {left:0px;}
-   20% {left:1200px;}
-   30% {left:1200px;}
-   40% {left: 2400px;}
-   50% {left: 2400px;}
-   60% {left: 1200px;}
-   70% {left: 1200px;}
-   80% {left: 0px;}
-   90% {left: 0px;}
-   100% {left:0px;}
-}
-.slide-images{
-    width: 4500px;
-      height: 800px;
-      margin: 0 0 0 -2400px;
-      position: relative;
-      animation-name: slide_animation;
-      animation-duration: 10s;
-      animation-iteration-count: infinite;
-      animation-direction: alternate 
-}
-
-.img-container{
-  height: 500px;
-  width: 1200px;
-  position: relative;
-  float: left;
+.slide-image {
+    display: block;
+    height: auto;
+  }
+  
+.dot{
+    margin-top: 7%;
+    margin-left: 2%;
+    width: 1460px;
 }
 
 .chatbot-icon {
