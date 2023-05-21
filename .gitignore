@@ -1,5 +1,7 @@
 # Avoid committing too many modules
 node_modules/
+package.json
+package-lock.json
 
 # Avoid committing confidential information (API keys)
 .env
