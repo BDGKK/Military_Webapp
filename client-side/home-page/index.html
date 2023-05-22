@@ -62,93 +62,150 @@
     <span class="material-symbols-outlined">live_help</span>
   </button>
   
-  <!-- service section -->
+  <!-- onscroll() function uses the section id to auto scrolls -->
   <section id="services"></section>
+  <!-- container to contain  the content and center the text -->
   <div class="container-fluid text-center">
+    <!-- header 1 tag for the service title and margin from the top tag to give a margin from the slide show -->
     <h1 class="mt-5">SERVICES</h1>
+    <!-- row class to put three column in one row and margin from the top pag to space out from the header tag -->
     <div class="row mt-4">
+      <!-- border class for put padding and color to the column, col-sm-4 for column width and text dark for black text-->
       <div class="border col-sm-4 mt-5 text-dark">
+        <!-- row class for keep the image and the text in the same column same row -->
         <div class="row">
+          <!-- col-sm-4 for column width and margin tag for margin from top -->
           <div class="col-sm-4 mt-2">
+            <!-- image with a height of 130 -->
             <img src="account-profile-user-icon--icon-search-engine-10.png" height="130" alt="">
           </div>
+          <!-- col-sm-8 for column width and margin tag for margin from top -->
           <div class="col-sm-8 mt-4">
+            <!-- profile detail page linked here in white text -->
             <a class="text-white" href="" id="profile-page-link">
+              <!-- header tag for profile in white text -->
               <h3 title="Profile" class="text-white">Profile</h3>
             </a>
+            <!-- pharagraph tag for the description about profile tab -->
             <p class="text-white">Provides the detailed information about your profile.</p>
           </div>
         </div>
       </div>
+      <!-- border class for put padding and color to the column, col-sm-4 for column width -->
       <div class="border col-sm-4 mt-5">
+        <!-- row class for keep the image and the text in the same column same row -->
         <div class="row">
+          <!-- col-sm-4 for column width and margin tag for margin from top -->
           <div class="col-sm-4 mt-2">
+            <!-- image with a height of 130 -->
             <img src="1117933.png" height="130" alt="">
           </div>
+          <!-- col-sm-8 for column width and margin tag for margin from top -->
           <div class="col-sm-8 mt-4">
+            <!-- pension detail page linked here in white text -->
             <a class="text-white pension-page-link" href="">
+              <!-- header tag for pension in white text -->
+              <!-- mouse hover over thw header tag will trigger the applyedpension() function -->
               <h3 title="Pension" onmouseover="applyedpension();" class="text-white">Pension</h3>
             </a>
+            <!-- pharagraph tag for the description about profile tab -->
             <p class="text-white">Find out your pension details, next renew date and monthly payment.</p>
           </div>
         </div>
       </div>
+      <!-- border class for put padding and color to the column, col-sm-4 for column width -->
       <div class="border col-sm-4 mt-5">
+        <!-- row class for keep the image and the text in the same column same row -->
         <div class="row">
+          <!-- col-sm-4 for column width and margin tag for margin from top -->
           <div class="col-sm-4 mt-4">
+            <!-- image with a height of 110 -->
             <img src="img_187814.png" height="110" alt="">
           </div>
+          <!-- col-sm-8 for column width and margin tag for margin from top -->
           <div class="col-sm-8 mt-4">
+            <!-- loan detail page linked here in white text -->
             <a class="text-white loan-page-link" href="">
+              <!-- header tag for pension in white text -->
+              <!-- mouse hover over thw header tag will trigger the applyedpension() function -->
               <h3 title="Loan" onmouseover="applyedloan();" class="text-white">Loan</h3>
             </a>
+            <!-- pharagraph tag for the description about profile tab -->
             <p class="text-white">Find out your loan detailes and monthly loan payment.</p>
           </div>
         </div>
       </div>
     </div>
+    <!-- row class to put three column in one row and margin from the top pag to space out from the header tag -->
     <div class="row mt-5">
+      <!-- border class for put padding and color to the column, col-sm-4 for column width -->
       <div class="border col-sm-4 mt-5">
+        <!-- row class for keep the image and the text in the same column same row -->
         <div class="row">
+          <!-- col-sm-4 for column width and margin tag for margin from top -->
           <div class="col-sm-4 mt-2">
+            <!-- image with a height of 110 -->
             <img src="4345551.png" height="100" alt="">
           </div>
+          <!-- col-sm-8 for column width and margin tag for margin from top -->
           <div class="col-sm-8 mt-4">
+            <!-- header tag for pension with a drop down box in white text -->
             <h3 data-toggle="dropdown" class="doc text-white">Application Forms</h3>
+            <!-- pharagraph tag for the description about profile tab -->
             <p class="text-white">Apply for a Loan or the Pension.</p>
+            <!-- drop down class for the drop down menu -->
             <div class="dropdown-menu">
+              <!-- pension form page linked here with a description in white text -->
               <a class="dropdown-item pension-page-link" href="">Pension form - Application form for a pension.</a>
+              <!-- break tag to break the menu items -->
               <br>
+              <!-- loan form page linked here with a description in white text -->
               <a class="dropdown-item loan-page-link" href="">Loan form - Application form for a loan.</a>
             </div>
           </div>
         </div>
       </div>
+      <!-- border class for put padding and color to the column, col-sm-4 for column width -->
       <div class=" border col-sm-4 mt-5">
+        <!-- row class for keep the image and the text in the same column same row -->
         <div class="row">
+          <!-- col-sm-4 for column width and margin tag for margin from top -->
           <div class="col-sm-3 mt-2">
-            <img src="document+documents+down+download+file+page+paper+text+icon-1320185922472753180.png" height="100"
-              alt="">
+            <!-- image with a height of 100 -->
+            <img src="document+documents+down+download+file+page+paper+text+icon-1320185922472753180.png" height="100" alt="">
           </div>
+          <!-- col-sm-8 for column width and margin tag for margin from top -->
           <div class="col-sm-8 mt-2">
+            <!-- doc class for the cursor-->
             <div class="doc">
+              <!-- download pensionand loan form page linked here in white text -->
               <a class="text-white" href="" id="download-app-page-link">
-                <h3 title="Need Help?" class="text-white">Download application</h3>
+                <!-- header tag for pension with a drop down box in white text -->
+                <h3 title="download application" class="text-white">Download application</h3>
               </a>
+              <!-- pharagraph tag for the description about profile tab -->
               <p class="text-white">Download the Pension application and Loan application.</p>
             </div>
           </div>
         </div>
       </div>
+      <!-- border class for put padding and color to the column, col-sm-4 for column width -->
       <div class="border col-sm-4 mt-5">
+        <!-- row class for keep the image and the text in the same column same row -->
         <div class="row">
+          <!-- col-sm-4 for column width and margin tag for margin from top -->
           <div class="col-sm-4 mt-2">
+            <!-- image with a height of 100 -->
             <img src="7391247.png" height="100" alt="">
           </div>
+          <!-- col-sm-7 for column width and margin tag for margin from top -->
           <div class="col-sm-7 mt-2">
+            <!-- need help page linked here in white text -->
             <a class="text-white" href="" id="need-help-page-link">
+              <!-- header tag for need help page with white text -->
               <h3 title="Need Help?" class="text-white">Need Help?</h3>
             </a>
+            <!-- pharagraph tag for the description about profile tab -->
             <p class="text-white">Find out how the website works.</p>
           </div>
         </div>
